@@ -33,6 +33,12 @@
         color: $--color-white;
         font-size: 1.4rem;
         font-weight: 300;
+        transition: all .25s ease-out;
+
+        &:hover {
+            cursor: pointer;
+            color: $--color-primary;
+        }
     }
 
     &__socials {
@@ -44,11 +50,19 @@
         grid-gap: 1.5rem;
         justify-content: right;
         grid-template-columns: repeat(5, max-content);
+        
+        
     }
 
     &__svg {
         height: 5rem;
         fill: $--color-white;
+        transition: all .25s ease-out;
+
+        &:hover {
+            cursor: pointer;
+            fill: $--color-primary;
+        }
     }
 
     &__subscribe {

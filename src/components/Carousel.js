@@ -22,6 +22,8 @@ export default class Carousel extends React.Component {
 
         this.addSlide('دوستی با طبیعت', 'زندگی سالم تر با دارو ها و دمنوش های گیاهی پنج نوش', '/img/img-1.png');
         this.addSlide('داروی جدید سرماخوردگی', 'رفع علائم و پیش گیری از سرماخوردگی', '/img/img-2.png');
+        this.addSlide('عنوان یک مقاله', 'توضیحاتی از مقاله در این جا قرار می گیرد', '/img/blog-1.jpg');
+        this.addSlide('داروی ضد سرطان', 'تمامی عنوان ها و متن ها نمادین بوده ', '/img/img-5.jpg');
     }
 
     state = {
@@ -50,13 +52,17 @@ export default class Carousel extends React.Component {
     
     render() {
 
+        let style = {
+            backgroundImage: `url(${this.state.slides[this.state.current].imgSrc})`
+        }
+
         return (
             <div className="carousel">
                 <h2 className="carousel__title">{this.state.slides[this.state.current].title}</h2>
                 <p className="carousel__desc">{this.state.slides[this.state.current].desc}</p>
                 <button className={`btn carousel__btn btn--no-up-animation btn--shadow-animation btn--${this.state.slides[this.state.current].color}`}>{this.state.slides[this.state.current].btnText}</button>
                 <div className={`carousel__bg carousel__bg--${this.state.slides[this.state.current].color}`}></div>
-                <img src={this.state.slides[this.state.current].imgSrc} alt="carousel picture" className="carousel__img"/>
+                <span style={style} src={this.state.slides[this.state.current].imgSrc} alt="carousel picture" className="carousel__img"></span>
                 <div className="carousel__slides">
                     {
                         this.state.slides.map((cur, i) => 

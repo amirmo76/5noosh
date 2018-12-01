@@ -43,6 +43,8 @@
 
     &__img {
         width: 55vw;
+        height: 60vh;
+        background-size: cover;
         grid-row: 1/4;
         grid-column: col-start 5/ col-end 13;
         margin-top: 7.5rem;

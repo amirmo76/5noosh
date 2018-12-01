@@ -88,7 +88,7 @@ const Footer = props => {
                 
                 <div className="footer__subscribe-input-box">
                     <input className="input input--attached" type="email" placeholder="ایمیل خود را وارد کنید"/>
-                    <button className="btn btn--fat btn--primary btn--attached">عضویت</button>
+                    <button className="btn btn--no-up-animation btn--color-animation-blue btn--fat btn--primary btn--attached">عضویت</button>
                 </div>
             </div>
 
