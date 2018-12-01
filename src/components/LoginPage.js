@@ -5,10 +5,47 @@ import Footer from './Footer';
 
 export default class LoginPage extends React.Component {
 
+    state = {
+        emailTouched: false,
+        emailValid: false,
+        passTouched: false,
+        passValid: false
+    }
+
     submitHandler = e => {
         e.preventDefault();
         //-------------CODE GOES HERE----------
         
+    }
+
+    emailChangeHandler = e => {
+        this.setState(() => ({
+            emailTouched: true
+        }));
+
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const result = re.test(String(document.getElementById('email').value).toLowerCase());
+
+        this.setState(() => ({
+            emailValid: result
+        }));
+
+        console.log(this.state);
+    }
+
+
+    passChangeHandler = e => {
+        this.setState(() => ({
+            passTouched: true
+        }));
+
+        const result = (document.getElementById('pass').value.length >= 6);
+
+        this.setState(() => ({
+            passValid: result
+        }));
+
+        console.log(this.state);
     }
 
     render() {
@@ -20,9 +57,9 @@ export default class LoginPage extends React.Component {
                     <div className="login__box">
                         <form className="login__form">
                             <label className="label label--secondary">ایمیل</label>
-                            <input className="input input--secondary mg-bottom-md" type="email" required/>
+                            <input id="email" className={"input input--secondary mg-bottom-md " + (this.state.emailTouched && (this.state.emailValid ? "input--valid" : "input--unvalid"))} type="email" onChange={this.emailChangeHandler} required/>
                             <label className="label label--secondary">رمز عبور</label>
-                            <input className="input input--secondary mg-bottom-lg" type="password" required/>
+                            <input id="pass" className={"input input--secondary mg-bottom-lg " + (this.state.passTouched && (this.state.passValid ? "input--valid" : "input--unvalid"))} type="password" onChange={this.passChangeHandler} required/>
                             <button className="btn btn--fat btn--primary mg-bottom-md" type="submit" onClick={this.submitHandler}>ورود</button>
                             <div className="login__options">
                                 <a>حساب کاربری ندارید؟</a>
