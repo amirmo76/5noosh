@@ -42,7 +42,7 @@ export default class Navigation extends React.Component {
                 {this.state.isLoggedIn || 
                     <div className="navigation__buttons">
                         <Link to='/signup'>
-                            <button className="btn btn--secondary">ثبت نام</button>                        
+                            <button className="btn btn--secondary btn--stretch">ثبت نام</button>                        
                         </Link>
                         <Link to='/login'>
                             <button className="btn btn--secondary btn--outline">ورود</button>                        

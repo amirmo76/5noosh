@@ -6,9 +6,53 @@
     font-family: 'IRANSans';
     border-radius: $--size-round-sm;
     font-size: 1.4rem;
+    transition: all .2s ease-in;
+    position: relative;
+    // z-index: 3;
 
     &:hover {
         cursor: pointer;
+        transform: translateY(-.5rem);
+        box-shadow: 0 .5rem 1rem rgba(black, .2);
+    }
+
+
+    &:active {
+        transform: translateY(-.3rem);
+        box-shadow: 0 .5rem 1rem rgba(black, .1);
+    }
+
+    &--no-up-animation {
+        &:hover {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        &:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+    }
+
+    &--shadow-animation {
+        &::after {
+            content: '';
+            display: inline-block;
+            width: 100%;
+            background-color: inherit;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: inherit;
+            z-index: -1;
+            transition: all .25s ease-in;
+        }
+
+        &:hover::after {
+            transform: scaleX(1.2) scaleY(1.4);
+            opacity: 0;
+        }
     }
 
     &--fat {
@@ -17,6 +61,10 @@
 
     &--tall {
         min-width: 40rem;
+    }
+
+    &--stretch {
+        height: 100%;
     }
 
     &--attached {
@@ -37,12 +85,28 @@
     &--outline {
         background-color: transparent;
         color: $--color-white;
-        border: .2rem solid currentColor;
+        border: .2rem solid $--color-white;
+        transition: all .25s ease-in-out;
+
+        &:hover {
+            transform: translateY(0);
+            box-shadow: none;
+            background-color: $--color-white;
+            color: $--color-black;
+        }
     }
 
     &--outline-primary {
         background-color: transparent;
         color: $--color-white;
         border: .2rem solid $--color-primary;
+        transition: all .25s ease-in-out;
+
+        &:hover {
+            transform: translateY(0);
+            box-shadow: none;
+            background-color: $--color-primary;
+            color: $--color-white;
+        }
     }
 }

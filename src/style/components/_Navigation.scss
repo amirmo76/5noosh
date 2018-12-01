@@ -35,6 +35,7 @@
         display: grid;
         grid-template-columns: repeat(2, max-content);
         grid-gap: 2rem;
+        align-items: stretch;
     }
 
     &--shifted {
