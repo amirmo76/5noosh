@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Navigation extends React.Component {
     state = {
@@ -17,7 +18,9 @@ export default class Navigation extends React.Component {
     render() {
         return (
             <nav className={'navigation' + (this.props.shifted ? ' navigation--shifted' : '')} >
-                {this.logo && this.logo}
+                <Link to='/' className="clickable">
+                    {this.logo && this.logo}
+                </Link>
                 <ul className="navigation__list">
                     <li className="navigation__item">
                         <a className="navigation__link">فروشگاه</a>
@@ -38,8 +41,12 @@ export default class Navigation extends React.Component {
 
                 {this.state.isLoggedIn || 
                     <div className="navigation__buttons">
-                        <button className="btn btn--secondary">ثبت نام</button>
-                        <button className="btn btn--secondary btn--outline">ورود</button>
+                        <Link to='/signup'>
+                            <button className="btn btn--secondary">ثبت نام</button>                        
+                        </Link>
+                        <Link to='/login'>
+                            <button className="btn btn--secondary btn--outline">ورود</button>                        
+                        </Link>
                     </div>
                 }
                 
