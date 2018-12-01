@@ -9,6 +9,7 @@
         width: 53rem;
         position: relative;
         z-index: 2;
+        background-size: cover;
 
         &--left {
 
@@ -16,6 +17,11 @@
 
         &--right {
             
+        }
+
+        &--landscape {
+            width: 100rem;
+            height: 50rem;
         }
     }
 

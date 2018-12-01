@@ -19,6 +19,12 @@ const HomePage = props => {
             hero='img/product-hero-1.png' 
             logo='img/product.png' 
             shortDesc='افزایش شادابی و نشاط با عنوان محصول' />
+            <Recommended
+            direction='rtl'
+            landscape='true' 
+            hero='img/product-hero-2.png' 
+            logo='img/product.png' 
+            shortDesc='بهبود تمرکز و آرامش' />
             <Features />
             <HomeSales />
             <Testemonials />

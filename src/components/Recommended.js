@@ -1,9 +1,14 @@
 import React from 'react';
 
 const Recommended = props => {
+    
+    let style = {
+        backgroundImage: `url(${props.hero})`
+    }
+
     return (
         <div className="recommended">
-            <img className="recommended__hero recommended__hero--left" src={props.hero}/>
+            <span className="recommended__hero recommended__hero--left" style={style}></span>
             <span className="recommended__hero-bg recommended__hero-bg--left"></span>
             <div className="recommended__product recommended__product--right">
                 <img className="recommended__logo" src={props.logo}/>
