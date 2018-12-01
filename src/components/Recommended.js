@@ -7,9 +7,9 @@ const Recommended = props => {
     }
 
     return (
-        <div className="recommended">
-            <span className="recommended__hero recommended__hero--left" style={style}></span>
-            <span className="recommended__hero-bg recommended__hero-bg--left"></span>
+        <div className={"recommended " + (props.direction && "recommended--rtl")}>
+            <span className={"recommended__hero recommended__hero--left " + (props.landscape && "recommended__hero--landscape")} style={style}></span>
+            <span className={"recommended__hero-bg recommended__hero-bg--left " + (props.landscape && "recommended__hero-bg--landscape")}></span>
             <div className="recommended__product recommended__product--right">
                 <img className="recommended__logo" src={props.logo}/>
                 <span className="recommended__product-bg recommended__product-bg--left"></span>

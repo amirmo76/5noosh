@@ -4,12 +4,17 @@
     justify-content: space-between;
     position: relative;
 
+    &--rtl {
+        flex-direction: row-reverse;
+    }
+
     &__hero {
         height: 80rem;
         width: 53rem;
         position: relative;
         z-index: 2;
         background-size: cover;
+        background-position: center;
 
         &--left {
 
@@ -20,8 +25,8 @@
         }
 
         &--landscape {
-            width: 100rem;
-            height: 50rem;
+            width: 85rem;
+            height: 40rem;
         }
     }
 
@@ -43,7 +48,19 @@
         &--right {
             
         }
+
+        &--landscape {
+            width: 85rem;
+            height: 40rem;
+        }
     }
+
+    &--rtl > &__hero-bg {
+        left: auto;
+        right: 0 - $--size-padding-home;
+    }
+
+    
 
     &__product-bg {
         display: block;
@@ -53,7 +70,6 @@
         position: absolute;
         right: 0 - $--size-padding-home -10rem;
         top: 28%;
-        // transform: translateY(-50%);
         z-index: 1;
         background-color: $--color-primary;
 
@@ -66,6 +82,12 @@
         }
     }
 
+    &--rtl  &__product-bg {
+        right: auto;
+        left: 0 - $--size-padding-home - 10rem;
+        transform: translateY(-50%);
+    }
+
     &__product {
         display: flex;
         flex-direction: column;
@@ -73,6 +95,7 @@
         align-items: center;
         position: relative;
         right: 10rem;
+        z-index: 2;
 
         &--left {
             
@@ -81,6 +104,11 @@
         &--right {
             
         }
+    }
+
+    &--rtl  &__product {
+        right: auto;
+        left: 10rem;
     }
 
     &__logo {
@@ -93,6 +121,8 @@
         margin: 3rem 0;
         color: $--color-white;
         font-weight: 500;
+        position: relative;
+        z-index: 2;
     }
 
     &__buttons {
