@@ -1,0 +1,49 @@
+.signup {
+    background-color: $--color-black;
+    min-height: 100vh;
+    padding: 0 $--size-padding-home;
+
+    &__body {
+        min-height: calc(100vh - 7.5rem);
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        padding: 7.5rem 3rem;
+    }
+
+    &__form {
+        padding: 7.5rem 5rem;
+        display: flex;
+        flex-direction: column;
+        font-size: 1.2rem;
+        width: 100%;
+    }
+
+    &__hero {
+        width: 30%;
+        height: 80rem;
+        background-image: linear-gradient(to right bottom, $--color-primary, $--color-secondary), 
+        url("/img/login.jpg");
+        background-size: cover;
+        background-blend-mode: overlay;
+        box-shadow: .2rem 1rem 2rem rgba(black, .2);
+        // transform: translateX(-3rem);
+    }
+
+    &__options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__box {
+        background-color: $--color-black-dark;
+        box-shadow: .2rem 1rem 2rem rgba(black, .2);
+        transform: translateX(3rem);
+        width: 70%;
+        display: flex;
+        flex-direction: row-reverse;
+        text-align: right;
+        color: $--color-white;
+    }
+}

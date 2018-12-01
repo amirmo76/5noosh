@@ -1,0 +1,48 @@
+.btn {
+    border: none;
+    outline: none;
+    min-width: 15rem;
+    padding: 1rem 1.5rem;
+    font-family: 'IRANSans';
+    border-radius: $--size-round-sm;
+    font-size: 1.4rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &--fat {
+        padding: 1.5rem 1.5rem;  
+    }
+
+    &--tall {
+        min-width: 40rem;
+    }
+
+    &--attached {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        min-width: 10rem;
+    }
+
+    &--primary {
+        background-color: $--color-primary;
+        color: $--color-white;
+    }
+
+    &--secondary {
+        background-color: $--color-white;
+    }
+
+    &--outline {
+        background-color: transparent;
+        color: $--color-white;
+        border: .2rem solid currentColor;
+    }
+
+    &--outline-primary {
+        background-color: transparent;
+        color: $--color-white;
+        border: .2rem solid $--color-primary;
+    }
+}

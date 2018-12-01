@@ -1,0 +1,15 @@
+.heading {
+
+    &--primary {
+        font-size: 6rem;
+        font-weight: 300;
+        color: $--color-heading;
+    }
+}
+
+.sub-heading {
+    color: $--color-white;
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    font-weight: 200;
+}

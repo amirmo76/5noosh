@@ -1,0 +1,51 @@
+.home-sales {
+    position: relative;
+    padding: 15rem 0;
+    min-height: 110rem;
+
+    margin-bottom: -20rem;
+
+    &__hero {
+        background-image: url('/img/home-sales.png');
+        background-size: cover;
+        width: 50vw;
+        height: 110rem;
+        position: absolute;
+        right: 0 - $--size-padding-home;
+        top: 0;
+        z-index: 0;
+        display: block;
+    }
+
+    &__bg {
+        width: 45vw;
+        background-color: $--color-primary;
+        height: 20rem;
+        position: absolute;
+        left: 0 - $--size-padding-home;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+    }
+
+    &__products {
+        display: flex;
+        position: absolute;
+        right: 42%;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 3;
+
+        & > * {
+            margin-left: 5rem;
+        }
+    }
+    
+
+    &__header {
+        text-align: center;
+        position: relative;
+        z-index: 4;
+        top: -5rem
+    }
+}

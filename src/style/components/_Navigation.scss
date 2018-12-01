@@ -1,0 +1,43 @@
+.navigation {
+    background-color: $--color-black;
+    color: $--color-white;
+    font-size: 1.6rem;
+
+    display: grid;
+    direction: rtl;
+    grid-template-columns: minmax(max-content, 2fr) minmax(max-content, 3.5fr) max-content;
+    align-items: center;
+    padding: 1rem 0;
+    grid-gap: 3.5rem;
+    
+    &__logo {
+        fill: $--color-primary;
+        height: 7.5rem;
+    }
+
+    &__list {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(5, max-content);
+        direction: rtl;
+        grid-gap: 7.5rem;
+    }
+
+    &__item {
+
+    }
+
+    &__link {
+
+    }
+
+    &__buttons {
+        display: grid;
+        grid-template-columns: repeat(2, max-content);
+        grid-gap: 2rem;
+    }
+
+    &--shifted {
+        padding-left: 15rem;
+    }
+}

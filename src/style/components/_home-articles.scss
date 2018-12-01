@@ -1,0 +1,17 @@
+.home-articles {
+    padding: 10rem 0;
+    margin-top: 10rem;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+
+    &__bg {
+        position: absolute;
+        z-index: -1;
+        transform: scale(1.2);
+        left: 0;
+        top: 0;
+        fill: $--color-primary;
+    }
+}

@@ -1,0 +1,78 @@
+.carousel {
+
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(12,[col-start] minmax(8rem, 1fr) [col-end]);
+    grid-template-rows: minmax(min-content, 35vh) 2rem minmax(min-content, 35vh) min-content;
+    direction: rtl;
+    color: $--color-white;
+    position: relative;
+    
+    &__title {
+        font-size: 4rem;
+        grid-column: col-start 1/ col-end 4;
+        font-weight: 300;
+        align-self: end;
+    }
+
+    &__desc {
+        font-size: 1.6rem;
+        grid-column: col-start 1/ col-end 4;
+        grid-row: 2/ 3;
+    }
+
+    &__btn {
+        grid-column: col-start 1/ col-end 2;
+        grid-row: 3/ 4;
+        align-self: start;
+        margin-top: 3rem;
+    }
+
+    &__bg {
+        position: absolute;
+        top: 0 - 15rem;
+        left: 0 - $--size-padding-home;
+        width: 18rem;
+        height: 77rem;
+        z-index: 1;
+
+        &--primary {
+            background-color: $--color-primary;
+        }
+    }
+
+    &__img {
+        width: 55vw;
+        grid-row: 1/4;
+        grid-column: col-start 5/ col-end 13;
+        margin-top: 7.5rem;
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 1.5rem 4rem rgba($--color-black, .25);
+        justify-self: end;
+    }
+
+    &__slides {
+        font-size: 1.2rem;
+        color: $--color-primary;
+        grid-row: 4/5;
+        grid-column: col-start 1/ col-end 10;
+        display: flex;
+        margin-top: 2rem;
+    }
+
+    &__slide {
+        font-weight: 500;
+        padding-left: 5rem;
+        padding-bottom: 1rem;
+        border-bottom: .2rem solid $--color-primary;
+
+        &:not(:last-child) {
+            margin-left: 15rem;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
