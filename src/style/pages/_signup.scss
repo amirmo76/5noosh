@@ -22,10 +22,10 @@
     &__hero {
         width: 30%;
         height: 80rem;
-        background-image: linear-gradient(to right bottom, $--color-primary, $--color-secondary), 
+        background-image: linear-gradient(to right bottom, $--color-heading, $--color-heading), 
         url("/img/login.jpg");
         background-size: cover;
-        background-blend-mode: overlay;
+        background-blend-mode: darken;
         box-shadow: .2rem 1rem 2rem rgba(black, .2);
         // transform: translateX(-3rem);
     }
