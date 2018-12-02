@@ -28,6 +28,7 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.4",
     "node-sass": "^4.9.4",
+    "gsap": "^2.0.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-modal": "^3.6.1",
