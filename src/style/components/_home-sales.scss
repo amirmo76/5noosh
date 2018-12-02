@@ -48,4 +48,34 @@
         z-index: 4;
         top: -5rem
     }
+
+    &__arrow {
+        width: 6.5rem;
+        height: 4rem;
+        fill: $--color-white;
+
+        &--right {
+            transform: rotate(180deg);
+        }
+
+        padding: .75rem 1.25rem;
+        border-radius: 10rem;
+        transition: all .2s ease-in;
+
+        &:hover {
+            background-color: $--color-black-light-2;
+            cursor: pointer;
+        }
+    }
+
+    &__arrows {
+        display: grid;
+        grid-gap: 4rem;
+        grid-template-columns: max-content max-content;
+        position: absolute;
+        z-index: 100;
+        bottom: 27.5rem;
+        right: 50%;
+        
+    }
 }
