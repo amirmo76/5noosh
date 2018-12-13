@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = props => {
     return (
-        <div className="footer">
+        <div className="footer footer--bg-black">
             <div className="footer__links">
                 <h3 className="footer__title">لینک ها</h3>
 

@@ -5,6 +5,11 @@
         font-weight: 300;
         color: $--color-heading;
     }
+
+    &--secondary {
+        font-size: 1.6rem;
+        color: $--color-blue-2;
+    }
 }
 
 .sub-heading {

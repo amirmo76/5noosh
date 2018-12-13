@@ -1,0 +1,163 @@
+.shop {
+    background-color: $--color-white;
+    min-height: 100vh;
+    padding: 0 $--size-padding-home;
+    position: relative;
+    color: $--color-blue-2;
+
+    &__bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        background-color: $--color-black;
+        width: 100vw;
+        height: 120vh;
+        z-index: 0;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 100%);
+    }
+
+    &__body {
+        margin-top: 6rem;
+        margin-bottom: 15rem;
+        width: 100%;
+        background-color: $--color-black;
+        box-shadow: 0 2rem 3rem rgba(black, .3);
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: stretch;
+        flex-direction: row-reverse;
+    }
+
+    &__right-side {
+        background-color: $--color-black-dark-2;
+        width: 30rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 6rem 3rem;
+        align-items: center; 
+    }
+
+    &__bottom-right-logo {
+        fill: rgba($--color-white, .25);
+        width: 7.5rem;
+    }
+
+    &__cats-box {
+        direction: rtl;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__cats-gp {
+        margin: 2rem 0;
+        align-self: flex-start;
+    }
+
+    &__cats {
+        list-style-type: none;
+    }
+
+    &__cat {
+        &:not(:last-of-type) {
+            margin-bottom: .5rem;
+        }
+        font-size: 1.2rem;
+
+        transition: all .2s ease-in;
+
+        &:hover {
+            transform: translateX(-1rem);
+        }
+    }
+
+    &__cat-main {
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+    }
+
+    &__cat-link {
+        
+    }
+
+    &__main {
+        width: 100%;
+        padding: 6rem 3rem;
+    }
+
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__search {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    &__search-icon {
+        width: 2rem;
+        height: 2rem;
+        fill: $--color-blue-2;
+    }
+
+    &__search-label {
+        margin-left: 1rem;
+    }
+
+    &__search-input {
+        background-color: transparent;
+        font-family: 'IRANSans';
+        border: none;
+        direction: rtl;
+        font-size: 1.4rem;
+        outline: none;
+        color: $--color-blue-2;
+    }
+
+    &__cart {
+        position: relative;
+    }
+
+    &__cart-icon {
+        width: 2rem;
+        height: 2rem;
+        fill: $--color-blue-2;
+        position: relative;
+        z-index: 2;
+    }
+
+    &__cart-number {
+        padding: .3rem .75rem;
+        border-radius: 50%;
+        background-color: rgba($--color-blue-2, .5);
+        color: $--color-white;
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        z-index: 1;
+        // transform: translate(-50%, -50%);
+    }
+
+    &__featured {
+
+    }
+
+    &__all {
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        grid-gap: 3rem;
+        // direction: rtl;
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    }
+
+    &__all-title {
+        grid-column: 1/-1;
+    }
+}

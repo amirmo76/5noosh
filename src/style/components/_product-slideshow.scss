@@ -1,0 +1,54 @@
+.product-slideshow {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+    &__box {
+        width: 100%;
+        position: relative;
+        min-height: 37rem;
+        // display: flex;
+
+        // .product-prev {
+        //     transform: scale(.5);
+        // }
+    }
+
+    &__right-arrow,
+    &__left-arrow {
+        width: 2.5rem;
+        height: 2.5rem;
+        cursor: pointer;
+    }
+
+    &__right-arrow {
+        transform: rotate(180deg);
+        margin-left: 3rem;
+    }
+
+    &__left-arrow {
+        margin-right: 3rem;
+    }
+}
+
+
+.cls-1 {
+    opacity: 0.5;
+}
+
+.cls-2, .cls-5 {
+    fill: none;
+}
+
+.cls-2 {
+    stroke: $--color-blue-2;
+    stroke-width: 3px;
+}
+
+.cls-3 {
+    fill: $--color-blue-2;
+}
+
+.cls-4 {
+    stroke: none;
+}

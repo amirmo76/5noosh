@@ -23,7 +23,7 @@ export default class Navigation extends React.Component {
                 </Link>
                 <ul className="navigation__list">
                     <li className="navigation__item">
-                        <a className="navigation__link">فروشگاه</a>
+                        <Link className="navigation__link" to="/shop">فروشگاه</Link>
                     </li>
                     <li className="navigation__item">
                         <a className="navigation__link">پیشنهادات ویژه</a>

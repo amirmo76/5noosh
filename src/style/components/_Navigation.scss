@@ -9,6 +9,8 @@
     align-items: center;
     padding: 1rem 0;
     grid-gap: 3.5rem;
+    position: relative;
+    z-index: 1;
     
     &__logo {
         fill: $--color-primary;
@@ -24,7 +26,10 @@
     }
 
     &__item {
-
+        transition: all .2s ease-in;
+        &:hover {
+            color: $--color-primary;
+        }
     }
 
     &__link {
