@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
+import axios from 'axios';
 
 
 export default class LoginPage extends React.Component {
@@ -14,8 +15,20 @@ export default class LoginPage extends React.Component {
 
     submitHandler = e => {
         e.preventDefault();
-        //-------------CODE GOES HERE----------
-        
+        //-------------CODE GOES HERE----------s
+        if(this.state.emailValid && this.state.passValid) {
+            console.log('sent');
+            axios({
+                method: 'post',
+                url: 'localhost:8080/api/user/login',
+                data: {
+                    email: document.getElementById('email').value,
+                    password: document.getElementById('pass').value
+                }
+            }).then(function (response) {
+                console.log(response);
+            });
+        }
     }
 
     emailChangeHandler = e => {
@@ -39,7 +52,7 @@ export default class LoginPage extends React.Component {
             passTouched: true
         }));
 
-        const result = (document.getElementById('pass').value.length >= 6);
+        const result = (document.getElementById('pass').value.length >= 5);
 
         this.setState(() => ({
             passValid: result

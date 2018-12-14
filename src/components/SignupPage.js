@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
+import axios from 'axios';
 
 
 export default class SignupPage extends React.Component {
@@ -23,7 +24,23 @@ export default class SignupPage extends React.Component {
     submitHandler = e => {
         e.preventDefault();
         //-------------CODE GOES HERE----------
-        
+        if(this.state.nameValid && this.state.phoneValid && this.state.addressValid && this.state.emailValid && this.state.passValid && this.state.passConfirmValid) {
+            console.log('sent');
+            axios({
+                method: 'post',
+                url: 'localhost:8080/api/user/signup',
+                data: {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    address: document.getElementById('address').value,
+                    password: document.getElementById('pass').value,
+                    password_confirmation: document.getElementById('pass-confirm').value
+                }
+            }).then(function (response) {
+                console.log(response);
+            });
+        }
     }
 
     emailChangeHandler = e => {
@@ -47,7 +64,7 @@ export default class SignupPage extends React.Component {
             passTouched: true
         }));
 
-        const result = (document.getElementById('pass').value.length >= 6);
+        const result = (document.getElementById('pass').value.length >= 5);
 
         this.setState(() => ({
             passValid: result

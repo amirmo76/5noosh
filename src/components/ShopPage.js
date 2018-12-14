@@ -40,7 +40,6 @@ export default class SignupPAge extends React.Component {
 
         this.setState(() => ({first: newFirst, second: newSecond, third: newThird, fourth: newFourth, fifth: newFifth }));
         console.log(this.state);
-        this.child.updatee();
     }
 
     goLeft = e => {
