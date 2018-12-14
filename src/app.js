@@ -6,6 +6,7 @@ import HomePage from './components/HomePage';
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import ShopPage from './components/ShopPage';
+import Product from './components/Product';
 import './style/style.scss';
 
 const routes = (
@@ -15,6 +16,7 @@ const routes = (
             <Route path='/login' component={LoginPage} />
             <Route path='/signup' component={SignupPage} />
             <Route path='/shop' component={ShopPage} />
+            <Route path='/product' component={Product} />
         </div>
     </BrowserRouter>
 );

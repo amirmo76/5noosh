@@ -58,7 +58,6 @@ export default class LoginPage extends React.Component {
             passValid: result
         }));
 
-        console.log(this.state);
     }
 
     render() {

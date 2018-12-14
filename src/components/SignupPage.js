@@ -55,7 +55,6 @@ export default class SignupPage extends React.Component {
             emailValid: result
         }));
 
-        console.log(this.state);
     }
 
 

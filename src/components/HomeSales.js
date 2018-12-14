@@ -6,7 +6,9 @@ import {TweenMax} from "gsap/TweenMax";
 export default class HomeSales extends React.Component {
 
     state = {
-        firstRight: 0
+        firstRight: 0,
+        moveLimits: undefined,
+        position: 0
     }
 
     style = {
@@ -22,12 +24,16 @@ export default class HomeSales extends React.Component {
         this.setState(prev => ({
             firstRight: firstRight
         }));
-
+        
+        let temp
         Draggable.create("#products", {
             bound: '.home-sales__bound', 
             dragClickables: true,
             type: "x",
             cursor: 'grab',
+            onDragStart:function() {
+                // console.log(this.x);
+            },
             onDragEnd: function() {
                 const newStyle = window.getComputedStyle(el);
                 const newRight = parseInt(newStyle.getPropertyValue('right'));
@@ -39,30 +45,55 @@ export default class HomeSales extends React.Component {
                 } else if (exceeded) {
                     TweenMax.to(this.target, 0.5, { x: w/2 + 1625 - w - (firstRight - newRight)}); 
                 }
+
+                // console.log(this.x);
             }
         });
+
+        const moveLimits = document.querySelectorAll('.product-prev').length - 2;
+        this.setState(() => ({ moveLimits }));
     }
 
 
     rightClickHandler = e => {
-        const el = document.getElementById('products');
-        const style = window.getComputedStyle(el);
-        const right = parseInt(style.getPropertyValue('right'));
-        const shift = document.querySelector('.product-prev').clientWidth;
-        TweenMax.to(el, 0.75, { right: right - shift}); 
+        let canMove = false;
+        const newPos = this.state.position + 1;
 
-        this.checkAfterRightOrLeftClick();
+        if (newPos <= this.state.moveLimits) {
+            this.setState(() => ({ position: newPos }));
+            canMove = true;
+        }
+        
+        if (canMove) {
+            const el = document.getElementById('products');
+            const style = window.getComputedStyle(el);
+            const right = parseInt(style.getPropertyValue('right'));
+            const shift = document.querySelector('.product-prev').clientWidth;
+            TweenMax.to(el, 0.75, { right: right - shift}); 
+            
+            this.checkAfterRightOrLeftClick();
+        }
     }
 
 
     leftClickHandler = e => {
-        const el = document.getElementById('products');
-        const style = window.getComputedStyle(el);
-        const right = parseInt(style.getPropertyValue('right'));
-        const shift = document.querySelector('.product-prev').clientWidth;
-        TweenMax.to(el, 0.75, { right: right + shift}); 
+        let canMove = false;
+        const newPos = this.state.position - 1;
 
-        this.checkAfterRightOrLeftClick();
+        if (newPos >= 0) {
+            this.setState(() => ({ position: newPos }));
+            canMove = true;
+        }
+        
+        if (canMove) {
+            const el = document.getElementById('products');
+            const style = window.getComputedStyle(el);
+            const right = parseInt(style.getPropertyValue('right'));
+            const shift = document.querySelector('.product-prev').clientWidth;
+            TweenMax.to(el, 0.75, { right: right + shift}); 
+
+            this.checkAfterRightOrLeftClick();
+        }
     }
 
 
