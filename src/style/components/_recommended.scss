@@ -27,6 +27,11 @@
         &--landscape {
             width: 85rem;
             height: 40rem;
+
+            @include respond(small-desk) {
+                width: 80rem;
+                height: 40rem; 
+            }
         }
     }
 

@@ -10,11 +10,19 @@
     font-size: 1.4rem;
     overflow: hidden;
 
+    @include respond(small-desk) {
+        width: 27.5rem;
+    }
+
     &__img {
         width: 100%;
         height: 23rem;
         background-size: cover;
         margin-bottom: 1rem;
+
+        @include respond(small-desk) {
+            height: 20rem;
+        }
     }
 
     &__header {
@@ -73,12 +81,12 @@
     }
 
     &--slide-show-1 {
-        transform: scale(.6) translateX(-265%) translateY(-75%);
+        transform: scale(.6) translateX(-275%) translateY(-75%);
         z-index: 3;
     }
     
     &--slide-show-2 {
-        transform: scale(.75) translateX(-150%) translateY(-60%);
+        transform: scale(.75) translateX(-155%) translateY(-60%);
         z-index: 4;
     }
 

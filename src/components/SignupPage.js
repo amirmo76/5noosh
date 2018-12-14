@@ -154,7 +154,7 @@ export default class SignupPage extends React.Component {
     
                             <div className="signup__options">
                                 <a className="mg-left-lg">!قبلا ثبت نام کرده اید؟ برای ورود کلیک کنید</a>
-                                <button className="btn btn--outline btn--fat btn--tall btn--primary" type="submit" onClick={this.submitHandler}>ثبت نام</button>
+                                <button className="btn btn--outline btn--fat btn--primary" type="submit" onClick={this.submitHandler}>ثبت نام</button>
                             </div>
                         </form>
                     </div>

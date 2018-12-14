@@ -76,5 +76,10 @@
         &:hover {
             cursor: pointer;
         }
+
+        @include respond(small-desk) {
+            padding-left: 3rem;
+    
+        }
     }
 }

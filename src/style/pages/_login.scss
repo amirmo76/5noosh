@@ -3,6 +3,10 @@
     min-height: 100vh;
     padding: 0 $--size-padding-home;
 
+    @include respond(small-desk) {
+        padding: 0 $--size-padding-home-md; 
+    }
+
     &__body {
         min-height: calc(100vh - 7.5rem);
         display: flex;
@@ -16,7 +20,7 @@
         display: flex;
         flex-direction: column;
         font-size: 1.2rem;
-        min-width: 35%;
+        width: 50%;
     }
 
     &__hero {
@@ -34,6 +38,10 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        // @include respond(small-desk) {
+        //     flex-direction: column;
+        // }
     }
 
     &__box {
@@ -49,7 +57,7 @@
 
     &__content {
         max-width: 50%;
-        padding: 5rem 3rem;
+        padding: 5rem 3.5rem;
     }
     
     &__title {

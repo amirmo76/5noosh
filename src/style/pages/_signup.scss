@@ -3,6 +3,10 @@
     min-height: 100vh;
     padding: 0 $--size-padding-home;
 
+    @include respond(small-desk) {
+        padding: 0 $--size-padding-home-md; 
+    }
+
     &__body {
         min-height: calc(100vh - 7.5rem);
         display: flex;
