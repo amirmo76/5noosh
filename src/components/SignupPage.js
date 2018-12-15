@@ -28,17 +28,17 @@ export default class SignupPage extends React.Component {
             console.log('sent');
             axios({
                 method: 'post',
-                url: 'localhost:8080/api/user/signup',
+                url: '/api/users',
                 data: {
                     name: document.getElementById('name').value,
                     email: document.getElementById('email').value,
-                    phone: document.getElementById('phone').value,
+                    mobile: document.getElementById('phone').value,
                     address: document.getElementById('address').value,
                     password: document.getElementById('pass').value,
                     password_confirmation: document.getElementById('pass-confirm').value
                 }
-            }).then(function (response) {
-                console.log(response);
+            }).then(function (response){
+                console.log(response.data);  
             });
         }
     }

@@ -20,13 +20,13 @@ export default class LoginPage extends React.Component {
             console.log('sent');
             axios({
                 method: 'post',
-                url: 'localhost:8080/api/user/login',
+                url: '/api/users/login',
                 data: {
                     email: document.getElementById('email').value,
                     password: document.getElementById('pass').value
                 }
             }).then(function (response) {
-                console.log(response);
+                console.log(response.data.errors);
             });
         }
     }
