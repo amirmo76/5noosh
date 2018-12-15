@@ -3,7 +3,7 @@
     min-height: 100vh;
     padding: 0 $--size-padding-home;
     position: relative;
-    color: $--color-blue-2;
+    color: $--color-white;
 
     @include respond(small-desk) {
         padding: 0 $--size-padding-home-md; 
@@ -107,7 +107,7 @@
     &__search-icon {
         width: 2rem;
         height: 2rem;
-        fill: $--color-blue-2;
+        fill: $--color-white;
     }
 
     &__search-label {
@@ -121,7 +121,7 @@
         direction: rtl;
         font-size: 1.4rem;
         outline: none;
-        color: $--color-blue-2;
+        color: $--color-white;
     }
 
     &__cart {
@@ -131,7 +131,7 @@
     &__cart-icon {
         width: 2rem;
         height: 2rem;
-        fill: $--color-blue-2;
+        fill: $--color-white;
         position: relative;
         z-index: 2;
     }
@@ -139,7 +139,7 @@
     &__cart-number {
         padding: .3rem .75rem;
         border-radius: 50%;
-        background-color: rgba($--color-blue-2, .5);
+        background-color: rgba($--color-white, .2);
         color: $--color-white;
         position: absolute;
         top: -50%;
@@ -161,7 +161,6 @@
         grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
 
         @include respond(small-desk) {
-            grid-gap: 2.5rem; 
             grid-template-columns: repeat(auto-fit, minmax(27.5rem, 1fr));
         }
     }

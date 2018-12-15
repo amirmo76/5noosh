@@ -174,7 +174,7 @@ export default class SignupPAge extends React.Component {
                         {this.state.slideshow && 
                         (
                             <div className="shop__featured mg-bottom-lg">
-                                <h2 className="heading--secondary text-center mg-bottom-md">پرفروش ترین محصولات</h2>
+                                <h2 className="heading--secondary text-center mg-bottom-sm">پرفروش ترین محصولات</h2>
                                 <div className="product-slideshow">
                                     <svg onClick={this.goRoight} className="product-slideshow__right-arrow" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.666 26.666'>
                                         <defs />
@@ -213,7 +213,7 @@ export default class SignupPAge extends React.Component {
                         
 
                         <div className="shop__all">
-                            <h2 className="shop__all-title heading--secondary text-center mg-bottom-md">همه محصولات</h2>
+                            <h2 className="shop__all-title heading--secondary text-center mg-bottom-sm">همه محصولات</h2>
 
                             <ProductPrev  title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-3.jpg" />
                             <ProductPrev  title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-4.jpg" />
