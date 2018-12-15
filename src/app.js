@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {HashRouter , Route} from 'react-router-dom';
 
 import HomePage from './components/HomePage';
 import LoginPage from './components/LoginPage';
@@ -10,7 +10,7 @@ import Product from './components/Product';
 import './style/style.scss';
 
 const routes = (
-    <BrowserRouter>
+    <HashRouter>
         <div>
             <Route path='/' component={HomePage} exact={true}/>
             <Route path='/login' component={LoginPage} />
@@ -18,7 +18,7 @@ const routes = (
             <Route path='/shop' component={ShopPage} />
             <Route path='/product' component={Product} />
         </div>
-    </BrowserRouter>
+    </HashRouter>
 );
 
 ReactDOM.render(routes, document.getElementById('appRoot'));
