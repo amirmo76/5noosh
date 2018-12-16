@@ -7,6 +7,7 @@ import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import ShopPage from './components/ShopPage';
 import Product from './components/Product';
+import Dashboard from './components/Dashboard';
 import './style/style.scss';
 
 const routes = (
@@ -17,6 +18,7 @@ const routes = (
             <Route path='/signup' component={SignupPage} />
             <Route path='/shop' component={ShopPage} />
             <Route path='/product' component={Product} />
+            <Route path='/dashboard' component={Dashboard} />
         </div>
     </HashRouter>
 );

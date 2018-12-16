@@ -1,0 +1,133 @@
+.dashboard {
+    background-color: $--color-grey;
+    min-height: 100vh;
+    padding: 0 $--size-padding-home;
+
+    @include respond(small-desk) {
+        padding: 0 $--size-padding-home-md;
+
+    }
+
+    &__container {
+        padding: 10rem 0;
+        display: grid;
+        grid-gap: 2.5rem;
+        grid-template-columns: repeat(8, minmax(10rem, 1fr));
+    }
+
+    &__card {
+        padding: 3rem 5rem;
+        background-color: $--color-white-absolute;
+        box-shadow: 0 .5rem 1.5rem rgba($color: #000000, $alpha: .1 );
+
+        &--status {
+            grid-column: 1/-1;
+        }
+
+        &--info {
+            grid-column: 5/9;
+            display: grid;
+            grid-template-columns: repeat(8, minmax(1rem, 1fr));
+        }
+
+        &--info &-title {
+            grid-column: 3/9;
+        }
+
+        &--notif {
+            grid-column: 1/5;
+        }
+
+        &--history {
+            grid-column: 1/5;
+        }
+    }
+
+    &__card-title {
+        margin-bottom: 6rem;
+        text-align: right;
+        color: $--color-grey-2;
+        font-size: 1.8rem;
+        font-weight: 400;
+    }
+
+    &__status-svg {
+        height: 12.5rem;
+        fill: #00C5DC;
+        margin-bottom: 2.5rem;
+    }
+
+    &__status-circle {
+        opacity: .25;
+        fill: #00C5DC;
+        opacity: .1;
+    }
+
+    &__status-container {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        margin-bottom: 2.5rem;
+        padding: 0 5rem;
+    }
+
+    &__status-box {
+        opacity: .5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &--active {
+            opacity: 1;
+
+        }
+    }
+
+    &__status-title {
+        font-size: 1.4rem;
+        color: $--color-grey-2;
+    }
+
+    &__edit-box {
+        opacity: .5;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        transition: all .2s;
+        grid-column: 1/3;
+        grid-row: 1/2;
+        align-self: start;
+        justify-self: start;
+
+        &:hover {
+            cursor: pointer;
+            opacity: 1;
+        }
+    }
+
+    &__edit-icon {
+        height: 2rem;
+        color: $--color-grey-2;
+        margin-left: 1.3rem;
+    }
+
+    &__edit-text {
+        font-size: 1.4rem;
+    }
+
+    &__avatar {
+        width: 20rem;
+        height: 20rem;
+
+        border-radius: 50%;
+
+        grid-column: 3/7;
+        grid-row: 2/3;
+        background-color: $--color-grey;
+        justify-self: center;
+        background-position: center;
+        background-size: cover;
+
+        margin-bottom: 2rem;
+    }
+}

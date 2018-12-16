@@ -6,7 +6,7 @@ const HomeArticles = props => {
         <div className="home-articles">
             <svg className="home-articles__bg" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2104 805.109'>
                 <defs />
-                <path id='Path_922' data-name='Path 922' className='cls-1' d='M0,235.635S136.979,65.054,719.962,104.178s769.275,72.849,1023.508-5.869S2104,38.45,2104,38.45V820.929S735.3,875.7,0,806.844Z'
+                <path id='Path_922' data-name='Path 922' d='M0,235.635S136.979,65.054,719.962,104.178s769.275,72.849,1023.508-5.869S2104,38.45,2104,38.45V820.929S735.3,875.7,0,806.844Z'
                 transform='translate(0 -36.471)' />
             </svg>
             

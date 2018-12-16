@@ -46,4 +46,44 @@
     &--shifted {
         padding-left: 15rem;
     }
+
+    &--light {
+        background-color: $--color-grey;
+        color: $--color-grey-2;
+    }
+
+    &--light &__logo {
+        fill: $--color-grey-2;
+    }
+
+    &--logged {
+        grid-template-columns: max-content minmax(max-content, 3.5fr) max-content;
+
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+    }
+
+    &__notif {
+        height: 2.5rem;   
+        fill: $--color-grey-2;
+        margin-left: 2.5rem;
+    }
+
+    &__logout {
+        height: 2.5rem; 
+        fill: $--color-grey-2;
+    }
+
+    &__avatar {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        margin-left: 2.5rem;
+        background-color: $--color-grey-2;
+        background-position: center;
+        background-size: cover;
+    }
 }

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default class Navigation extends React.Component {
     state = {
-        isLoggedIn: false
+        isLoggedIn: this.props.logged
     };
 
     logo = (
@@ -16,8 +16,15 @@ export default class Navigation extends React.Component {
     );
 
     render() {
+
+        const style = {
+            backgroundImage: `url(${this.props.avatar})`
+        }
+
+
         return (
-            <nav className={'navigation' + (this.props.shifted ? ' navigation--shifted' : '')} >
+            <nav className={'navigation' + (this.props.shifted ? ' navigation--shifted' : '')
+            + (this.props.light ? ' navigation--light' : '') + (this.state.isLoggedIn ? ' navigation--logged' : '')} >
                 <Link to='/' className="clickable">
                     {this.logo && this.logo}
                 </Link>
@@ -42,11 +49,41 @@ export default class Navigation extends React.Component {
                 {this.state.isLoggedIn || 
                     <div className="navigation__buttons">
                         <Link to='/signup'>
-                            <button className="btn btn--secondary btn--stretch">ثبت نام</button>                        
+                            <button className={"btn btn--secondary btn--stretch"
+                        + (this.props.light ? " btn--dark" : "")}>
+                        ثبت نام</button>                        
                         </Link>
                         <Link to='/login'>
-                            <button className="btn btn--secondary btn--outline">ورود</button>                        
+                            <button className={"btn btn--secondary btn--outline"
+                        + (this.props.light ? " btn--outline-dark" : "")}>ورود</button>                        
                         </Link>
+                    </div>
+                }
+
+                {this.state.isLoggedIn &&
+                    <div className="navigation__info">
+                        <div className="navigation__avatar" style={style}></div>
+                        
+                        <svg className="navigation__notif" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 25'>
+                            <defs />
+                            <path id='Path_1341' data-name='Path 1341' d='M24.631,17.866c-2.94-2.941-3.383-4.417-3.383-9.116a8.748,8.748,0,1,0-17.5,0,14.782,14.782,0,0,1-.416,4.641A10.72,10.72,0,0,1,.368,17.866,1.25,1.25,0,0,0,1.252,20H8.188l-.063.625a4.374,4.374,0,1,0,8.748,0L16.811,20h6.937A1.25,1.25,0,0,0,24.631,17.866ZM12.5,23.75a3.125,3.125,0,0,1-3.125-3.125L9.439,20h6.123l.064.625A3.125,3.125,0,0,1,12.5,23.75Zm-11.248-5C5,15,5,12.5,5,8.75a7.5,7.5,0,1,1,15,0c0,3.75,0,6.25,3.749,10Z'
+                            />
+                        </svg>
+
+                        <svg className="navigation__logout" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22.368 24.1'>
+                            <defs />
+                            <g id='logout' transform='translate(-17.6)'>
+                                <g id='Group_284' data-name='Group 284' transform='translate(17.6)'>
+                                    <g id='Group_283' data-name='Group 283'>
+                                        <path id='Path_1366' data-name='Path 1366'  d='M119.8,134.026l-.01.01a.374.374,0,0,0-.039.054s0,.01-.01.015-.025.039-.034.059a.017.017,0,0,1,0,.01c-.01.02-.02.039-.03.064,0,0,0,0,0,.01s-.015.044-.025.069c0,0,0,.01,0,.01a.345.345,0,0,0-.015.069.044.044,0,0,1,0,.025c0,.02,0,.039-.01.059a.712.712,0,0,0,0,.167.247.247,0,0,0,.01.059.044.044,0,0,0,0,.025c0,.025.01.044.015.069,0,0,0,.01,0,.01a.387.387,0,0,0,.025.069s0,0,0,.01.02.044.03.064a.017.017,0,0,0,0,.01.367.367,0,0,0,.034.059s0,.01.01.015a.514.514,0,0,0,.039.054l.01.01a.7.7,0,0,0,.059.064l4.865,4.86a.845.845,0,0,0,1.2-1.2l-3.424-3.424H136.1a.844.844,0,1,0,0-1.687H122.488l3.4-3.4a.844.844,0,1,0-1.19-1.2l-4.836,4.836C119.836,133.986,119.816,134.006,119.8,134.026Z'
+                                        transform='translate(-119.6 -122.509)' />
+                                        <path id='Path_1367' data-name='Path 1367' d='M24.743,22.413h-6.3a.844.844,0,1,0,0,1.687h6.3a4.587,4.587,0,0,0,4.58-4.58V4.58A4.587,4.587,0,0,0,24.743,0H18.549a.844.844,0,1,0,0,1.687h6.193A2.9,2.9,0,0,1,27.636,4.58V19.52A2.9,2.9,0,0,1,24.743,22.413Z'
+                                        transform='translate(-6.954)' />
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                        
                     </div>
                 }
                 

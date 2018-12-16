@@ -1,0 +1,21 @@
+.news {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 2.5rem 30rem;
+    background-color: #EAEDF1;
+    width: 110vw;
+    position: relative;
+    left: 0 - $--size-padding-home;
+
+    &__title {
+        margin-left: 5rem;
+        font-size: 1.4rem;
+        color: $--color-grey-2;
+    }
+
+    &__text {
+        font-size: 1.4rem;    
+        color: $--color-grey-2;
+        opacity: .7;
+    }
+}
