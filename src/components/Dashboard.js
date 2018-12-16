@@ -7,7 +7,11 @@ import { Link } from 'react-router-dom';
 export default class Dashboard extends React.Component {
 
     state = {
-        
+        editMode: false
+    }
+
+    editClickHandler = e => {
+        this.setState(() => ({editMode: !this.state.editMode}));
     }
 
     render(){
@@ -31,27 +35,145 @@ export default class Dashboard extends React.Component {
 
                     <div className="dashboard__card dashboard__card--info">
                         <h2 className="dashboard__card-title">اطلاعات شخصی</h2>
-                        <div className="dashboard__edit-box">
+                        <div onClick={this.editClickHandler} className="dashboard__edit-box">
                             <svg className="dashboard__edit-icon" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 24.878'>
                                 <defs />
                                 <path id='Path_1342' data-name='Path 1342' d='M15.546,5.441l5.086,5.086L7.759,23.4,2.676,18.314Zm8.945-1.227L22.223,1.946a2.251,2.251,0,0,0-3.179,0L16.871,4.119,21.957,9.2,24.491,6.67A1.734,1.734,0,0,0,24.491,4.214ZM.015,25.462a.579.579,0,0,0,.7.688l5.667-1.374L1.3,19.691Z'
                                 transform='translate(-.001 -1.289)' />
                             </svg>
-                            <p className="dashboard__edit-text">ویرایش</p>
+                            {
+                                !this.state.editMode
+                                ? (<p className="dashboard__edit-text">ویرایش</p>)
+                                : (<p className="dashboard__edit-text">ثبت</p>)
+                            }
                         </div>
 
                         <div className="dashboard__avatar" style={style}></div>
                         
-                        {/* <p className="">
+                        <label className="dashboard__label dashboard__label--right">نام و نام خانوادگی</label>
 
-                        </p> */}
+                        {
+                            !this.state.editMode
+                            ? (<p className="dashboard__info dashboard__info--name">محمد قاسمی</p>)
+                            : (<inupt type="text" value="محمد قاسمی" className="dashboard__info-input dashboard__info-input--name" />)
+                        }
+
+                        <label className="dashboard__label dashboard__label--right">آدرس ایمیل</label>
+
+                        {
+                            !this.state.editMode
+                            ? (<p className="dashboard__info dashboard__info--email">amir.mohseni7697@gmail.com</p>)
+                            : (<inupt type="email" value="amir.mohseni7697@gmail.com" className="dashboard__info-input dashboard__info-input--email" />)
+                        }
+
+                        <label className="dashboard__label dashboard__label--left">استان</label>
+
+                        {
+                            !this.state.editMode
+                            ? (<p className="dashboard__info dashboard__info--state">تهران</p>)
+                            : (<inupt type="text" value="تهران" className="dashboard__info-input dashboard__info-input--state" />)
+                        }
+                        
+                        <label className="dashboard__label dashboard__label--right">شماره موبایل</label>
+                        
+                        {
+                            !this.state.editMode
+                            ? (<p className="dashboard__info dashboard__info--phone">09132669877</p>)
+                            : (<inupt type="phone" value="09132669877" className="dashboard__info-input dashboard__info-input--phone" />)
+                        }
+
+                        <label className="dashboard__label dashboard__label--left">شهر</label>
+                        
+                        {
+                            !this.state.editMode
+                            ? (<p className="dashboard__info dashboard__info--city">تهران</p>)
+                            : (<inupt type="text" value="تهران" className="dashboard__info-input dashboard__info-input--city" />)
+                        }
+                        
+                        <label className="dashboard__label dashboard__label--right">کد پستی</label>
+                        
+                        {
+                            !this.state.editMode
+                            ? (<p className="dashboard__info dashboard__info--zip-code">991786542</p>)
+                            : (<inupt type="text" value="991786542" className="dashboard__info-input dashboard__info-input--zip-code" />)
+                        }
+                        
+                        <label className="dashboard__label dashboard__label--right">آدرس</label>
+                        
+                        {
+                            !this.state.editMode
+                            ? (<p className="dashboard__info dashboard__info--address">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است</p>)
+                            : (<inupt type="text" value="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است" className="dashboard__info-input dashboard__info-input--address" />)
+                        }
+
+                        <div className="dashboard__pass-box">
+                            <svg className="dashboard__pass-icon" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>
+                                <defs />
+                                <path id='Path_1368' data-name='Path 1368' d='M18.116,1.884A6.442,6.442,0,0,0,7.431,8.426L.173,15.684A.585.585,0,0,0,0,16.1v3.315A.586.586,0,0,0,.587,20H3.9a.585.585,0,0,0,.414-.172L5.144,19a.586.586,0,0,0,.168-.482l-.1-.89,1.234-.116a.585.585,0,0,0,.528-.528l.116-1.234.89.1a.577.577,0,0,0,.457-.144.587.587,0,0,0,.2-.438V14.179H9.7a.585.585,0,0,0,.414-.172l1.5-1.483A6.345,6.345,0,0,0,18.116,11,6.452,6.452,0,0,0,18.116,1.884ZM16.458,6.028a1.758,1.758,0,1,1,0-2.486A1.759,1.759,0,0,1,16.458,6.028Z'
+                                transform='translate(-.001 .001)' />
+                            </svg>
+
+                            <p className="dashboard__pass-text">تغییر رمز عبور</p>
+                        </div>
+
+                        
+                        
                     </div>
 
-                    {/* <div className="dashboard__card dashboard__card--notifs">
+                    <div className="dashboard__card dashboard__card--notifs">
+                        <h2 className="dashboard__card-title dashboard__card-title--light">آخرین اعلان های شما</h2>
+                        <div className="dashboard__notifs-container">
+                            <div className="dashboard__notif-container">
+                                <p className="dashboard__notif-text">سفارش شما ارسال شده است</p>
+                                <p className="dashboard__notif-date">امروز ساعت 22:10</p>
+                            </div>
 
+                            <div className="dashboard__notif-container">
+                                <p className="dashboard__notif-text">سفارش شما با موفقیت ثبت شد</p>
+                                <p className="dashboard__notif-date">دیروز ساعت 20:50</p>
+                            </div>
+                        </div>
+                        <button className="btn btn--tall btn--no-up-animation btn--outline">مشاهده همه</button>
                     </div>
+
 
                     <div className="dashboard__card dashboard__card--history">
+                        <h2 className="dashboard__card-title">سفارش های شما</h2>
+                        <div className="dashboard__orders-container">
+                            <div className="dashboard__order-container">
+                                <p className="dashboard__order-text">لورم ایپسوم متنی ساختگی جهت استفاده</p>
+                                <p className="dashboard__order-state">در حال بررسی</p>
+                            </div>
+
+                            <div className="dashboard__order-container">
+                                <p className="dashboard__order-text">طراحان و چاپگرها و متون بلکه روزنامه و مجله</p>
+                                <p className="dashboard__order-state">ارسال شده</p>
+                            </div>
+
+                            <div className="dashboard__order-container">
+                                <p className="dashboard__order-text">در ستون و سطرآنچنان</p>
+                                <p className="dashboard__order-state">تحویل داده شده</p>
+                            </div>
+
+                            <div className="dashboard__order-container">
+                                <p className="dashboard__order-text">که لازم است و برای شرایط فعلی تکنولوژی</p>
+                                <p className="dashboard__order-state">تحویل داده شده</p>
+                            </div>
+
+                            <div className="dashboard__order-container">
+                                <p className="dashboard__order-text">مورد نیاز و کاربردهای متنوع با هدف</p>
+                                <p className="dashboard__order-state">تحویل داده شده</p>
+                            </div>
+
+                            <div className="dashboard__order-container">
+                                <p className="dashboard__order-text">هبود ابزارهای کاربردی می باشد</p>
+                                <p className="dashboard__order-state">تحویل داده شده</p>
+                            </div>
+                        </div>
+                        <button className="btn btn--tall btn--no-up-animation btn--outline-dark">مشاهده همه</button>
+                    </div>
+
+                    {/* <div className="dashboard__card dashboard__card--history">
 
                     </div> */}
 
