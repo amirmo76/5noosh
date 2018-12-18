@@ -24,7 +24,9 @@ export default class Navigation extends React.Component {
 
         return (
             <nav className={'navigation' + (this.props.shifted ? ' navigation--shifted' : '')
-            + (this.props.light ? ' navigation--light' : '') + (this.state.isLoggedIn ? ' navigation--logged' : '')} >
+            + (this.props.light ? ' navigation--light' : '')
+            + (this.state.isLoggedIn ? ' navigation--logged' : '')
+            + (this.props.transparent ? ' navigation--transparent' : '')} >
                 <Link to='/' className="clickable">
                     {this.logo && this.logo}
                 </Link>
@@ -39,7 +41,7 @@ export default class Navigation extends React.Component {
                         <a className="navigation__link">بلاگ</a>
                     </li>
                     <li className="navigation__item">
-                        <a className="navigation__link">درباره ما</a>
+                        <Link className="navigation__link" to="/aboutus">درباره ما</Link>
                     </li>
                     <li className="navigation__item">
                         <a className="navigation__link">ارتباط با ما</a>

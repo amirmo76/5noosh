@@ -61,6 +61,10 @@
 
     }
 
+    &--transparent {
+        background-color: transparent;
+    }
+
     &__info {
         display: flex;
         align-items: center;

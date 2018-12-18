@@ -1,0 +1,22 @@
+<svg id="Group_130" data-name="Group 130" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 267.117 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        fill: #b4b2f8;
+      }
+
+      .cls-3 {
+        fill: #9693f5;
+      }
+    </style>
+  </defs>
+  <path id="Path_1050" data-name="Path 1050" class="cls-1" d="M0,0"/>
+  <path id="Path_1051" data-name="Path 1051" class="cls-2" d="M48.2,0V982.9C196.3,869.4,216.9,802.4,216.9,802.4s91-148.9,28-368.5S244.9,0,244.9,0H48.2Z"/>
+  <path id="Path_1052" data-name="Path 1052" class="cls-3" d="M0,0V1080C162.7,955.3,185.4,881.6,185.4,881.6s100-163.6,30.8-404.9S216.2,0,216.2,0H0Z"/>
+</svg>
