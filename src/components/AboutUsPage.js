@@ -36,7 +36,7 @@ export default class AboutUsPage extends React.Component {
                         <h1 className="aboutus__about-title mg-bottom-md">درباره پنج نوش</h1>
                         <p className="aboutus__about-text">{this.state.about}</p>
                     </div>
-                    <div className="aboutus__about-img" style={style1}>
+                    <div className="aboutus__about-img" style={style2}>
                         
                     </div>
                     <span className="aboutus__about-bg aboutus__about-bg--right"></span>
