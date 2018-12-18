@@ -143,28 +143,35 @@ export default class SignupPage extends React.Component {
                                 <div className="input__group">
                                     <label className="label label--secondary">نام و نام خانوادگی</label>
                                     <input id="name" className={"input input--secondary mg-bottom-md " + (this.state.nameTouched && (this.state.nameValid ? "input--valid" : "input--unvalid"))} onChange={this.nameChangeHandler} type="text" required/>
+                                    <span className={"error" + ((!this.state.nameValid && this.state.nameTouched) ? ' error--show' : '')}>نام و نام خانوادگی باید با حروف فارسی نوشته شود</span>
                                 </div>
     
                                 <div className="input__group">
                                     <label className="label label--secondary">ایمیل</label>
                                     <input id="email" className={"input input--secondary mg-bottom-md " + (this.state.emailTouched && (this.state.emailValid ? "input--valid" : "input--unvalid"))} onChange={this.emailChangeHandler} type="email" required/>
+                                    <span className={"error" + ((!this.state.emailValid && this.state.emailTouched) ? ' error--show' : '')}>ایمیل وارد شده معتبر نیست</span>
                                 </div>
                             </div>
                             
                             <label className="label label--secondary">شماره همراه</label>
                             <input id="phone" className={"input input--secondary mg-bottom-md " + (this.state.phoneTouched && (this.state.phoneValid ? "input--valid" : "input--unvalid"))} onChange={this.phoneChangeHandler} type="tel" required/>
+                            <span className={"error" + ((!this.state.phoneValid && this.state.phoneTouched) ? ' error--show' : '')}>شماره موبایل وارد شده معتبر نیست</span>
+
                             <label  className="label label--secondary">آدرس</label>
                             <input id="address" className={"input input--secondary mg-bottom-md " + (this.state.addressTouched && (this.state.addressValid ? "input--valid" : "input--unvalid"))} onChange={this.addressChangeHandler} type="text" required/>
+                            <span className={"error" + ((!this.state.addressValid && this.state.addressTouched) ? ' error--show' : '')}>آدرس باید با حروف فارسی نوشته شود</span>
     
                             <div className="input__inline-group">
                                 <div className="input__group">
                                     <label className="label label--secondary">رمز عبور</label>
                                     <input id="pass" className={"input input--secondary mg-bottom-md " + (this.state.passTouched && (this.state.passValid ? "input--valid" : "input--unvalid"))} onChange={this.passChangeHandler} type="password" required/>
+                                    <span className={"error" + ((!this.state.passValid && this.state.passTouched) ? ' error--show' : '')}>رمز عبور باید حداقل 5 کاراکتر باشد</span>
                                 </div>
     
                                 <div className="input__group">
                                     <label className="label label--secondary">تایید رمز عبور</label>
                                     <input id="pass-confirm" className={"input input--secondary mg-bottom-md " + (this.state.passConfirmTouched && (this.state.passConfirmValid ? "input--valid" : "input--unvalid"))} onChange={this.passConfirmChangeHandler} type="password" required/>
+                                    <span className={"error" + ((!this.state.passConfirmValid && this.state.passConfirmTouched) ? ' error--show' : '')}>با رمز عبور قبلی تطابق ندارد</span>
                                 </div>
                             </div>
     

@@ -55,3 +55,17 @@
 
     }
 }
+
+.error {
+    color: $--color-pink;
+    font-size: 1.2rem;
+    position: relative;
+    top: -5rem;
+    transition: all .2s;
+    opacity: 0;
+
+    &--show {
+        top: -3rem;
+        opacity: 1;
+    }
+}
