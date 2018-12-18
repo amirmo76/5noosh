@@ -7,11 +7,75 @@ import { Link } from 'react-router-dom';
 export default class Dashboard extends React.Component {
 
     state = {
-        editMode: false
+        editMode: false,
+        user: {
+            id: 1,
+            name: 'محمد قاسمی',
+            email: 'amir.mohseni7697@gmail.com',
+            phone: '09132669877',
+            zipCode: '991786542',
+            state: 'تهران',
+            city: 'تهران',
+            address: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است'
+        }
     }
 
     editClickHandler = e => {
         this.setState(() => ({editMode: !this.state.editMode}));
+    }
+
+    inputOnChangeHandle = e => {
+        const value = e.target.value;
+        if (e.target.classList.contains('dashboard__info-input--name')) {
+            this.setState(prev => ({
+                user: {
+                    ...prev.user,
+                    name: value
+                }
+            }));
+        } else if (e.target.classList.contains('dashboard__info-input--email')) {
+            this.setState(prev => ({
+                user: {
+                    ...prev.user,
+                    email: value
+                }
+            }));
+        } else if (e.target.classList.contains('dashboard__info-input--phone')) {
+            this.setState(prev => ({
+                user: {
+                    ...prev.user,
+                    phone: value
+                }
+            }));
+        } else if (e.target.classList.contains('dashboard__info-input--zip-code')) {
+            this.setState(prev => ({
+                user: {
+                    ...prev.user,
+                    zipCode: value
+                }
+            }));
+        } else if (e.target.classList.contains('dashboard__info-input--address')) {
+            this.setState(prev => ({
+                user: {
+                    ...prev.user,
+                    address: value
+                }
+            }));
+        } else if (e.target.classList.contains('dashboard__info-input--state')) {
+            this.setState(prev => ({
+                user: {
+                    ...prev.user,
+                    state: value
+                }
+            }));
+        } else if (e.target.classList.contains('dashboard__info-input--city')) {
+            this.setState(prev => ({
+                user: {
+                    ...prev.user,
+                    city: value
+                }
+            }));
+        }
     }
 
     render(){
@@ -36,15 +100,24 @@ export default class Dashboard extends React.Component {
                     <div className="dashboard__card dashboard__card--info">
                         <h2 className="dashboard__card-title">اطلاعات شخصی</h2>
                         <div onClick={this.editClickHandler} className="dashboard__edit-box">
-                            <svg className="dashboard__edit-icon" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 24.878'>
-                                <defs />
-                                <path id='Path_1342' data-name='Path 1342' d='M15.546,5.441l5.086,5.086L7.759,23.4,2.676,18.314Zm8.945-1.227L22.223,1.946a2.251,2.251,0,0,0-3.179,0L16.871,4.119,21.957,9.2,24.491,6.67A1.734,1.734,0,0,0,24.491,4.214ZM.015,25.462a.579.579,0,0,0,.7.688l5.667-1.374L1.3,19.691Z'
-                                transform='translate(-.001 -1.289)' />
-                            </svg>
+                            {
+                                !this.state.editMode
+                                ? (<svg className="dashboard__edit-icon" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 24.878'>
+                                    <defs />
+                                    <path id='Path_1342' data-name='Path 1342' d='M15.546,5.441l5.086,5.086L7.759,23.4,2.676,18.314Zm8.945-1.227L22.223,1.946a2.251,2.251,0,0,0-3.179,0L16.871,4.119,21.957,9.2,24.491,6.67A1.734,1.734,0,0,0,24.491,4.214ZM.015,25.462a.579.579,0,0,0,.7.688l5.667-1.374L1.3,19.691Z'
+                                    transform='translate(-.001 -1.289)' />
+                                </svg>)
+                                : (<svg className="dashboard__edit-icon" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 89.331 64.278'>
+                                    <defs />
+                                    <path id='checked_1_'  className='cls-1' d='M32.139,124.109a7.061,7.061,0,0,1-5.01-2.075L2.076,96.98A7.086,7.086,0,0,1,12.1,86.959L32.139,107l45.1-45.1a7.086,7.086,0,1,1,10.02,10.021L37.15,122.034A7.067,7.067,0,0,1,32.139,124.109Z'
+                                    transform='translate(0 -59.831)' />
+                                </svg>)
+                            }
+                            
                             {
                                 !this.state.editMode
                                 ? (<p className="dashboard__edit-text">ویرایش</p>)
-                                : (<p className="dashboard__edit-text">ثبت</p>)
+                                : (<p className="dashboard__edit-text">ثبت تغییرات</p>)
                             }
                         </div>
 
@@ -54,56 +127,56 @@ export default class Dashboard extends React.Component {
 
                         {
                             !this.state.editMode
-                            ? (<p className="dashboard__info dashboard__info--name">محمد قاسمی</p>)
-                            : (<inupt type="text" value="محمد قاسمی" className="dashboard__info-input dashboard__info-input--name" />)
+                            ? (<p className="dashboard__info dashboard__info--name">{this.state.user.name}</p>)
+                            : (<input type="text" value={this.state.user.name} className="dashboard__info-input dashboard__info-input--name" onChange={this.inputOnChangeHandle}/>)
                         }
 
                         <label className="dashboard__label dashboard__label--right">آدرس ایمیل</label>
 
                         {
                             !this.state.editMode
-                            ? (<p className="dashboard__info dashboard__info--email">amir.mohseni7697@gmail.com</p>)
-                            : (<inupt type="email" value="amir.mohseni7697@gmail.com" className="dashboard__info-input dashboard__info-input--email" />)
+                            ? (<p className="dashboard__info dashboard__info--email">{this.state.user.email}</p>)
+                            : (<input type="email" value={this.state.user.email} className="dashboard__info-input dashboard__info-input--email" onChange={this.inputOnChangeHandle}/>)
                         }
 
                         <label className="dashboard__label dashboard__label--left">استان</label>
 
                         {
                             !this.state.editMode
-                            ? (<p className="dashboard__info dashboard__info--state">تهران</p>)
-                            : (<inupt type="text" value="تهران" className="dashboard__info-input dashboard__info-input--state" />)
+                            ? (<p className="dashboard__info dashboard__info--state">{this.state.user.state}</p>)
+                            : (<input type="text" value={this.state.user.state} className="dashboard__info-input dashboard__info-input--state" onChange={this.inputOnChangeHandle}/>)
                         }
                         
                         <label className="dashboard__label dashboard__label--right">شماره موبایل</label>
                         
                         {
                             !this.state.editMode
-                            ? (<p className="dashboard__info dashboard__info--phone">09132669877</p>)
-                            : (<inupt type="phone" value="09132669877" className="dashboard__info-input dashboard__info-input--phone" />)
+                            ? (<p className="dashboard__info dashboard__info--phone">{this.state.user.phone}</p>)
+                            : (<input type="phone" value={this.state.user.phone} className="dashboard__info-input dashboard__info-input--phone" onChange={this.inputOnChangeHandle}/>)
                         }
 
                         <label className="dashboard__label dashboard__label--left">شهر</label>
                         
                         {
                             !this.state.editMode
-                            ? (<p className="dashboard__info dashboard__info--city">تهران</p>)
-                            : (<inupt type="text" value="تهران" className="dashboard__info-input dashboard__info-input--city" />)
+                            ? (<p className="dashboard__info dashboard__info--city">{this.state.user.city}</p>)
+                            : (<input type="text" value={this.state.user.city} className="dashboard__info-input dashboard__info-input--city" onChange={this.inputOnChangeHandle}/>)
                         }
                         
                         <label className="dashboard__label dashboard__label--right">کد پستی</label>
                         
                         {
                             !this.state.editMode
-                            ? (<p className="dashboard__info dashboard__info--zip-code">991786542</p>)
-                            : (<inupt type="text" value="991786542" className="dashboard__info-input dashboard__info-input--zip-code" />)
+                            ? (<p className="dashboard__info dashboard__info--zip-code">{this.state.user.zipCode}</p>)
+                            : (<input type="text" value={this.state.user.zipCode} className="dashboard__info-input dashboard__info-input--zip-code" onChange={this.inputOnChangeHandle}/>)
                         }
                         
                         <label className="dashboard__label dashboard__label--right">آدرس</label>
                         
                         {
                             !this.state.editMode
-                            ? (<p className="dashboard__info dashboard__info--address">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است</p>)
-                            : (<inupt type="text" value="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است" className="dashboard__info-input dashboard__info-input--address" />)
+                            ? (<p className="dashboard__info dashboard__info--address">{this.state.user.address}</p>)
+                            : (<input type="text" value={this.state.user.address} className="dashboard__info-input dashboard__info-input--address" onChange={this.inputOnChangeHandle}/>)
                         }
 
                         <div className="dashboard__pass-box">
