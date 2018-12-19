@@ -67,4 +67,36 @@
     &__text {
         font-size: 1.4rem;
     }
+
+    &__error {
+        position: absolute;
+        display: flex;
+        background-color: rgba($--color-primary, .2);
+        border-radius: .5rem;
+        padding: 1rem 2rem;
+        border: 1px solid $--color-primary;
+        width: 90%;
+        align-items: center;
+        justify-content: flex-end;
+        left: 50%;
+        top: -5rem;
+        transform: translateX(-50%);
+        transition: all .2s ease-in;
+        opacity: 0;
+
+        &--show {
+            opacity: 1;
+        }
+    }
+
+    &__error-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: $--color-white;
+        margin-left: 2rem;
+    }
+
+    &__error-text {
+        font-size: 1.2rem;
+    }
 }
