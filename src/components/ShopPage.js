@@ -13,7 +13,54 @@ export default class SignupPAge extends React.Component {
         third: 3,
         fourth: 4,
         fifth: 5,
-        slideshow: true
+        slideshow: true,
+
+        items: [
+            {
+                id: 1,
+                title: 'نام محصول - 1',
+                price: '22,500',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-1.png'
+            },
+            {
+                id: 2,
+                title: 'نام محصول - 2',
+                price: '18,100',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-2.png'
+            },
+            {
+                id: 3,
+                title: 'نام محصول - 3',
+                price: '12,000',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-3.jpg'
+            },
+            {
+                id: 4,
+                title: 'نام محصول - 4',
+                price: '9,000',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-4.jpg'
+            },
+            {
+                id: 5,
+                title: 'نام محصول - 5',
+                price: '8,500',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-5.jpg'
+            },
+            {
+                id: 6,
+                title: 'نام محصول - 6',
+                price: '10,500',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-6.jpg'
+            } 
+        ],
+        lookAtResaults: false,
+        resultsID: []
     }
 
     goRoight = e => {
@@ -72,9 +119,10 @@ export default class SignupPAge extends React.Component {
         const el = document.getElementById('search');
         console.log(el.value);
         if (el.value) {
-            this.setState(() => ({slideshow: false}));
+            this.setState(() => ({slideshow: false, lookAtResaults: true}));
+
         } else {
-            this.setState(() => ({slideshow: true}));
+            this.setState(() => ({slideshow: true, lookAtResaults: false}));
         }
     }
 
@@ -189,11 +237,11 @@ export default class SignupPAge extends React.Component {
                                     </svg>
 
                                     <div className="product-slideshow__box">
-                                        <ProductPrev slideshow={this.state.first} title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-3.jpg" />
-                                        <ProductPrev slideshow={this.state.second} title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-4.jpg" />
-                                        <ProductPrev slideshow={this.state.third} title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-5.jpg" />
-                                        <ProductPrev slideshow={this.state.fourth} title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-1.png" />
-                                        <ProductPrev slideshow={this.state.fifth} title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-3.jpg" />
+                                        <ProductPrev slideshow={this.state.first} product={this.state.items[2]} />
+                                        <ProductPrev slideshow={this.state.second} product={this.state.items[3]} />
+                                        <ProductPrev slideshow={this.state.third} product={this.state.items[4]} />
+                                        <ProductPrev slideshow={this.state.fourth} product={this.state.items[0]} />
+                                        <ProductPrev slideshow={this.state.fifth} product={this.state.items[2]} />
                                     </div>
 
                                     <svg onClick={this.goLeft} className="product-slideshow__left-arrow" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.666 26.666'>
@@ -215,13 +263,10 @@ export default class SignupPAge extends React.Component {
                         <div className="shop__all">
                             <h2 className="shop__all-title heading--secondary text-center mg-bottom-sm">همه محصولات</h2>
 
-                            <ProductPrev  title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-3.jpg" />
-                            <ProductPrev  title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-4.jpg" />
-                            <ProductPrev  title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-5.jpg" />
-                            <ProductPrev  title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-1.png" />
-                            <ProductPrev  title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-3.jpg" />
-                            <ProductPrev  title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-1.png" />
-                        </div>
+                            {
+                                this.state.items.map(cur => <ProductPrev product={cur}/>)
+                            }
+                            </div>
                     </div>
                 </div>
                 <Footer />

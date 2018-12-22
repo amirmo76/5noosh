@@ -9,7 +9,7 @@ export default class ProductPrev extends React.Component {
     }
 
     style = {
-        backgroundImage: `url(${this.props.thumbnail})`
+        backgroundImage: `url(${this.props.product && this.props.product.thumbnail})`
     }
 
     render() {
@@ -17,11 +17,11 @@ export default class ProductPrev extends React.Component {
             <div className={"product-prev" + (this.props.slideshow ? " product-prev--slide-show" : "") + (this.props.slideshow ? (" product-prev--slide-show-" + this.props.slideshow) : "")}>
                 <div className="product-prev__img" style={this.style}></div>
                 <div className="product-prev__header">
-                    <h3 className="product-prev__title">{this.props.title}</h3>
-                    <a className="product-prev__category">{this.props.category}</a>
+                    <h3 className="product-prev__title">{this.props.product && this.props.product.title}</h3>
+                    <a className="product-prev__category">{this.props.product && this.props.product.category}</a>
                 </div>
                 <div className="product-prev__footer">
-                    <span className="product-prev__price">{this.props.price}</span>
+                    <span className="product-prev__price">{this.props.product && this.props.product.price}</span>
                     <span className="product-prev__price-tag">تومان</span>
                     <Link to='/product' className="clickable">
                         <svg className="product-prev__svg product-prev__svg--back" id='Capa_1' xmlns='http://www.w3.org/2000/svg' width='459' height='459'

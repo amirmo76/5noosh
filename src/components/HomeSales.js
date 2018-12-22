@@ -8,7 +8,45 @@ export default class HomeSales extends React.Component {
     state = {
         firstRight: 0,
         moveLimits: undefined,
-        position: 0
+        position: 0,
+
+        items: [
+            {
+                id: 1,
+                title: 'نام محصول - 1',
+                price: '22,500',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-1.png'
+            },
+            {
+                id: 2,
+                title: 'نام محصول - 2',
+                price: '18,100',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-2.png'
+            },
+            {
+                id: 3,
+                title: 'نام محصول - 3',
+                price: '12,000',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-3.jpg'
+            },
+            {
+                id: 4,
+                title: 'نام محصول - 4',
+                price: '9,000',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-4.jpg'
+            },
+            {
+                id: 5,
+                title: 'نام محصول - 5',
+                price: '8,500',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-5.jpg'
+            }
+        ]
     }
 
     style = {
@@ -116,11 +154,9 @@ export default class HomeSales extends React.Component {
                 <span className="home-sales__hero"></span>
                 <span className="home-sales__bg"></span>
                 <div id="products" className="home-sales__products">
-                    <ProductPrev  title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-3.jpg" />
-                    <ProductPrev  title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-4.jpg" />
-                    <ProductPrev  title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-5.jpg" />
-                    <ProductPrev  title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-1.png" />
-                    <ProductPrev  title="نام محصول" category="دسته بندی" price="12.500" thumbnail="img/img-3.jpg" />
+                {
+                    this.state.items.map(cur => <ProductPrev product={cur}/>)
+                }
                 </div>
                 <div className="home-sales__arrows">
                     <svg className="home-sales__arrow home-sales__arrow--left" onClick={this.leftClickHandler} id='Capa_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 31.494 31.494'>
