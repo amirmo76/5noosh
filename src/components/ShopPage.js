@@ -18,49 +18,49 @@ export default class SignupPAge extends React.Component {
         items: [
             {
                 id: 1,
-                title: 'نام محصول - 1',
+                title: 'دوچرخه',
                 price: '22,500',
                 category: 'دسته بندی',
                 thumbnail: 'img/img-1.png'
             },
             {
                 id: 2,
-                title: 'نام محصول - 2',
+                title: 'خوراکی',
                 price: '18,100',
                 category: 'دسته بندی',
                 thumbnail: 'img/img-2.png'
             },
             {
                 id: 3,
-                title: 'نام محصول - 3',
+                title: 'بهرام',
                 price: '12,000',
                 category: 'دسته بندی',
                 thumbnail: 'img/img-3.jpg'
             },
             {
                 id: 4,
-                title: 'نام محصول - 4',
+                title: 'شکلات',
                 price: '9,000',
                 category: 'دسته بندی',
                 thumbnail: 'img/img-4.jpg'
             },
             {
                 id: 5,
-                title: 'نام محصول - 5',
+                title: 'دانشگاه',
                 price: '8,500',
                 category: 'دسته بندی',
                 thumbnail: 'img/img-5.jpg'
             },
             {
                 id: 6,
-                title: 'نام محصول - 6',
+                title: 'آسایشگاه',
                 price: '10,500',
                 category: 'دسته بندی',
                 thumbnail: 'img/img-6.jpg'
             } 
         ],
         lookAtResaults: false,
-        resultsID: []
+        results: []
     }
 
     goRoight = e => {
@@ -117,10 +117,17 @@ export default class SignupPAge extends React.Component {
 
     searchHandler = e => {
         const el = document.getElementById('search');
-        console.log(el.value);
         if (el.value) {
             this.setState(() => ({slideshow: false, lookAtResaults: true}));
+            // search algorthm goes here
 
+            let res = [];
+            this.state.items.forEach(cur => {
+                if (cur.title.includes(el.value))
+                res.push(cur);
+            });
+            this.setState(() => ({results: res}));
+            
         } else {
             this.setState(() => ({slideshow: true, lookAtResaults: false}));
         }
@@ -261,11 +268,15 @@ export default class SignupPAge extends React.Component {
                         
 
                         <div className="shop__all">
-                            <h2 className="shop__all-title heading--secondary text-center mg-bottom-sm">همه محصولات</h2>
-
-                            {
-                                this.state.items.map(cur => <ProductPrev product={cur}/>)
+                            {this.state.lookAtResaults ? 
+                                (this.state.results.length > 0 ? <h2 className="shop__all-title heading--secondary text-center mg-bottom-sm">نتایج یافت شده</h2> : <h2 className="shop__all-title heading--secondary text-center mg-bottom-sm">نتجه ای یافت نشد</h2>)
+                                :
+                                <h2 className="shop__all-title heading--secondary text-center mg-bottom-sm">همه محصولات</h2>
                             }
+
+                            {this.state.lookAtResaults || this.state.items.map(cur => <ProductPrev product={cur}/>)}
+                            {this.state.lookAtResaults && this.state.results.map(cur => <ProductPrev product={cur}/>)}
+
                             </div>
                     </div>
                 </div>
