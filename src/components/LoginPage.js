@@ -34,7 +34,7 @@ export default class LoginPage extends React.Component {
                     localStorage.setItem('user', json);
                     return bind.props.history.push('/dashboard');
                 } else {
-                    bind.sertState(() => ({error: response.data.errors}));
+                    bind.setState(() => ({error: response.data.errors}));
                 }
             });
         }
