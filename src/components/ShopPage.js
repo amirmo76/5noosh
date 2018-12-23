@@ -64,7 +64,7 @@ export default class SignupPAge extends React.Component {
         results: []
     }
 
-    componentDidMount() {
+    componentDidMount = e => {
         
         axios({
             method: 'get',
