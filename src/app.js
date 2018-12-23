@@ -9,6 +9,8 @@ import ShopPage from './components/ShopPage';
 import Product from './components/Product';
 import Dashboard from './components/Dashboard';
 import AboutusPage from './components/AboutUsPage';
+import ContactUsPage from './components/ContactUsPage';
+
 
 import './style/style.scss';
 
@@ -16,12 +18,13 @@ const routes = (
     <HashRouter>
         <div>
             <Route path='/' component={HomePage} exact={true}/>
-            <Route path='/login' component={LoginPage} />
-            <Route path='/signup' component={SignupPage} />
-            <Route path='/shop' component={ShopPage} />
+            <Route path='/login' component={LoginPage} exact={true} />
+            <Route path='/signup' component={SignupPage} exact={true} />
+            <Route path='/shop' component={ShopPage} exact={true}/>
             <Route path='/product' component={Product} />
             <Route path='/dashboard' component={Dashboard} />
-            <Route path='/aboutus' component={AboutusPage} />
+            <Route path='/aboutus' component={AboutusPage} exact={true}/>
+            <Route path='/contactus' component={ContactUsPage} exact={true}/>
         </div>
     </HashRouter>
 );

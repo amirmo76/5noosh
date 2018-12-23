@@ -1,0 +1,35 @@
+.contactus {
+    background-color: $--color-black;
+    min-height: 100vh;
+    padding: 0 $--size-padding-home;
+
+    @include respond(small-desk) {
+        padding: 0 $--size-padding-home-md;
+
+    }
+
+    &__body {
+        display: flex;
+        text-align: right;
+        color: $--color-white;
+        padding: 10rem 0;
+    }
+
+    &__form-box {
+        width: 70%;
+        padding: 4rem 7.5rem;
+        font-size: 1.2rem;
+        background-color: $--color-black-dark;
+        align-self: flex-start;
+    }
+
+    &__info-box {
+        width: 30%;
+    }
+
+    &__heading {
+        font-size: 3.5rem;
+        font-weight: 300;
+    }
+
+}

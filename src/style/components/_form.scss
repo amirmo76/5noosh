@@ -46,6 +46,11 @@
     &--unvalid {
         border-bottom: 1px solid $--color-pink;
     }
+
+    &--textarea {
+        height: 10rem;
+        resize: none;
+    }
 }
 
 .label {
