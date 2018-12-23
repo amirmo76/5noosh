@@ -66,6 +66,8 @@ export default class SignupPAge extends React.Component {
 
     componentDidMount = e => {
         
+        const bind = this;
+
         axios({
             method: 'get',
             url: '/api/products'
@@ -83,7 +85,7 @@ export default class SignupPAge extends React.Component {
 
                     return item;
                 });
-                this.setState(() => ({items: data}));
+                bind.setState(() => ({items: data}));
             }
         });
         

@@ -2,7 +2,7 @@ import React from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import axios from 'axios';
-
+import { Route, Redirect } from 'react-router';
 
 export default class LoginPage extends React.Component {
 
@@ -17,7 +17,6 @@ export default class LoginPage extends React.Component {
         e.preventDefault();
         //-------------CODE GOES HERE----------s
         if(this.state.emailValid && this.state.passValid) {
-            console.log('sent');
             axios({
                 method: 'post',
                 url: '/api/users/login',
@@ -26,7 +25,18 @@ export default class LoginPage extends React.Component {
                     password: document.getElementById('pass').value
                 }
             }).then(function (response) {
-                console.log(response.data.errors);
+                if (response.data.status === 200) {
+                    //ok
+                    const json = JSON.stringify(response.data.data);
+                    localStorage.setItem('user', json);
+                    <Redirect to="/dashboard" />
+                } else if (response.data.status === 404) {
+                    //email not found
+                } else if (response.data.status === 422) {
+                    //validation
+                } else if (response.data.status === 401) {
+                    //pass
+                }
             });
         }
     }
