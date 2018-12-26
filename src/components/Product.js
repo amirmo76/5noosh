@@ -2,7 +2,7 @@ import React from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
-
+import axios from 'axios';
 
 export default class Product extends React.Component {
 
@@ -44,7 +44,7 @@ export default class Product extends React.Component {
 
     componentDidMount() {
         const id = this.props.location.pathname.split('/')[2];
-        
+
         if (!id){
             this.setState(() => ({error: true}));
             return;  
