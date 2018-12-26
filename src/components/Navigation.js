@@ -50,14 +50,21 @@ export default class Navigation extends React.Component {
 
                 {this.state.isLoggedIn || 
                     <div className="navigation__buttons">
+                        <svg className="navigation__sign-svg" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 258.75 258.75'>
+                            <circle cx='129.375' cy='60' r='60' />
+                            <path d='M129.375,150c-60.061,0-108.75,48.689-108.75,108.75h217.5C238.125,198.689,189.436,150,129.375,150z'
+                            />
+                        </svg>
                         <Link to='/signup'>
-                            <button className={"btn btn--secondary btn--stretch"
-                        + (this.props.light ? " btn--dark" : "")}>
-                        ثبت نام</button>                        
+                            <span className="navigation__signup">
+                            ثبت نام   
+                            </span>                    
                         </Link>
+                        <span className="navigation__dash">-</span>
                         <Link to='/login'>
-                            <button className={"btn btn--secondary btn--outline"
-                        + (this.props.light ? " btn--outline-dark" : "")}>ورود</button>                        
+                            <span className="navigation__login">
+                                ورود                     
+                            </span>
                         </Link>
                     </div>
                 }

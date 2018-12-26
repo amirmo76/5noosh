@@ -23,7 +23,7 @@ export default class ProductPrev extends React.Component {
                 <div className="product-prev__footer">
                     <span className="product-prev__price">{this.props.product && this.props.product.price}</span>
                     <span className="product-prev__price-tag">تومان</span>
-                    <Link to='/product' className="clickable">
+                    <Link to={'/product' + "/" + (this.props.product && this.props.product.id)} className="clickable">
                         <svg className="product-prev__svg product-prev__svg--back" id='Capa_1' xmlns='http://www.w3.org/2000/svg' width='459' height='459'
                         viewBox='0 0 459 459'>
                             <path d='M178.5,140.25v-102L0,216.75l178.5,178.5V290.7c127.5,0,216.75,40.8,280.5,130.05C433.5,293.25,357,165.75,178.5,140.25z'

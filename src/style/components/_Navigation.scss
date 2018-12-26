@@ -5,7 +5,7 @@
 
     display: grid;
     direction: rtl;
-    grid-template-columns: minmax(max-content, 2fr) minmax(max-content, 3.5fr) max-content;
+    grid-template-columns: minmax(max-content, 2fr) minmax(max-content, 3fr) max-content;
     align-items: center;
     padding: 1rem 0;
     grid-gap: 3.5rem;
@@ -37,10 +37,14 @@
     }
 
     &__buttons {
-        display: grid;
-        grid-template-columns: repeat(2, max-content);
-        grid-gap: 2rem;
-        align-items: stretch;
+        display: flex;
+        align-items: center; 
+        margin-right: 4rem;
+        font-size: 1.4rem;
+    }
+
+    &__buttons:hover &__sign-svg {
+        fill: $--color-primary;
     }
 
     &--shifted {
@@ -89,5 +93,25 @@
         background-color: $--color-grey-2;
         background-position: center;
         background-size: cover;
+    }
+
+    &__sign-svg {
+        fill: $--color-white;
+        height: 2rem;
+        width: 2.5rem;
+        margin-left: 1.5rem;
+        transition: all .2s ease-in;    
+    }
+
+    &__dash {
+        margin: 0 1rem;
+    }
+
+    &__signup,
+    &__login {
+        transition: all .2s ease-in;
+        &:hover {
+            color: $--color-primary;
+        }
     }
 }
