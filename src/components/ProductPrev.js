@@ -17,13 +17,11 @@ export default class ProductPrev extends React.Component {
     }
 
     stylizePrice(price) {
-        console.log(price);
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     render() {
 
-        // console.log(this.calculatePrice('8,000', 20));
 
         return (
             <div className={"product-prev" + (this.props.slideshow ? " product-prev--slide-show" : "") + (this.props.slideshow ? (" product-prev--slide-show-" + this.props.slideshow) : "")}>

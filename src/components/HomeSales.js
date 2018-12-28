@@ -111,9 +111,8 @@ export default class HomeSales extends React.Component {
                         thumbnail: cur.logo,
                         price: cur.price,
                         category: cur.category,
-                        off: cur.active_sales.off
+                        off: cur.active_sales[0].off
                     }
-                    console.log(cur.active_sales);
                     return item;
                 });
                 bind.setState(() => ({items: data}));
@@ -170,7 +169,6 @@ export default class HomeSales extends React.Component {
         const newStyle = window.getComputedStyle(el);
         const newRight = parseInt(newStyle.getPropertyValue('right'));
 
-        console.log(parseInt(newStyle.getPropertyValue('left')) + w/2);
     }
 
     render() {
