@@ -113,7 +113,7 @@ export default class HomeSales extends React.Component {
                         category: cur.category,
                         off: cur.active_sales.off
                     }
-
+                    console.log(cur.active_sales.off);
                     return item;
                 });
                 bind.setState(() => ({items: data}));
