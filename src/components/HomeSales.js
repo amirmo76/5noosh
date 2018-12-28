@@ -97,28 +97,28 @@ export default class HomeSales extends React.Component {
         const moveLimits = document.querySelectorAll('.product-prev').length - 2;
         this.setState(() => ({ moveLimits }));
 
-        // const bind = this;
-        // axios({
-        //     method: 'get',
-        //     url: '/api/sales/home/all'
-        // }).then(function (response) {
-        //     if (response.data.status === 200) {
-        //         const temp = response.data.data;
-        //         const data = temp.map(cur => {
-        //             const item = {
-        //                 id: cur.id,
-        //                 title: cur.name,
-        //                 thumbnail: cur.logo,
-        //                 price: cur.price,
-        //                 category: cur.category,
-        //                 off: cur.active_sales.off
-        //             }
+        const bind = this;
+        axios({
+            method: 'get',
+            url: '/api/sales/home/all'
+        }).then(function (response) {
+            if (response.data.status === 200) {
+                const temp = response.data.data;
+                const data = temp.map(cur => {
+                    const item = {
+                        id: cur.id,
+                        title: cur.name,
+                        thumbnail: cur.logo,
+                        price: cur.price,
+                        category: cur.category,
+                        off: cur.active_sales.off
+                    }
 
-        //             return item;
-        //         });
-        //         bind.setState(() => ({items: data}));
-        //     }
-        // });
+                    return item;
+                });
+                bind.setState(() => ({items: data}));
+            }
+        });
     }
 
 
