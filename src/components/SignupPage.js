@@ -40,23 +40,21 @@ export default class SignupPage extends React.Component {
                     password_confirmation: document.getElementById('pass-confirm').value
                 }
             }).then(function (response){
-                console.log('then');
-                console.log(response.data);
                 if (response.data.status === 200) {
                     //ok
-                    // bind.setState(() => ({error: ''}));
-                    // const json = JSON.stringify(response.data.data);
-                    // localStorage.setItem('user', json);
-                    // return bind.props.history.push('/dashboard');
-                    console.log(response.data.data);
+                    bind.setState(() => ({error: ''}));
+                    const json = JSON.stringify(response.data.data);
+                    localStorage.setItem('user', json);
+                    return bind.props.history.push('/dashboard');
                 } else {
-                    console.log('error');
                     bind.setState(() => ({error: response.data.errors}));
+                    console.log(bind.state);
                 }
             });
-        } else {
-            bind.setState(() => ({error: 'ورودی های خود را کنترل کنید'}));
-        }
+        } 
+        // else {
+        //     bind.setState(() => ({error: 'ورودی های خود را کنترل کنید'}));
+        // }
     }
 
     errorCloseHandler = e => {
