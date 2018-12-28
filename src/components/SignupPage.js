@@ -40,12 +40,14 @@ export default class SignupPage extends React.Component {
                     password_confirmation: document.getElementById('pass-confirm').value
                 }
             }).then(function (response){
+                console.log('then');
                 if (response.data.status === 200) {
                     //ok
-                    bind.setState(() => ({error: ''}));
-                    const json = JSON.stringify(response.data.data);
-                    localStorage.setItem('user', json);
-                    return bind.props.history.push('/dashboard');
+                    // bind.setState(() => ({error: ''}));
+                    // const json = JSON.stringify(response.data.data);
+                    // localStorage.setItem('user', json);
+                    // return bind.props.history.push('/dashboard');
+                    console.log(response.data.data);
                 } else {
                     bind.setState(() => ({error: response.data.errors}));
                 }
