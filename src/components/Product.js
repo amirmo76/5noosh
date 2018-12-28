@@ -79,7 +79,7 @@ export default class Product extends React.Component {
 
     formalizePrice(price) {
         let newP = "" + price;
-        
+        // sad
     }
 
     render(){

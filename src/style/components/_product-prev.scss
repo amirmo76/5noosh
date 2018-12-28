@@ -8,7 +8,8 @@
     box-shadow: 0 .3rem 1rem rgba(black, .15);
     color: $--color-white;
     font-size: 1.4rem;
-    overflow: hidden;
+    // overflow: hidden;
+    position: relative;
 
     @include respond(small-desk) {
         width: 27.5rem;
@@ -19,6 +20,8 @@
         height: 23rem;
         background-size: cover;
         margin-bottom: 1rem;
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
 
         @include respond(small-desk) {
             height: 20rem;
@@ -56,10 +59,21 @@
 
     &__price {
         margin-left: .5rem;
+
+        &--off {
+            text-decoration: line-through;
+        }
     }
 
     &__price-tag {
         margin-left: auto;
+    }
+
+    &__off-price {
+        display: grid;
+        grid-template-columns: max-content max-content;
+        direction: rtl;
+        margin-left: 3.5rem;
     }
 
     &__svg {
@@ -78,6 +92,15 @@
             opacity: 1;
         }
     }
+
+    &__off {
+        position: absolute;
+        top: -1.5rem;
+        left: -1.5rem;
+        height: 5rem;
+        width: 5rem;
+    }
+
 
     &--slide-show {
         position: absolute;
