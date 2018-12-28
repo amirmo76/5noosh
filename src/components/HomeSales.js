@@ -15,7 +15,7 @@ export default class HomeSales extends React.Component {
             {
                 id: 1,
                 title: 'نام محصول - 1',
-                price: '22,500',
+                price: 1000,
                 category: 'دسته بندی',
                 thumbnail: 'img/img-1.png',
                 off: 50
@@ -23,7 +23,7 @@ export default class HomeSales extends React.Component {
             {
                 id: 2,
                 title: 'نام محصول - 2',
-                price: '18,100',
+                price: 2000,
                 category: 'دسته بندی',
                 thumbnail: 'img/img-2.png',
                 off: 50
@@ -31,7 +31,7 @@ export default class HomeSales extends React.Component {
             {
                 id: 3,
                 title: 'نام محصول - 3',
-                price: '12,000',
+                price: 3000,
                 category: 'دسته بندی',
                 thumbnail: 'img/img-3.jpg',
                 off: 50
@@ -39,7 +39,7 @@ export default class HomeSales extends React.Component {
             {
                 id: 4,
                 title: 'نام محصول - 4',
-                price: '9,000',
+                price: 4000,
                 category: 'دسته بندی',
                 thumbnail: 'img/img-4.jpg',
                 off: 50
@@ -47,7 +47,7 @@ export default class HomeSales extends React.Component {
             {
                 id: 5,
                 title: 'نام محصول - 5',
-                price: '8,500',
+                price: 8000,
                 category: 'دسته بندی',
                 thumbnail: 'img/img-5.jpg',
                 off: 50
@@ -97,28 +97,28 @@ export default class HomeSales extends React.Component {
         const moveLimits = document.querySelectorAll('.product-prev').length - 2;
         this.setState(() => ({ moveLimits }));
 
-        const bind = this;
-        axios({
-            method: 'get',
-            url: '/api/sales/home/all'
-        }).then(function (response) {
-            if (response.data.status === 200) {
-                const temp = response.data.data;
-                const data = temp.map(cur => {
-                    const item = {
-                        id: cur.id,
-                        title: cur.name,
-                        thumbnail: cur.logo,
-                        price: cur.price,
-                        category: cur.category,
-                        off: cur.active_sales.off
-                    }
+        // const bind = this;
+        // axios({
+        //     method: 'get',
+        //     url: '/api/sales/home/all'
+        // }).then(function (response) {
+        //     if (response.data.status === 200) {
+        //         const temp = response.data.data;
+        //         const data = temp.map(cur => {
+        //             const item = {
+        //                 id: cur.id,
+        //                 title: cur.name,
+        //                 thumbnail: cur.logo,
+        //                 price: cur.price,
+        //                 category: cur.category,
+        //                 off: cur.active_sales.off
+        //             }
 
-                    return item;
-                });
-                bind.setState(() => ({items: data}));
-            }
-        });
+        //             return item;
+        //         });
+        //         bind.setState(() => ({items: data}));
+        //     }
+        // });
     }
 
 
