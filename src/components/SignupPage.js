@@ -41,6 +41,7 @@ export default class SignupPage extends React.Component {
                 }
             }).then(function (response){
                 console.log('then');
+                console.log(response.data);
                 if (response.data.status === 200) {
                     //ok
                     // bind.setState(() => ({error: ''}));
@@ -49,6 +50,7 @@ export default class SignupPage extends React.Component {
                     // return bind.props.history.push('/dashboard');
                     console.log(response.data.data);
                 } else {
+                    console.log('error');
                     bind.setState(() => ({error: response.data.errors}));
                 }
             });
