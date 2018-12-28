@@ -52,7 +52,7 @@ export default class ProductPrev extends React.Component {
 
                     { this.props.product.off && 
                         <div className="product-prev__off-price">
-                            <span className="product-prev__price">{this.props.product && this.props.product.price}</span>
+                            <span className="product-prev__price">{this.props.product && this.stylizePrice(this.props.product.price)}</span>
                             <span className="product-prev__price-tag">تومان</span>
                         </div>
                     }
