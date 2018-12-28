@@ -17,7 +17,7 @@ export default class ProductPrev extends React.Component {
     }
 
     stylizePrice(price) {
-        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return (price + "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     render() {
