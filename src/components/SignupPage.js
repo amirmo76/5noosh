@@ -47,14 +47,12 @@ export default class SignupPage extends React.Component {
                     localStorage.setItem('user', json);
                     return bind.props.history.push('/dashboard');
                 } else {
-                    //bind.setState(() => ({error: response.data.errors}));
-                    console.log(response.data.errors);
+                    bind.setState(() => ({error: response.data.errors}));
                 }
             });
-        } 
-        // else {
-        //     bind.setState(() => ({error: 'ورودی های خود را کنترل کنید'}));
-        // }
+        } else {
+            bind.setState(() => ({error: 'ورودی های خود را کنترل کنید'}));
+        }
     }
 
     errorCloseHandler = e => {
