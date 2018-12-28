@@ -48,7 +48,7 @@ export default class SignupPage extends React.Component {
                     return bind.props.history.push('/dashboard');
                 } else {
                     //bind.setState(() => ({error: response.data.errors}));
-                    console.log('error');
+                    console.log(response.data.errors);
                 }
             });
         } 
