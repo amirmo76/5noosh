@@ -3,6 +3,7 @@ import Navigation from './Navigation';
 import Footer from './Footer';
 import axios from 'axios';
 import { Route, Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export default class LoginPage extends React.Component {
 
@@ -37,7 +38,13 @@ export default class LoginPage extends React.Component {
                     bind.setState(() => ({error: response.data.errors}));
                 }
             });
+        } else {
+            bind.setState(() => ({error: 'ورودی های خود را کنترل کنید'}));
         }
+    }
+    
+    errorCloseHandler = e => {
+        this.setState(() => ({error: ''}));
     }
 
     emailChangeHandler = e => {
@@ -78,7 +85,7 @@ export default class LoginPage extends React.Component {
                     <div className="login__box">
                         <div className={"login__error " + (this.state.error && "login__error--show")}>
                             <p className="login__error-text">{this.state.error}</p>
-                            <svg className="login__error-icon" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21.9 21.9'>
+                            <svg className="login__error-icon" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21.9 21.9' onClick={this.errorCloseHandler}>
                                 <path d='M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0 c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4 s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3 s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7 s-0.1-0.5-0.3-0.7L14.1,11.3z'
                                 />
                             </svg>
@@ -94,7 +101,7 @@ export default class LoginPage extends React.Component {
 
                             <button className="btn btn--fat btn--primary mg-bottom-md" type="submit" onClick={this.submitHandler}>ورود</button>
                             <div className="login__options">
-                                <a>حساب کاربری ندارید؟</a>
+                                <Link to="/signup" className="login__signup">حساب کاربری ندارید؟</Link>
                                 <a>رمز عبور خود را فراموش کرده اید؟</a>
                             </div>
                         </form>

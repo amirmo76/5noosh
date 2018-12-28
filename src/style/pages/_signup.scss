@@ -84,6 +84,10 @@
         height: 1.5rem;
         fill: $--color-white;
         margin-left: 2rem;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     &__error-text {
