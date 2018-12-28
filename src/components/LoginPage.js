@@ -29,7 +29,7 @@ export default class LoginPage extends React.Component {
             }).then(function (response) {
                 if (response.data.status === 200) {
                     //ok
-                    bind.sertState(() => ({error: ''}));
+                    bind.setState(() => ({error: ''}));
                     const json = JSON.stringify(response.data.data);
                     localStorage.setItem('user', json);
                     return bind.props.history.push('/dashboard');

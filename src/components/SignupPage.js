@@ -2,6 +2,7 @@ import React from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 export default class SignupPage extends React.Component {
@@ -18,7 +19,8 @@ export default class SignupPage extends React.Component {
         passTouched: false,
         passValid: false,
         passConfirmTouched: false,
-        passConfirmValid: false
+        passConfirmValid: false,
+        error: ''
     }
 
     submitHandler = e => {
@@ -38,7 +40,15 @@ export default class SignupPage extends React.Component {
                     password_confirmation: document.getElementById('pass-confirm').value
                 }
             }).then(function (response){
-                console.log(response.data);  
+                if (response.data.status === 200) {
+                    //ok
+                    bind.setState(() => ({error: ''}));
+                    const json = JSON.stringify(response.data.data);
+                    localStorage.setItem('user', json);
+                    return bind.props.history.push('/dashboard');
+                } else {
+                    bind.setState(() => ({error: response.data.errors}));
+                }
             });
         }
     }
@@ -138,6 +148,13 @@ export default class SignupPage extends React.Component {
                 <div className="signup__body">
                     <div className="signup__hero"></div>
                     <div className="signup__box">
+                        <div className={"signup__error " + (this.state.error && "signup__error--show")}>
+                            <p className="signup__error-text">{this.state.error}</p>
+                            <svg className="signup__error-icon" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21.9 21.9'>
+                                <path d='M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0 c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4 s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3 s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7 s-0.1-0.5-0.3-0.7L14.1,11.3z'
+                                />
+                            </svg>
+                        </div>
                         <form className="signup__form">
                             <div className="input__inline-group">
                                 <div className="input__group">
@@ -176,7 +193,7 @@ export default class SignupPage extends React.Component {
                             </div>
     
                             <div className="signup__options">
-                                <a className="mg-left-lg">!قبلا ثبت نام کرده اید؟ برای ورود کلیک کنید</a>
+                                <Link className="mg-left-lg signup__login" to="/login">!قبلا ثبت نام کرده اید؟ برای ورود کلیک کنید</Link>
                                 <button className="btn btn--outline btn--fat btn--primary" type="submit" onClick={this.submitHandler}>ثبت نام</button>
                             </div>
                         </form>
