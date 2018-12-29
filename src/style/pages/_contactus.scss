@@ -2,6 +2,7 @@
     background-color: $--color-black;
     min-height: 100vh;
     padding: 0 $--size-padding-home;
+    position: relative;
 
     @include respond(small-desk) {
         padding: 0 $--size-padding-home-md;
@@ -116,14 +117,23 @@
     }
 
     &__bg-top {
-        transform: translateX($--size-padding-home);
-        width: 100%;
-        position: relative;
-        z-index: 1;
-        width: 20rem;
+        // transform: translateX($--size-padding-home);
+        // width: 100%;
+        // position: relative;
+        // z-index: 1;
+        // width: 20rem;
+        // position: absolute;
+        // top: 0;
+        // left: 0 - $--size-padding-home;
+
         position: absolute;
         top: 0;
-        left: 0 - $--size-padding-home;
+        left: 0;
+        width: 18rem;
+        height: 80rem;
+        z-index: 1;
+        background-color: $--color-primary;
+        
     }
 
     &__error {

@@ -101,14 +101,7 @@ export default class ContactUsPage extends React.Component {
         return (
             <div className="contactus">
                 <Navigation transparent shifted/>
-                <svg className="contactus__bg-top" id='Group_130' data-name='Group 130' xmlns='http://www.w3.org/2000/svg'
-                viewBox='0 0 267.117 1080'>
-                    <defs />
-                    <path className="aboutus__about-img-bg-bottom" id='Path_1051' data-name='Path 1051' d='M48.2,0V982.9C196.3,869.4,216.9,802.4,216.9,802.4s91-148.9,28-368.5S244.9,0,244.9,0H48.2Z'
-                    />
-                    <path className="aboutus__about-img-bg-top" id='Path_1052' data-name='Path 1052' d='M0,0V1080C162.7,955.3,185.4,881.6,185.4,881.6s100-163.6,30.8-404.9S216.2,0,216.2,0H0Z'
-                    />
-                </svg>
+                <div className="contactus__bg-top"></div>
                 <div className="contactus__body">
                     <div className="contactus__form-box">
                         {
