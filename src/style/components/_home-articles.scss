@@ -1,8 +1,5 @@
 .home-articles {
-    padding: 10rem 0;
-    margin-top: 10rem;
-    display: flex;
-    justify-content: space-between;
+    margin-top: 35rem;
     position: relative;
     z-index: 10;
 
@@ -13,5 +10,28 @@
         left: 0;
         top: 0;
         fill: $--color-primary;
+    }
+
+    &__header {
+        text-align: center;        
+        position: relative;
+        top: -25rem;
+    }
+
+    &__all {
+        margin-right: 2rem;
+        transition: all .2s;
+        text-decoration: underline;
+
+        &:hover {
+            color: $--color-primary;
+        }
+    }
+
+    &__box {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        top: -10rem;
     }
 }
