@@ -56,7 +56,7 @@ export default class ContactUsPage extends React.Component {
 
         return (
             <div className="contactus">
-                <Navigation transparent={true} shifted={true}/>
+                <Navigation transparent shifted/>
                 <svg className="contactus__bg-top" id='Group_130' data-name='Group 130' xmlns='http://www.w3.org/2000/svg'
                 viewBox='0 0 267.117 1080'>
                     <defs />

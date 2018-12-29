@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 
 export default class Navigation extends React.Component {
     state = {
@@ -35,7 +35,8 @@ export default class Navigation extends React.Component {
                         <Link className="navigation__link" to="/shop">فروشگاه</Link>
                     </li>
                     <li className="navigation__item">
-                        <a className="navigation__link">پیشنهادات ویژه</a>
+                        <Link className="navigation__link" to="/#sales"
+                        scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'start' })}>پیشنهادات ویژه</Link>
                     </li>
                     <li className="navigation__item">
                         <a className="navigation__link">بلاگ</a>

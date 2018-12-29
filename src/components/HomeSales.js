@@ -173,7 +173,7 @@ export default class HomeSales extends React.Component {
 
     render() {
         return (
-            <div className="home-sales">
+            <div className="home-sales" id="sales">
                 <div className="home-sales__header">
                     <h2 className="heading--primary">پیشنهادات ویژه ماه</h2>
                     <h3 className="sub-heading">چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</h3>
