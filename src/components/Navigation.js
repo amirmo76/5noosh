@@ -44,7 +44,7 @@ export default class Navigation extends React.Component {
                         <Link className="navigation__link" to="/aboutus">درباره ما</Link>
                     </li>
                     <li className="navigation__item">
-                        <a className="navigation__link">ارتباط با ما</a>
+                        <Link className="navigation__link" to="/contactus">ارتباط با ما</Link>
                     </li>
                 </ul>
 

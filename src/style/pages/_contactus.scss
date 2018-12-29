@@ -13,23 +13,112 @@
         text-align: right;
         color: $--color-white;
         padding: 10rem 0;
+        align-items: flex-start;
+        position: relative;
+        z-index: 2;
     }
 
     &__form-box {
         width: 70%;
         padding: 4rem 7.5rem;
+        padding-right: 10rem;
         font-size: 1.2rem;
         background-color: $--color-black-dark;
         align-self: flex-start;
+        box-shadow: 0 1rem 2rem rgba(black, .1);
     }
 
     &__info-box {
         width: 30%;
+        background-color: $--color-black-dark;
+        box-shadow: 0 1rem 2.5rem rgba(black, .15);
+        padding: 4rem 2.5rem;
+        align-self: center;
+        position: relative;
+        z-index: 10;
+        transform: scale(1.1);
     }
 
     &__heading {
-        font-size: 3.5rem;
+        font-size: 4rem;
         font-weight: 300;
+
+        &--small {
+            font-size: 3rem;
+            text-align: center;
+        }
     }
 
+    &__info-icon {
+        fill: $--color-white;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    &__info-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: row-reverse;
+
+        &:not(:last-of-type) {
+            margin-bottom: 2.5rem;
+        }
+    }
+
+    &__socials-container {
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 5rem;
+    }
+
+    &__social-icon {
+        fill: $--color-white;
+        width: 2rem;
+        height: 2rem;
+        transition: all .2s;
+
+        &:hover {
+            fill: $--color-primary;
+            cursor: pointer;
+        }
+    }
+
+    &__text {
+        font-size: 1.6rem;
+        font-weight: 300;
+        line-height: 1.9; 
+        margin: 3rem 0 5rem; 
+    }
+
+    &__info {
+        font-size: 1.4rem;
+        font-weight: 300;   
+        margin-right: 2.5rem;
+
+        &--address {
+
+        }
+
+        &--email {
+
+        }
+
+        &--phone {
+
+        }
+    }
+
+    &__bg-top {
+        transform: translateX($--size-padding-home);
+        width: 100%;
+        position: relative;
+        z-index: 1;
+        width: 20rem;
+        position: absolute;
+        top: 0;
+        left: 0 - $--size-padding-home;
+    }
+
+   
 }
