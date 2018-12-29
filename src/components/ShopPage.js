@@ -17,48 +17,48 @@ export default class SignupPAge extends React.Component {
         slideshow: true,
 
         items: [
-            // {
-            //     id: 1,
-            //     title: 'دوچرخه',
-            //     price: '22,500',
-            //     category: 'دسته بندی',
-            //     thumbnail: 'img/img-1.png'
-            // },
-            // {
-            //     id: 2,
-            //     title: 'خوراکی',
-            //     price: '18,100',
-            //     category: 'دسته بندی',
-            //     thumbnail: 'img/img-2.png'
-            // },
-            // {
-            //     id: 3,
-            //     title: 'بهرام',
-            //     price: '12,000',
-            //     category: 'دسته بندی',
-            //     thumbnail: 'img/img-3.jpg'
-            // },
-            // {
-            //     id: 4,
-            //     title: 'شکلات',
-            //     price: '9,000',
-            //     category: 'دسته بندی',
-            //     thumbnail: 'img/img-4.jpg'
-            // },
-            // {
-            //     id: 5,
-            //     title: 'دانشگاه',
-            //     price: '8,500',
-            //     category: 'دسته بندی',
-            //     thumbnail: 'img/img-5.jpg'
-            // },
-            // {
-            //     id: 6,
-            //     title: 'آسایشگاه',
-            //     price: '10,500',
-            //     category: 'دسته بندی',
-            //     thumbnail: 'img/img-6.jpg'
-            // } 
+            {
+                id: 1,
+                title: 'دوچرخه',
+                price: '22,500',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-1.png'
+            },
+            {
+                id: 2,
+                title: 'خوراکی',
+                price: '18,100',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-2.png'
+            },
+            {
+                id: 3,
+                title: 'بهرام',
+                price: '12,000',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-3.jpg'
+            },
+            {
+                id: 4,
+                title: 'شکلات',
+                price: '9,000',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-4.jpg'
+            },
+            {
+                id: 5,
+                title: 'دانشگاه',
+                price: '8,500',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-5.jpg'
+            },
+            {
+                id: 6,
+                title: 'آسایشگاه',
+                price: '10,500',
+                category: 'دسته بندی',
+                thumbnail: 'img/img-6.jpg'
+            } 
         ],
         lookAtResaults: false,
         results: []
