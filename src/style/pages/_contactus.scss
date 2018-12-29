@@ -26,13 +26,19 @@
         background-color: $--color-black-dark;
         align-self: flex-start;
         box-shadow: 0 1rem 2rem rgba(black, .1);
+        position: relative;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
     }
 
     &__info-box {
         width: 30%;
         background-color: $--color-black-dark;
         box-shadow: 0 1rem 2.5rem rgba(black, .15);
-        padding: 4rem 2.5rem;
+        padding: 5rem 2.5rem;
         align-self: center;
         position: relative;
         z-index: 10;
@@ -120,5 +126,68 @@
         left: 0 - $--size-padding-home;
     }
 
+    &__error {
+        position: absolute;
+        display: flex;
+        background-color: rgba($--color-primary, .2);
+        border-radius: .5rem;
+        padding: 1rem 2rem;
+        border: 1px solid $--color-primary;
+        width: 75%;
+        align-items: center;
+        justify-content: flex-end;
+        left: 50%;
+        top: -5rem;
+        transform: translateX(-50%);
+        transition: all .2s ease-in;
+        opacity: 1;
+    }
+
+    &__error-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: $--color-white;
+        margin-left: 2rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__error-text {
+        font-size: 1.2rem;
+    }
+
+    &__success {
+        position: absolute;
+        display: flex;
+        background-color: rgba($--color-green, .2);
+        border-radius: .5rem;
+        padding: 1rem 2rem;
+        border: 1px solid $--color-green;
+        width: 75%;
+        align-items: center;
+        justify-content: flex-end;
+        left: 50%;
+        top: -5rem;
+        transform: translateX(-50%);
+        transition: all .2s ease-in;
+        opacity: 1;
+    }
+
+    &__success-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: $--color-white;
+        margin-left: 2rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__success-text {
+        font-size: 1.2rem;
+    }
    
 }

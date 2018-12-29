@@ -10,16 +10,41 @@ export default class ContactUsPage extends React.Component {
         emailValid: false,
         nameTouched: false,
         nameValid: false,
+        textTouched: false,
+        textValid: false,
         address: 'آدرس شرکت',
         email: 'example@example.com',
         phone: '999-633458',
-        text: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است'
+        text: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است',
+        error: '',
+        success: ''
     }
 
     submitHandler = e => {
         e.preventDefault();
         //-------------CODE GOES HERE----------s
-        
+        const bind = this;
+        if(this.state.nameValid && this.state.emailValid && this.state.textValid) {
+            axios({
+                method: 'post',
+                url: '/api/contactus',
+                data: {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    message: document.getElementById('text').value
+                }
+            }).then(function (response){
+                if (response.data.status === 200) {
+                    //ok
+                    bind.setState(() => ({error: ''}));
+                    bind.setState(() => ({success: 'پیام شما با موفقیت ارسال شد!'}));
+                } else {
+                    bind.setState(() => ({error: response.data.errors}));
+                }
+            });
+        } else {
+            bind.setState(() => ({error: 'ورودی های خود را کنترل کنید'}));
+        }
     }
 
     nameChangeHandler = e => {
@@ -33,8 +58,6 @@ export default class ContactUsPage extends React.Component {
         this.setState(() => ({
             nameValid: result
         }));
-
-        console.log(this.state);
     }
 
     emailChangeHandler = e => {
@@ -48,8 +71,29 @@ export default class ContactUsPage extends React.Component {
         this.setState(() => ({
             emailValid: result
         }));
+    }
+
+    textChangeHandler = e => {
+        this.setState(() => ({
+            textTouched: true
+        }));
+
+        const result = document.getElementById('text').value.length > 0;
+
+        this.setState(() => ({
+            textValid: result
+        }));
 
         console.log(this.state);
+    }
+
+    errorCloseHandler = e => {
+        this.setState(() => ({error: ''}));
+    }
+
+    successCloseHandler = e => {
+        console.log('suc close')
+        this.setState(() => ({success: ''}));
     }
 
     render(){
@@ -67,18 +111,41 @@ export default class ContactUsPage extends React.Component {
                 </svg>
                 <div className="contactus__body">
                     <div className="contactus__form-box">
-                        <h2 className="contactus__heading mg-bottom-md">پیام خود را برای ماارسال کنید</h2>
+                        {
+                            this.state.success &&
+                            <div className="contactus__success">
+                                <p className="contactus__success-text">{this.state.success}</p>
+                                <svg className="contactus__success-icon" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21.9 21.9' onClick={this.successCloseHandler}>
+                                    <path d='M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0 c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4 s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3 s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7 s-0.1-0.5-0.3-0.7L14.1,11.3z'
+                                    />
+                                </svg>
+                            </div>
+                        }
+                        
+                        {
+                            this.state.error &&
+                            <div className="contactus__error">
+                                <p className="contactus__error-text">{this.state.error}</p>
+                                <svg className="contactus__error-icon" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21.9 21.9' onClick={this.errorCloseHandler}>
+                                    <path d='M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0 c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4 s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3 s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7 s-0.1-0.5-0.3-0.7L14.1,11.3z'
+                                    />
+                                </svg>
+                            </div>
+                        }
+                        
+                        <h2 className="contactus__heading mg-bottom-md">پیام خود را برای ما ارسال کنید</h2>
                         <form className="contactus__form">
                             <label htmlFor="name" className="label label--secondary">نام</label>
                             <input id="name" className={"input input--secondary mg-bottom-md " + (this.state.nameTouched && (this.state.nameValid ? "input--valid" : "input--unvalid"))} type="name" onChange={this.nameChangeHandler} required/>
-                            {/* <span className={"error" + ((!this.state.nameValid && this.state.nameTouched) ? ' error--show' : '')}>نام خود را به فارسی وارد کنید</span> */}
+                            <span className={"error" + ((!this.state.nameValid && this.state.nameTouched) ? ' error--show' : '')}>نام خود را به فارسی وارد کنید</span>
 
                             <label htmlFor="email" className="label label--secondary">ایمیل</label>
                             <input id="email" className={"input input--secondary mg-bottom-md " + (this.state.emailTouched && (this.state.emailValid ? "input--valid" : "input--unvalid"))} type="email" onChange={this.emailChangeHandler} required/>
-                            {/* <span className={"error" + ((!this.state.emailValid && this.state.emailTouched) ? ' error--show' : '')}>ایمیل وارد شده معتبر نیست</span> */}
+                            <span className={"error" + ((!this.state.emailValid && this.state.emailTouched) ? ' error--show' : '')}>ایمیل وارد شده معتبر نیست</span>
 
                             <label htmlFor="text" className="label label--secondary">متن پیام</label>
-                            <textarea id="text" className="input input--secondary input--textarea mg-bottom-md"></textarea>
+                            <textarea id="text" className={"input input--secondary input--textarea mg-bottom-md "  + (this.state.textTouched && (this.state.textValid ? "input--valid" : "input--unvalid"))} onChange={this.textChangeHandler} required></textarea>
+                            <span className={"error" + ((!this.state.textValid && this.state.textTouched) ? ' error--show' : '')}>این فیلد نباید خالی باشد</span>
 
                             <button onClick={this.submitHandler} type="submit" className="mg-top-sm btn btn--stretch-x btn--fat btn--outline mg-bottom-md">ارسال</button>
                         </form>
