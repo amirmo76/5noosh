@@ -9,14 +9,11 @@ export default class Recommended extends React.Component {
             const el = document.getElementById('recommended-' + bind.props.id);
             const top = el.getBoundingClientRect().top;
             const height = el.getBoundingClientRect().height;
-            let on = (top > 0 - 50) && (top < height + 50);
-            // if (bind.props.id === 2) {
-            //     on = (top - height > 0 - 50) && (top < height + 50);
-            // } 
-            if (on) {
-                TweenMax.to(el, .2, {top: (top - height) /8 + "px"});
-            }
-
+            let speed = 5;
+            if (bind.props.id === 1) {
+                speed = 10;
+            } 
+            TweenMax.to(el, 1, {top: (top - height) / speed + "px", ease: Power2.easeOut});
         });
     }
 

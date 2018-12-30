@@ -18,14 +18,15 @@ const HomePage = props => {
             <Recommended 
             hero='img/product-hero-1.png' 
             logo='img/product.png' 
-            id='1'
+            id={1}
+            landscape={false} 
             shortDesc='افزایش شادابی و نشاط با عنوان محصول' />
             <Recommended
             direction='rtl'
-            landscape='true' 
+            landscape={true} 
             hero='img/product-hero-2.png' 
             logo='img/product.png' 
-            id='2'
+            id={2}
             shortDesc='بهبود تمرکز و آرامش' />
             <Features />
             <HomeSales />
