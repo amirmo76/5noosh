@@ -18,7 +18,17 @@ module.exports = {
                 'css-loader',
                 'sass-loader'
             ]
+        }, {
+            test: /\.js$/,
+            use: "imports-loader?define=>false"
         }]
+    },
+    resolve: {
+        modules: ['node_modules'],
+        alias: {
+          'animation.gsap': 'scrollmagic/scrollmagic/minified/plugins/animation.gsap.min.js',
+          'debug.addIndicators': 'scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min.js'
+        }
     },
     devtool: 'cheap-module-eval-source-map',
     devServer: {
