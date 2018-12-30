@@ -56,6 +56,8 @@
         height: 70vh;
         position: relative;
         z-index: 10;
+        box-shadow: 0 1rem 2rem rgba(black, .2);
+
     }
 
     &__trophies-title {
@@ -78,6 +80,8 @@
         height: 90vh;
         position: relative;
         z-index: 10;
+        box-shadow: 0 1rem 2rem rgba(black, .2);
+        
     }
 
     &__about-bg {

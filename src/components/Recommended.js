@@ -6,19 +6,20 @@ import 'animation.gsap';
 import 'debug.addIndicators';
 
 export default class Recommended extends React.Component {
+
+    floatAnimation = e => {
+        const el = document.getElementById('recommended-' + this.props.id);
+        const top = el.getBoundingClientRect().top;
+        const height = el.getBoundingClientRect().height;
+        let speed = 5;
+        if (this.props.id === 1) {
+            speed = 10;
+        } 
+        TweenMax.to(el, 1, {top: (top - height) / speed + "px", ease: Power2.easeOut});
+    }
     
     initFloat = e => {
-        const bind = this;
-        window.addEventListener('scroll', function() {
-            const el = document.getElementById('recommended-' + bind.props.id);
-            const top = el.getBoundingClientRect().top;
-            const height = el.getBoundingClientRect().height;
-            let speed = 5;
-            if (bind.props.id === 1) {
-                speed = 10;
-            } 
-            TweenMax.to(el, 1, {top: (top - height) / speed + "px", ease: Power2.easeOut});
-        });
+        window.addEventListener('scroll', this.floatAnimation);
     }
 
     initProductAnimation = e => {
@@ -61,6 +62,10 @@ export default class Recommended extends React.Component {
     componentDidMount() {
         this.initFloat();
         this.initProductAnimation();
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.floatAnimation);
     }
 
     render () {

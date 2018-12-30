@@ -32,7 +32,7 @@ const HomePage = props => {
             <HomeSales />
             <Testemonials />
             <HomeArticles />
-            <Footer />
+            <Footer animated={true}/>
         </div>
     );
 }
