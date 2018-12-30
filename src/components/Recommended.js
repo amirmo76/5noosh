@@ -30,24 +30,24 @@ export default class Recommended extends React.Component {
         const anim = new TimelineMax();
         if (bind.props.id === 1) {
             // anim
-            // .from(id, 2.5, {right: "-400px", ease: Power2.easeOut})
-            // .from(id + " .recommended__logo", 3, {right: "-400px", ease: Power2.easeOut}, 0)
-            // .from(id + " .recommended__desc", 1.5, {right: "-400px", ease: Power2.easeOut}, 0)
-            // .from(id + " .recommended__buttons", 2.5, {opacity: 0, y: 25, ease: Power2.easeOut}, 1.25);
+                // .from(id, 2.5, {right: "-400px", ease: Power2.easeOut})
+                // .from(id + " .recommended__logo", 3, {right: "-400px", ease: Power2.easeOut}, 0)
+                // .from(id + " .recommended__desc", 1.5, {right: "-400px", ease: Power2.easeOut}, 0)
+                // .from(id + " .recommended__buttons", 2.5, {opacity: 0, y: 25, ease: Power2.easeOut}, 1.25);
 
             anim
-            .from(id, 2.5, {right: "-400px", ease: Power2.easeOut})
-            .from(id + " .recommended__logo", 3, {right: "-400px", ease: Power2.easeOut}, 0);
+                .from(id, 2.5, {right: "-400px", ease: Power2.easeOut})
+                .from(id + " .recommended__logo", 3, {right: "-400px", ease: Power2.easeOut}, 0);
         } else {
             // anim
-            // .from(id, 2.5, {left: "-400px", ease: Power2.easeOut})
-            // .from(id + " .recommended__logo", 3, {left: "-400px", ease: Power2.easeOut}, 0)
-            // .from(id + " .recommended__desc", 1.5, {left: "-400px", ease: Power2.easeOut}, 0)
-            // .from(id + " .recommended__buttons", 2.5, {opacity: 0, y: 25, ease: Power2.easeOut}, 1.25);
+                // .from(id, 2.5, {left: "-400px", ease: Power2.easeOut})
+                // .from(id + " .recommended__logo", 3, {left: "-400px", ease: Power2.easeOut}, 0)
+                // .from(id + " .recommended__desc", 1.5, {left: "-400px", ease: Power2.easeOut}, 0)
+                // .from(id + " .recommended__buttons", 2.5, {opacity: 0, y: 25, ease: Power2.easeOut}, 1.25);
 
             anim
-            .from(id, 2.5, {left: "-400px", ease: Power2.easeOut})
-            .from(id + " .recommended__logo", 3, {left: "-400px", ease: Power2.easeOut}, 0);
+                .from(id, 2.5, {left: "-400px", ease: Power2.easeOut})
+                .from(id + " .recommended__logo", 3, {left: "-400px", ease: Power2.easeOut}, 0);
         }
 
         const scene = new ScrollMagic.Scene({

@@ -1,5 +1,5 @@
 .testemonials {
-    padding: 10rem 0;
+    padding: 15rem 0;
     position: relative;
     z-index: 1;
 
@@ -12,6 +12,16 @@
         display: flex;
         justify-content: center;
     }
+}
+
+.testemonials .testemonial:first-of-type {
+    position: relative;
+    top: 25px;
+}
+
+.testemonials .testemonial:last-of-type {
+    position: relative;
+    top: 125px;
 }
 
 .testemonial {
