@@ -1,12 +1,18 @@
 import React from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
+import Cart from './Cart';
 import { Link } from 'react-router-dom';
 import ProductPrev from './ProductPrev';
 import axios from 'axios';
 
 
 export default class SignupPAge extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.child = React.createRef();
+    }
 
     state = {
         first: 1,
@@ -67,13 +73,13 @@ export default class SignupPAge extends React.Component {
 
     updateCartNumber = e => {
         if (localStorage.getItem('cart')) {
-            console.log('here')
             const length = JSON.parse(localStorage.getItem('cart')).length;
             this.setState(() => ({ cartNumber: length }));
         } else {
-            console.log('there')
             this.setState(() => ({ cartNumber: 0 }));
         }
+
+        this.child.current.updateCart();
     }
 
     componentDidMount = e => {
@@ -177,7 +183,6 @@ export default class SignupPAge extends React.Component {
     
 
     render() {
-
         return (
             <div className="shop">
                 <Navigation />
@@ -243,6 +248,7 @@ export default class SignupPAge extends React.Component {
 
                     <div className="shop__main">
                         <div className="shop__nav mg-bottom-md">
+
 
                             <div className="shop__cart">
                                 <svg className="shop__cart-icon" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24.933 24.933'>
@@ -323,6 +329,7 @@ export default class SignupPAge extends React.Component {
 
                             </div>
                     </div>
+                    <Cart ref={this.child} />
                 </div>
                 <Footer />
             </div>
