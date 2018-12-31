@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
-
+import axios from 'axios';
 
 export default class ContactUsPage extends React.Component {
 
