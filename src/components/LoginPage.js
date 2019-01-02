@@ -12,6 +12,7 @@ export default class LoginPage extends React.Component {
         emailValid: false,
         passTouched: false,
         passValid: false,
+        isRemember: false,
         error: ''
     }
 
@@ -25,17 +26,21 @@ export default class LoginPage extends React.Component {
                 url: '/api/users/login',
                 data: {
                     email: document.getElementById('email').value,
-                    password: document.getElementById('pass').value
+                    password: document.getElementById('pass').value,
+                    remember_me: this.state.isRemember
                 }
+            }).catch(function (error) {
+                //422 -> validation error
+                console.log('error: ' + error.response);
+                bind.setState(() => ({error: 'ایمیل یا رمز عبور اشتباه می باشد'}));
             }).then(function (response) {
-                if (response.data.status === 200) {
+                if (response.status === 200) {
                     //ok
+                    console.log('response: ' + response);
                     bind.setState(() => ({error: ''}));
-                    const json = JSON.stringify(response.data.data);
-                    localStorage.setItem('user', json);
+                    const json = JSON.stringify(response.data.data.accessToken);
+                    localStorage.setItem('token', json);
                     return bind.props.history.push('/dashboard');
-                } else {
-                    bind.setState(() => ({error: response.data.errors}));
                 }
             });
         } else {

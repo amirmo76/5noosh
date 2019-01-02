@@ -39,15 +39,18 @@ export default class SignupPage extends React.Component {
                     password: document.getElementById('pass').value,
                     password_confirmation: document.getElementById('pass-confirm').value
                 }
+            }).catch(function (error) {
+                //422
+                console.log('error: ' + error.response);
+                bind.setState(() => ({error: 'ایمیل وارد شده موجود می باشد'}));
             }).then(function (response){
-                if (response.data.status === 200) {
+                if (response.status === 201) {
                     //ok
+                    console.log('response: ' + response);
                     bind.setState(() => ({error: ''}));
-                    const json = JSON.stringify(response.data.data);
-                    localStorage.setItem('user', json);
+                    const json = JSON.stringify(response.data.data.accessToken);
+                    localStorage.setItem('token', json);
                     return bind.props.history.push('/dashboard');
-                } else {
-                    bind.setState(() => ({error: response.data.errors}));
                 }
             });
         } else {

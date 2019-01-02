@@ -139,4 +139,17 @@
             color: $--color-white;
         }
     }
+
+    &--green {
+        background-color: $--color-green-sat;
+        color: $--color-white;
+    }
+
+    &--shadow {
+        box-shadow: 0 1rem 2rem rgba(black, .2);
+    }
+
+    &--no-radius {
+        border-radius: 0;
+    }
 }
