@@ -5,10 +5,10 @@
 
     display: grid;
     direction: rtl;
-    grid-template-columns: minmax(max-content, 2fr) minmax(max-content, 3fr) max-content;
+    grid-template-columns: max-content minmax(max-content, 3fr) max-content;
     align-items: center;
     padding: 1rem 0;
-    grid-gap: 3.5rem;
+    grid-gap: 6.5rem;
     position: relative;
     z-index: 1;
     
@@ -76,13 +76,17 @@
 
     &__notif {
         height: 2.5rem;   
-        fill: $--color-grey-2;
+        fill: $--color-white;
         margin-left: 2.5rem;
     }
 
     &__logout {
         height: 2.5rem; 
-        fill: $--color-grey-2;
+        fill: $--color-white;
+    }
+
+    &--light &__logout,  &--light &__notif{
+        fill: $--color-grey-2;    
     }
 
     &__avatar {
@@ -90,9 +94,13 @@
         height: 5rem;
         border-radius: 50%;
         margin-left: 2.5rem;
-        background-color: $--color-grey-2;
+        background-color: $--color-white;
         background-position: center;
         background-size: cover;
+    }
+
+    &--light &__avatar {
+        background-color: $--color-grey-2;
     }
 
     &__sign-svg {

@@ -34,7 +34,7 @@ export default class AboutUsPage extends React.Component {
         new ScrollMagic.Scene({
             reverse: false,
             triggerElement: selector2,
-            offset: -100
+            offset: -200
         }).addTo(controller).setTween(trophiesAnim);
     }
 

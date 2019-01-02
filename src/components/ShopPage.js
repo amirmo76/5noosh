@@ -22,6 +22,8 @@ export default class SignupPAge extends React.Component {
         fifth: 5,
         slideshow: true,
         cartNumber: 0,
+        height: 0,
+        isOnCart: false,
 
         items: [
             {
@@ -180,14 +182,32 @@ export default class SignupPAge extends React.Component {
         }
     }
 
-    
+    setHeight = height => {
+        this.setState(() => ({height}));
+    }
+
+    toggleCart = e => {
+        const isOnCart = !this.state.isOnCart;
+        this.setState(() => ({isOnCart}));
+        this.child.current.toggle();
+    }
 
     render() {
+
+        let style = {
+            height: "auto"
+        };
+
+        if (this.state.height && this.state.isOnCart) {
+            console.log(this.state.height);
+            style.height = (this.state.height + 200) + "px"
+        }
+
         return (
             <div className="shop">
                 <Navigation />
                 <span className="shop__bg"></span>
-                <div className="shop__body">
+                <div className="shop__body" style={style}>
                     <div className="shop__right-side">
                         <div className="shop__cats-box">
                             <h2 className="heading--secondary mg-bottom-md">دسته بندی محصولات</h2>
@@ -251,7 +271,7 @@ export default class SignupPAge extends React.Component {
 
 
                             <div className="shop__cart">
-                                <svg className="shop__cart-icon" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24.933 24.933'>
+                                <svg className="shop__cart-icon" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24.933 24.933' onClick={this.toggleCart}>
                                     <defs />
                                     <path id='Path_1327' data-name='Path 1327' d='M7.48,19.946A2.493,2.493,0,1,0,9.973,22.44,2.5,2.5,0,0,0,7.48,19.946ZM0,0V2.493H2.493l4.488,9.475L5.236,14.96a4.429,4.429,0,0,0-.249,1.247A2.5,2.5,0,0,0,7.48,18.7H22.44V16.206H7.979a.268.268,0,0,1-.249-.249v-.125l1.122-2.119h9.225A2.274,2.274,0,0,0,20.2,12.466l4.488-8.1a.686.686,0,0,0,.249-.623,1.178,1.178,0,0,0-1.247-1.247H5.236L4.114,0ZM19.946,19.946A2.493,2.493,0,1,0,22.44,22.44,2.5,2.5,0,0,0,19.946,19.946Z'
                                     />
@@ -329,7 +349,7 @@ export default class SignupPAge extends React.Component {
 
                             </div>
                     </div>
-                    <Cart ref={this.child} />
+                    <Cart ref={this.child} heightCallback={this.setHeight}/>
                 </div>
                 <Footer />
             </div>

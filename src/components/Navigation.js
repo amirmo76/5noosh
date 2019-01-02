@@ -55,10 +55,13 @@ export default class Navigation extends React.Component {
 
     render() {
 
-        const style = {
+        let style = {
             backgroundImage: `url(${this.state.avatar})`
         }
 
+        if (!this.state.avatar) {
+            style.backgroundImage = `url(img/pic-5.png)`;
+        }
 
         return (
             <nav className={'navigation' + (this.props.shifted ? ' navigation--shifted' : '')
@@ -110,7 +113,9 @@ export default class Navigation extends React.Component {
 
                 {this.state.isLoggedIn &&
                     <div className="navigation__info">
-                        <div className="navigation__avatar" style={style}></div>
+                        <Link to="/dashboard">
+                            <div className="navigation__avatar" style={style}></div>                        
+                        </Link>
                         
                         <svg className="navigation__notif" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 25'>
                             <defs />
@@ -118,7 +123,7 @@ export default class Navigation extends React.Component {
                             />
                         </svg>
 
-                        <svg className="navigation__logout" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22.368 24.1'>
+                        {/* <svg className="navigation__logout" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22.368 24.1'>
                             <defs />
                             <g id='logout' transform='translate(-17.6)'>
                                 <g id='Group_284' data-name='Group 284' transform='translate(17.6)'>
@@ -130,6 +135,13 @@ export default class Navigation extends React.Component {
                                     </g>
                                 </g>
                             </g>
+                        </svg> */}
+
+                        <svg className="navigation__logout" viewBox='-15 -35 493.33522 493' xmlns='http://www.w3.org/2000/svg'>
+                            <path d='m412.902344-1.105469h-167.617188c-27.550781 0-50.074218 22.824219-50.074218 50.371094v44.515625c0 6.898438 5.59375 12.488281 12.492187 12.488281s12.488281-5.589843 12.488281-12.488281v-44.515625c.035156-13.890625 11.203125-25.191406 25.09375-25.390625h167.617188c13.777344 0 24.617187 11.617188 24.617187 25.390625v322.980469c.164063 13.691406-10.800781 24.921875-24.492187 25.082031h-167.738282c-13.835937-.050781-25.039062-11.25-25.097656-25.082031v-43.585938c0-6.902344-5.589844-12.492187-12.488281-12.492187s-12.492187 5.589843-12.492187 12.492187v43.585938c.074218 27.625 22.449218 49.996094 50.074218 50.0625h167.617188c27.496094-.101563 49.707031-22.484375 49.597656-49.984375v-323.058594c0-27.546875-22.046875-50.371094-49.597656-50.371094zm0 0'
+                            />
+                            <path d='m42.871094 223.71875h295.601562c6.898438 0 12.492188-5.59375 12.492188-12.492188 0-6.894531-5.59375-12.488281-12.492188-12.488281h-298.375l64.082032-74.074219c4.519531-5.253906 3.957031-13.167968-1.246094-17.734374-5.191406-4.539063-13.078125-4.011719-17.613282 1.175781v.007812l-80.773437 93.035157c-2.976563 2.449218-4.652344 6.136718-4.54296875 9.984374.11718775 3.855469 2.00781275 7.441407 5.12890575 9.707032l80.78125 80.78125c4.878907 4.878906 12.789063 4.878906 17.660157 0 4.816406-4.726563 4.890625-12.453125.167969-17.269532-.054688-.050781-.109376-.105468-.167969-.160156zm0 0'
+                            />
                         </svg>
                         
                     </div>

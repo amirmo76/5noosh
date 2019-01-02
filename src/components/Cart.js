@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {TimelineMax} from "gsap/TimelineMax";
 
 export default class Cart extends React.Component {
 
@@ -17,7 +18,8 @@ export default class Cart extends React.Component {
         price: 0,
         loggedIn: true,
         agreedInfo: false,
-        agreedTerms: false
+        agreedTerms: false,
+        isOpen: false
     }
     
     //call this to reac cart properly from local storage and it keeps the data
@@ -28,7 +30,7 @@ export default class Cart extends React.Component {
             price += parseInt(cur.price.replace(',', ''));
         });
 
-        const items = [];
+        let items = [];
         rawItems.forEach(cur => {
             let foundIndex = -1;
             items.forEach((cur2, i2) => {
@@ -44,11 +46,16 @@ export default class Cart extends React.Component {
             }
         });
 
+        // items = [];
         this.setState(() => ({ items, price }));
     }
 
     componentDidMount() {
         this.updateCart();
+        if (this.props.heightCallback) {
+            const height = this.getHeight();
+            this.props.heightCallback(height);
+        }
     }
 
     toggleInfoAgreement = e => {
@@ -59,6 +66,22 @@ export default class Cart extends React.Component {
     toggleTermsAgreement = e => {
         const agreedTerms = !this.state.agreedTerms;
         this.setState(() => ({ agreedTerms }));
+    }
+
+    getHeight() {
+        const height = document.querySelector('.cart').getBoundingClientRect().height;
+        return height;
+    }
+
+    toggle = e => {
+        const isOpen = !this.state.isOpen;
+        this.setState(!isOpen);
+
+        if (isOpen) {
+
+        } else {
+            
+        }
     }
 
     render(){
