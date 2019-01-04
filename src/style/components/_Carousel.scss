@@ -68,6 +68,7 @@
         padding-left: 5rem;
         padding-bottom: 1rem;
         border-bottom: .2rem solid $--color-primary;
+        transition: all .2s ease-in;
 
         &:not(:last-child) {
             margin-left: 15rem;
@@ -75,6 +76,7 @@
 
         &:hover {
             cursor: pointer;
+            transform: scale(1.1);
         }
 
         @include respond(small-desk) {

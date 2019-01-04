@@ -11,6 +11,11 @@
     // overflow: hidden;
     position: relative;
 
+    &:hover &__more {
+        visibility: visible;
+        opacity: 1;
+    }
+
     @include respond(small-desk) {
         width: 27.5rem;
     }
@@ -22,6 +27,7 @@
         margin-bottom: 1rem;
         border-top-left-radius: 2rem;
         border-top-right-radius: 2rem;
+        overflow: hidden;
 
         @include respond(small-desk) {
             height: 20rem;
@@ -133,5 +139,25 @@
     &--slide-show-5 {
         transform: scale(.6) translateX(+110%) translateY(-75%);
         z-index: 3;        
+    }
+
+    &__more {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(black, .5);
+        visibility: hidden;
+        opacity: 0;
+        transition: all .2s ease-out;
+    }
+
+    &__more-text {
+        font-size: 1.4rem;
+        text-align: center;
+        padding: 0 3rem;
+        margin-bottom: 1.5rem;
     }
 }

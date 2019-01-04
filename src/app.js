@@ -10,6 +10,7 @@ import Product from './components/Product';
 import Dashboard from './components/Dashboard';
 import AboutusPage from './components/AboutUsPage';
 import ContactUsPage from './components/ContactUsPage';
+import Cart from './components/Cart';
 
 
 import './style/style.scss';
@@ -25,6 +26,7 @@ const routes = (
             <Route path='/dashboard' component={Dashboard} />
             <Route path='/aboutus' component={AboutusPage} exact={true}/>
             <Route path='/contactus' component={ContactUsPage} exact={true}/>
+            <Route path='/cart' component={Cart} exact={true}/>
         </div>
     </HashRouter>
 );

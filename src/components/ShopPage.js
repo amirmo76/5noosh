@@ -2,17 +2,12 @@ import React from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import Cart from './Cart';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import ProductPrev from './ProductPrev';
 import axios from 'axios';
 
 
 export default class SignupPAge extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.child = React.createRef();
-    }
 
     state = {
         first: 1,
@@ -22,51 +17,55 @@ export default class SignupPAge extends React.Component {
         fifth: 5,
         slideshow: true,
         cartNumber: 0,
-        height: 0,
-        isOnCart: false,
 
         items: [
             {
                 id: 1,
                 title: 'دوچرخه',
-                price: '22,500',
+                price: 22500,
                 category: 'دسته بندی',
-                thumbnail: 'img/img-1.png'
+                thumbnail: 'img/img-1.png',
+                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
             },
             {
                 id: 2,
                 title: 'خوراکی',
-                price: '18,100',
+                price: 18100,
                 category: 'دسته بندی',
-                thumbnail: 'img/img-2.png'
+                thumbnail: 'img/img-2.png',
+                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
             },
             {
                 id: 3,
                 title: 'بهرام',
-                price: '12,000',
+                price: 12000,
                 category: 'دسته بندی',
-                thumbnail: 'img/img-3.jpg'
+                thumbnail: 'img/img-3.jpg',
+                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
             },
             {
                 id: 4,
                 title: 'شکلات',
-                price: '9,000',
+                price: 9000,
                 category: 'دسته بندی',
-                thumbnail: 'img/img-4.jpg'
+                thumbnail: 'img/img-4.jpg',
+                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
             },
             {
                 id: 5,
                 title: 'دانشگاه',
-                price: '8,500',
+                price: 8500,
                 category: 'دسته بندی',
-                thumbnail: 'img/img-5.jpg'
+                thumbnail: 'img/img-5.jpg',
+                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
             },
             {
                 id: 6,
                 title: 'آسایشگاه',
-                price: '10,500',
+                price: 10500,
                 category: 'دسته بندی',
-                thumbnail: 'img/img-6.jpg'
+                thumbnail: 'img/img-6.jpg',
+                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
             } 
         ],
         lookAtResaults: false,
@@ -81,7 +80,6 @@ export default class SignupPAge extends React.Component {
             this.setState(() => ({ cartNumber: 0 }));
         }
 
-        this.child.current.updateCart();
     }
 
     componentDidMount = e => {
@@ -112,7 +110,7 @@ export default class SignupPAge extends React.Component {
         this.updateCartNumber();
     }
 
-    goRoight = e => {
+    goRight = e => {
         let newFirst = this.state.first + 1;
         if(newFirst > 5) {
             newFirst = 1;
@@ -135,7 +133,6 @@ export default class SignupPAge extends React.Component {
         }
 
         this.setState(() => ({first: newFirst, second: newSecond, third: newThird, fourth: newFourth, fifth: newFifth }));
-        console.log(this.state);
     }
 
     goLeft = e => {
@@ -161,7 +158,6 @@ export default class SignupPAge extends React.Component {
         }
 
         this.setState(() => ({first: newFirst, second: newSecond, third: newThird, fourth: newFourth, fifth: newFifth }));
-        console.log(this.state);
     }
 
     searchHandler = e => {
@@ -182,32 +178,41 @@ export default class SignupPAge extends React.Component {
         }
     }
 
-    setHeight = height => {
-        this.setState(() => ({height}));
+    slideshowProductPrevClickHandler = e => {
+        let el = e.target;
+        let par = el.parentNode;
+        while(!par.classList.contains('product-prev')) {
+            el = par;
+            par = el.parentNode;
+        }
+        // par is the prodect-prev now
+        const pos = par.getAttribute('slideshow-position');
+        const diff = Math.abs(pos - 3);
+        if (pos > 3) {
+            for (let i = 0; i < diff; i++) {
+                const bind = this;
+                setTimeout(function(){
+                    bind.goLeft();
+                }, i * 50);
+            } 
+        } else if (pos < 3) {
+            for (let i = 0; i < diff; i++) {
+                const bind = this;
+                setTimeout(function(){
+                    bind.goRight();
+                }, i * 50);
+            }
+        }
     }
 
-    toggleCart = e => {
-        const isOnCart = !this.state.isOnCart;
-        this.setState(() => ({isOnCart}));
-        this.child.current.toggle();
-    }
 
     render() {
-
-        let style = {
-            height: "auto"
-        };
-
-        if (this.state.height && this.state.isOnCart) {
-            console.log(this.state.height);
-            style.height = (this.state.height + 200) + "px"
-        }
 
         return (
             <div className="shop">
                 <Navigation />
                 <span className="shop__bg"></span>
-                <div className="shop__body" style={style}>
+                <div className="shop__body">
                     <div className="shop__right-side">
                         <div className="shop__cats-box">
                             <h2 className="heading--secondary mg-bottom-md">دسته بندی محصولات</h2>
@@ -270,14 +275,14 @@ export default class SignupPAge extends React.Component {
                         <div className="shop__nav mg-bottom-md">
 
 
-                            <div className="shop__cart">
+                            <NavLink to={{pathname:"/cart", state: {prevProductID: 0}}} className="shop__cart">
                                 <svg className="shop__cart-icon" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24.933 24.933' onClick={this.toggleCart}>
                                     <defs />
                                     <path id='Path_1327' data-name='Path 1327' d='M7.48,19.946A2.493,2.493,0,1,0,9.973,22.44,2.5,2.5,0,0,0,7.48,19.946ZM0,0V2.493H2.493l4.488,9.475L5.236,14.96a4.429,4.429,0,0,0-.249,1.247A2.5,2.5,0,0,0,7.48,18.7H22.44V16.206H7.979a.268.268,0,0,1-.249-.249v-.125l1.122-2.119h9.225A2.274,2.274,0,0,0,20.2,12.466l4.488-8.1a.686.686,0,0,0,.249-.623,1.178,1.178,0,0,0-1.247-1.247H5.236L4.114,0ZM19.946,19.946A2.493,2.493,0,1,0,22.44,22.44,2.5,2.5,0,0,0,19.946,19.946Z'
                                     />
                                 </svg>
                                 <span className="shop__cart-number">{this.state.cartNumber}</span>
-                            </div>
+                            </NavLink>
 
                             <div className="shop__search">
 
@@ -301,7 +306,7 @@ export default class SignupPAge extends React.Component {
                             <div className="shop__featured mg-bottom-lg">
                                 <h2 className="heading--secondary text-center mg-bottom-sm">پرفروش ترین محصولات</h2>
                                 <div className="product-slideshow">
-                                    <svg onClick={this.goRoight} className="product-slideshow__right-arrow" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.666 26.666'>
+                                    <svg onClick={this.goRight} className="product-slideshow__right-arrow" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.666 26.666'>
                                         <defs />
                                         <g id='Group_155' data-name='Group 155' className='cls-1' transform='translate(-192 -524)'>
                                             <g id='Ellipse_160' data-name='Ellipse 160' className='cls-2' transform='translate(192 524)'>
@@ -314,11 +319,11 @@ export default class SignupPAge extends React.Component {
                                     </svg>
 
                                     <div className="product-slideshow__box">
-                                        <ProductPrev slideshow={this.state.first} product={this.state.items[2]} addToCartCallBack={this.updateCartNumber}/>
-                                        <ProductPrev slideshow={this.state.second} product={this.state.items[3]} addToCartCallBack={this.updateCartNumber}/>
-                                        <ProductPrev slideshow={this.state.third} product={this.state.items[4]} addToCartCallBack={this.updateCartNumber}/>
-                                        <ProductPrev slideshow={this.state.fourth} product={this.state.items[0]} addToCartCallBack={this.updateCartNumber}/>
-                                        <ProductPrev slideshow={this.state.fifth} product={this.state.items[2]} addToCartCallBack={this.updateCartNumber}/>
+                                        <ProductPrev slideshow={this.state.first} product={this.state.items[2]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
+                                        <ProductPrev slideshow={this.state.second} product={this.state.items[3]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
+                                        <ProductPrev slideshow={this.state.third} product={this.state.items[4]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
+                                        <ProductPrev slideshow={this.state.fourth} product={this.state.items[0]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
+                                        <ProductPrev slideshow={this.state.fifth} product={this.state.items[2]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
                                     </div>
 
                                     <svg onClick={this.goLeft} className="product-slideshow__left-arrow" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.666 26.666'>
@@ -349,7 +354,6 @@ export default class SignupPAge extends React.Component {
 
                             </div>
                     </div>
-                    <Cart ref={this.child} heightCallback={this.setHeight}/>
                 </div>
                 <Footer />
             </div>

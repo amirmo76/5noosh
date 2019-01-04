@@ -309,9 +309,14 @@
     &__cart-icon {
         width: 2rem;
         height: 2rem;
-        fill: rgba($--color-white, 1);
+        fill: $--color-white;
         position: relative;
         z-index: 2;
+        transition: all .2s;
+
+        &:hover {
+            fill: $--color-primary;
+        }
     }
 
     &__cart-number {

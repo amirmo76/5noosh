@@ -12,7 +12,7 @@ export default class Footer extends React.Component {
         const selector = ".footer";
 
         const anim = new TimelineMax();
-        anim.from(selector, 2.5, {y: "-400px", ease: Power2.easeOut})
+        anim.from(selector, 1.5, {y: "-400px", ease: Power2.easeOut})
 
         const scene = new ScrollMagic.Scene({
             triggerElement: selector,
