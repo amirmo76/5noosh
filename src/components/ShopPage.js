@@ -171,16 +171,21 @@ export default class SignupPAge extends React.Component {
                 if (cur.title.includes(el.value))
                 res.push(cur);
             });
-            this.setState(() => ({results: res}));
+            this.setState(() => ({results: res}), () => {console.log(this.state.results)});
             
         } else {
             this.setState(() => ({slideshow: true, lookAtResaults: false}));
         }
+
+        
     }
 
     slideshowProductPrevClickHandler = e => {
         let el = e.target;
         let par = el.parentNode;
+        if (el.classList.contains('product-prev')) {
+            par = el;
+        }
         while(!par.classList.contains('product-prev')) {
             el = par;
             par = el.parentNode;

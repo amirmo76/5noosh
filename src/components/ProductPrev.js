@@ -8,9 +8,7 @@ export default class ProductPrev extends React.Component {
         secondary: this.props.secondary
     }
 
-    style = {
-        backgroundImage: `url(${this.props.product && this.props.product.thumbnail})`
-    }
+    
 
     calculatePrice(price, off) {
         return parseInt(price) * 100 / (100 - off);
@@ -36,6 +34,9 @@ export default class ProductPrev extends React.Component {
 
     render() {
 
+        const style = {
+            backgroundImage: `url(${this.props.product && this.props.product.thumbnail})`
+        }
 
         return (
             <div className={"product-prev" + (this.props.slideshow ? " product-prev--slide-show" : "") + (this.props.slideshow ? (" product-prev--slide-show-" + this.props.slideshow) : "")} onClick={this.props.onClick} slideshow-position={this.props.slideshow}>
@@ -55,7 +56,7 @@ export default class ProductPrev extends React.Component {
                         fill='#fbc02d' />
                     </svg>  
                 }
-                <div className="product-prev__img" style={this.style}>
+                <div className="product-prev__img" style={style}>
                     <div className="product-prev__more">
                         <p className="product-prev__more-text">{this.props.product && this.props.product.shortDesc}</p>
                         <Link to={'/product' + "/" + (this.props.product && this.props.product.id)}>
