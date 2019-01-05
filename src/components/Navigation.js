@@ -1,11 +1,17 @@
 import React from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 import axios from 'axios';
+import {TweenMax} from "gsap/TweenMax";
 
 export default class Navigation extends React.Component {
     state = {
         isLoggedIn: this.props.logged,
-        avatar: this.props.avatar
+        avatar: this.props.avatar,
+        collapsable: false,
+        collapsed: false,
+        stuck: false,
+        prevTop: 0,
+        broughtDown: false
     };
 
     logo = (
@@ -16,6 +22,62 @@ export default class Navigation extends React.Component {
             />
         </svg>
     );
+
+    bringDownNavbar = () => {
+        if (!this.state.broughtDown) {
+            // bring down
+            const nav = document.querySelector('.navigation');
+            TweenMax.to(nav, .5, {y: nav.clientHeight + "px", ease: Power2.easeOut});
+            this.setState(() => ({broughtDown: true}));
+        }
+    }
+
+    bringUpNavbar = () => {
+        if (this.state.broughtDown) {
+            // bring down
+            const nav = document.querySelector('.navigation');
+            TweenMax.to(nav, .5, {y: 0 + "px", ease: Power2.easeIn});
+            this.setState(() => ({broughtDown: false}));
+        }
+    }
+
+    scrollHandler = e => {
+        const nav = document.querySelector('.navigation');
+        const stuck = window.scrollY > nav.clientHeight;
+
+        if (stuck === false && this.state.stuck === true) {
+            TweenMax.to(nav, 0, {y: 0 + "px", ease: Power2.easeIn});
+            this.setState(() => ({broughtDown: false}));
+        }
+
+        this.setState(() => ({stuck}));
+
+        // fixing jump bug whe sticks
+        let root = document.getElementById('appRoot');
+        if (stuck) {
+            root.style.paddingTop = nav.clientHeight + "px";
+        } else {
+            root.style.paddingTop = 0 + "px";
+        }
+
+        if (this.state.prevTop > window.scrollY && stuck) {
+            this.bringDownNavbar();
+        } else if (this.state.prevTop < window.scrollY && stuck) {
+            this.bringUpNavbar();
+        }
+
+        const prevTop = window.scrollY;
+        this.setState(() => ({prevTop}));
+
+    }
+
+    screenChangeHandler = e => {
+        if (window.innerWidth < 1125) {
+            this.setState(() => ({collapsable: true}));
+        } else {
+            this.setState(() => ({collapsable: false}));
+        }
+    }
 
     componentWillMount() {
         const bind = this;
@@ -51,6 +113,26 @@ export default class Navigation extends React.Component {
                 bind.setState(() => ({ isRemembered }));
             }
         });
+
+        //scroll event listener
+        window.addEventListener('scroll', this.scrollHandler);
+
+        // responsive ==> collapsable or not
+        if (window.innerWidth < 1125) {
+            this.setState(() => ({collapsable: true}));
+        }
+        window.addEventListener("resize", this.screenChangeHandler);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.scrollHandler);
+        window.removeEventListener("resize", this.screenChangeHandler);
+        window.scrollTo(0,0);
+    }
+
+    collapsableToggleHandler = e => {
+        const collapsed = !this.state.collapsed;
+        this.setState(() => ({collapsed}));
     }
 
     render() {
@@ -64,90 +146,121 @@ export default class Navigation extends React.Component {
         }
 
         return (
-            <nav className={'navigation' + (this.props.shifted ? ' navigation--shifted' : '')
-            + (this.props.light ? ' navigation--light' : '')
-            + (this.state.isLoggedIn ? ' navigation--logged' : '')
-            + (this.props.transparent ? ' navigation--transparent' : '')} >
-                <Link to='/' className="clickable">
-                    {this.logo && this.logo}
-                </Link>
-                <ul className="navigation__list">
-                    <li className="navigation__item">
-                        <Link className="navigation__link" to="/shop">فروشگاه</Link>
-                    </li>
-                    <li className="navigation__item">
-                        <Link className="navigation__link" to="/#sales"
-                        scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'start' })}>پیشنهادات ویژه</Link>
-                    </li>
-                    <li className="navigation__item">
-                        <a className="navigation__link">بلاگ</a>
-                    </li>
-                    <li className="navigation__item">
-                        <Link className="navigation__link" to="/aboutus">درباره ما</Link>
-                    </li>
-                    <li className="navigation__item">
-                        <Link className="navigation__link" to="/contactus">ارتباط با ما</Link>
-                    </li>
-                </ul>
-
-                {this.state.isLoggedIn || 
-                    <div className="navigation__buttons">
-                        <svg className="navigation__sign-svg" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 258.75 258.75'>
-                            <circle cx='129.375' cy='60' r='60' />
-                            <path d='M129.375,150c-60.061,0-108.75,48.689-108.75,108.75h217.5C238.125,198.689,189.436,150,129.375,150z'
-                            />
-                        </svg>
-                        <Link to='/signup'>
-                            <span className="navigation__signup">
-                            ثبت نام   
-                            </span>                    
-                        </Link>
-                        <span className="navigation__dash">-</span>
-                        <Link to='/login'>
-                            <span className="navigation__login">
-                                ورود                     
-                            </span>
-                        </Link>
-                    </div>
-                }
-
-                {this.state.isLoggedIn &&
-                    <div className="navigation__info">
-                        <Link to="/dashboard">
-                            <div className="navigation__avatar" style={style}></div>                        
-                        </Link>
-                        
-                        <svg className="navigation__notif" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 25'>
-                            <defs />
-                            <path id='Path_1341' data-name='Path 1341' d='M24.631,17.866c-2.94-2.941-3.383-4.417-3.383-9.116a8.748,8.748,0,1,0-17.5,0,14.782,14.782,0,0,1-.416,4.641A10.72,10.72,0,0,1,.368,17.866,1.25,1.25,0,0,0,1.252,20H8.188l-.063.625a4.374,4.374,0,1,0,8.748,0L16.811,20h6.937A1.25,1.25,0,0,0,24.631,17.866ZM12.5,23.75a3.125,3.125,0,0,1-3.125-3.125L9.439,20h6.123l.064.625A3.125,3.125,0,0,1,12.5,23.75Zm-11.248-5C5,15,5,12.5,5,8.75a7.5,7.5,0,1,1,15,0c0,3.75,0,6.25,3.749,10Z'
-                            />
-                        </svg>
-
-                        {/* <svg className="navigation__logout" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22.368 24.1'>
-                            <defs />
-                            <g id='logout' transform='translate(-17.6)'>
-                                <g id='Group_284' data-name='Group 284' transform='translate(17.6)'>
-                                    <g id='Group_283' data-name='Group 283'>
-                                        <path id='Path_1366' data-name='Path 1366'  d='M119.8,134.026l-.01.01a.374.374,0,0,0-.039.054s0,.01-.01.015-.025.039-.034.059a.017.017,0,0,1,0,.01c-.01.02-.02.039-.03.064,0,0,0,0,0,.01s-.015.044-.025.069c0,0,0,.01,0,.01a.345.345,0,0,0-.015.069.044.044,0,0,1,0,.025c0,.02,0,.039-.01.059a.712.712,0,0,0,0,.167.247.247,0,0,0,.01.059.044.044,0,0,0,0,.025c0,.025.01.044.015.069,0,0,0,.01,0,.01a.387.387,0,0,0,.025.069s0,0,0,.01.02.044.03.064a.017.017,0,0,0,0,.01.367.367,0,0,0,.034.059s0,.01.01.015a.514.514,0,0,0,.039.054l.01.01a.7.7,0,0,0,.059.064l4.865,4.86a.845.845,0,0,0,1.2-1.2l-3.424-3.424H136.1a.844.844,0,1,0,0-1.687H122.488l3.4-3.4a.844.844,0,1,0-1.19-1.2l-4.836,4.836C119.836,133.986,119.816,134.006,119.8,134.026Z'
-                                        transform='translate(-119.6 -122.509)' />
-                                        <path id='Path_1367' data-name='Path 1367' d='M24.743,22.413h-6.3a.844.844,0,1,0,0,1.687h6.3a4.587,4.587,0,0,0,4.58-4.58V4.58A4.587,4.587,0,0,0,24.743,0H18.549a.844.844,0,1,0,0,1.687h6.193A2.9,2.9,0,0,1,27.636,4.58V19.52A2.9,2.9,0,0,1,24.743,22.413Z'
-                                        transform='translate(-6.954)' />
-                                    </g>
-                                </g>
+            <div className="navigation__container">
+                <nav className={'navigation' + (this.props.shifted ? ' navigation--shifted' : '')
+                + (this.props.light ? ' navigation--light' : '')
+                + (this.state.isLoggedIn ? ' navigation--logged' : '')
+                + (this.props.transparent && !this.state.stuck ? ' navigation--transparent' : '')
+                + (this.state.stuck ? ' navigation--stuck' : '')} >
+                    <Link to='/' className="clickable">
+                        {this.logo && this.logo}
+                    </Link>
+                    {this.state.collapsable ?
+                    (
+                        <svg className="navigation__menu-icon" id='Capa_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384.97 384.97' onClick={this.collapsableToggleHandler}>
+                            <g id='Menu_1_'>
+                                <path d='M12.03,120.303h360.909c6.641,0,12.03-5.39,12.03-12.03c0-6.641-5.39-12.03-12.03-12.03H12.03 c-6.641,0-12.03,5.39-12.03,12.03C0,114.913,5.39,120.303,12.03,120.303z'
+                                />
+                                <path d='M372.939,180.455H12.03c-6.641,0-12.03,5.39-12.03,12.03s5.39,12.03,12.03,12.03h360.909c6.641,0,12.03-5.39,12.03-12.03 S379.58,180.455,372.939,180.455z'
+                                />
+                                <path d='M372.939,264.667H132.333c-6.641,0-12.03,5.39-12.03,12.03c0,6.641,5.39,12.03,12.03,12.03h240.606 c6.641,0,12.03-5.39,12.03-12.03C384.97,270.056,379.58,264.667,372.939,264.667z'
+                                />
                             </g>
-                        </svg> */}
+                        </svg>
+                    ) :
+                    (
+                        <ul className="navigation__list">
+                            <li className="navigation__item">
+                                <Link className="navigation__link" to="/shop">فروشگاه</Link>
+                            </li>
+                            <li className="navigation__item">
+                                <Link className="navigation__link" to="/#sales"
+                                scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'start' })}>پیشنهادات ویژه</Link>
+                            </li>
+                            <li className="navigation__item">
+                                <a className="navigation__link">بلاگ</a>
+                            </li>
+                            <li className="navigation__item">
+                                <Link className="navigation__link" to="/aboutus">درباره ما</Link>
+                            </li>
+                            <li className="navigation__item">
+                                <Link className="navigation__link" to="/contactus">ارتباط با ما</Link>
+                            </li>
+                        </ul>
+                    )
+                    }
 
-                        <svg className="navigation__logout" viewBox='-15 -35 493.33522 493' xmlns='http://www.w3.org/2000/svg'>
-                            <path d='m412.902344-1.105469h-167.617188c-27.550781 0-50.074218 22.824219-50.074218 50.371094v44.515625c0 6.898438 5.59375 12.488281 12.492187 12.488281s12.488281-5.589843 12.488281-12.488281v-44.515625c.035156-13.890625 11.203125-25.191406 25.09375-25.390625h167.617188c13.777344 0 24.617187 11.617188 24.617187 25.390625v322.980469c.164063 13.691406-10.800781 24.921875-24.492187 25.082031h-167.738282c-13.835937-.050781-25.039062-11.25-25.097656-25.082031v-43.585938c0-6.902344-5.589844-12.492187-12.488281-12.492187s-12.492187 5.589843-12.492187 12.492187v43.585938c.074218 27.625 22.449218 49.996094 50.074218 50.0625h167.617188c27.496094-.101563 49.707031-22.484375 49.597656-49.984375v-323.058594c0-27.546875-22.046875-50.371094-49.597656-50.371094zm0 0'
-                            />
-                            <path d='m42.871094 223.71875h295.601562c6.898438 0 12.492188-5.59375 12.492188-12.492188 0-6.894531-5.59375-12.488281-12.492188-12.488281h-298.375l64.082032-74.074219c4.519531-5.253906 3.957031-13.167968-1.246094-17.734374-5.191406-4.539063-13.078125-4.011719-17.613282 1.175781v.007812l-80.773437 93.035157c-2.976563 2.449218-4.652344 6.136718-4.54296875 9.984374.11718775 3.855469 2.00781275 7.441407 5.12890575 9.707032l80.78125 80.78125c4.878907 4.878906 12.789063 4.878906 17.660157 0 4.816406-4.726563 4.890625-12.453125.167969-17.269532-.054688-.050781-.109376-.105468-.167969-.160156zm0 0'
+                    {this.state.isLoggedIn || 
+                        <div className="navigation__buttons">
+                            <svg className="navigation__sign-svg" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 258.75 258.75'>
+                                <circle cx='129.375' cy='60' r='60' />
+                                <path d='M129.375,150c-60.061,0-108.75,48.689-108.75,108.75h217.5C238.125,198.689,189.436,150,129.375,150z'
+                                />
+                            </svg>
+                            <Link to='/signup'>
+                                <span className="navigation__signup">
+                                ثبت نام   
+                                </span>                    
+                            </Link>
+                            <span className="navigation__dash">-</span>
+                            <Link to='/login'>
+                                <span className="navigation__login">
+                                    ورود                     
+                                </span>
+                            </Link>
+                        </div>
+                    }
+
+                    {this.state.isLoggedIn &&
+                        <div className="navigation__info">
+                            <Link to="/dashboard">
+                                <div className="navigation__avatar" style={style}></div>                        
+                            </Link>
+                            
+                            <svg className="navigation__notif" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 25'>
+                                <defs />
+                                <path id='Path_1341' data-name='Path 1341' d='M24.631,17.866c-2.94-2.941-3.383-4.417-3.383-9.116a8.748,8.748,0,1,0-17.5,0,14.782,14.782,0,0,1-.416,4.641A10.72,10.72,0,0,1,.368,17.866,1.25,1.25,0,0,0,1.252,20H8.188l-.063.625a4.374,4.374,0,1,0,8.748,0L16.811,20h6.937A1.25,1.25,0,0,0,24.631,17.866ZM12.5,23.75a3.125,3.125,0,0,1-3.125-3.125L9.439,20h6.123l.064.625A3.125,3.125,0,0,1,12.5,23.75Zm-11.248-5C5,15,5,12.5,5,8.75a7.5,7.5,0,1,1,15,0c0,3.75,0,6.25,3.749,10Z'
+                                />
+                            </svg>
+
+                            <svg className="navigation__logout" viewBox='-15 -35 493.33522 493' xmlns='http://www.w3.org/2000/svg'>
+                                <path d='m412.902344-1.105469h-167.617188c-27.550781 0-50.074218 22.824219-50.074218 50.371094v44.515625c0 6.898438 5.59375 12.488281 12.492187 12.488281s12.488281-5.589843 12.488281-12.488281v-44.515625c.035156-13.890625 11.203125-25.191406 25.09375-25.390625h167.617188c13.777344 0 24.617187 11.617188 24.617187 25.390625v322.980469c.164063 13.691406-10.800781 24.921875-24.492187 25.082031h-167.738282c-13.835937-.050781-25.039062-11.25-25.097656-25.082031v-43.585938c0-6.902344-5.589844-12.492187-12.488281-12.492187s-12.492187 5.589843-12.492187 12.492187v43.585938c.074218 27.625 22.449218 49.996094 50.074218 50.0625h167.617188c27.496094-.101563 49.707031-22.484375 49.597656-49.984375v-323.058594c0-27.546875-22.046875-50.371094-49.597656-50.371094zm0 0'
+                                />
+                                <path d='m42.871094 223.71875h295.601562c6.898438 0 12.492188-5.59375 12.492188-12.492188 0-6.894531-5.59375-12.488281-12.492188-12.488281h-298.375l64.082032-74.074219c4.519531-5.253906 3.957031-13.167968-1.246094-17.734374-5.191406-4.539063-13.078125-4.011719-17.613282 1.175781v.007812l-80.773437 93.035157c-2.976563 2.449218-4.652344 6.136718-4.54296875 9.984374.11718775 3.855469 2.00781275 7.441407 5.12890575 9.707032l80.78125 80.78125c4.878907 4.878906 12.789063 4.878906 17.660157 0 4.816406-4.726563 4.890625-12.453125.167969-17.269532-.054688-.050781-.109376-.105468-.167969-.160156zm0 0'
+                                />
+                            </svg>
+                            
+                        </div>
+                    }
+                </nav>
+                
+                {(this.state.collapsable && this.state.collapsed) &&
+                    <div className="navigation__collapsable">
+                        <svg className="navigation__collapsable-close" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21.9 21.9' onClick={this.collapsableToggleHandler}>
+                            <path d='M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0 c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4 s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3 s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7 s-0.1-0.5-0.3-0.7L14.1,11.3z'
                             />
                         </svg>
-                        
+                        <ul className="navigation__collapsable-list">
+                            <li className="navigation__collapsable-item">
+                                <Link className="navigation__collapsable-link" to="/shop">فروشگاه</Link>
+                            </li>
+                            <li className="navigation__collapsable-item">
+                                <Link className="navigation__collapsable-link" to="/#sales"
+                                scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'start' })}>پیشنهادات ویژه</Link>
+                            </li>
+                            <li className="navigation__collapsable-item">
+                                <a className="navigation__collapsable-link">بلاگ</a>
+                            </li>
+                            <li className="navigation__collapsable-item">
+                                <Link className="navigation__collapsable-link" to="/aboutus">درباره ما</Link>
+                            </li>
+                            <li className="navigation__collapsable-item">
+                                <Link className="navigation__collapsable-link" to="/contactus">ارتباط با ما</Link>
+                            </li>
+                        </ul>
                     </div>
                 }
-                
-            </nav>
+            </div>
         );
     }
 }

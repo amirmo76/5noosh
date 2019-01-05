@@ -152,4 +152,8 @@
     &--no-radius {
         border-radius: 0;
     }
+
+    &--no-min-width {
+        min-width: none;
+    }
 }

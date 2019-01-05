@@ -7,6 +7,18 @@
     z-index: 1;
     position: relative;
 
+    @include respond(b-6) {
+        grid-column-gap: 2rem;
+    }
+
+    @include respond(b-7) {
+        grid-template-columns: repeat(2, minmax(max-content, 1fr));
+    }
+
+    @include respond(b-10) {
+        grid-template-columns: repeat(1, minmax(max-content, 1fr));
+    }
+
 
     &--bg-black {
         background-color: $--color-black;
@@ -30,6 +42,10 @@
         font-size: 1.8rem;
         font-weight: 500;
         margin-bottom: 2.5rem;
+
+        @include respond(b-10) {
+            margin-bottom: 3rem;
+        }
     }
 
     &__links {
@@ -43,6 +59,23 @@
         grid-gap: 2.5rem;
         list-style: none;
         direction: rtl;
+
+        @include respond(b-4) {
+            grid-template-columns: repeat(2, minmax(max-content, 2.5rem));
+        }
+
+        @include respond(b-7) {
+            grid-template-columns: repeat(3, minmax(max-content, 2.5rem));
+        }
+
+        @include respond(b-9) {
+            grid-template-columns: repeat(2, minmax(max-content, 2.5rem));
+        }
+
+        @include respond(b-10) {
+            grid-template-columns: repeat(3, minmax(max-content, 2.5rem));
+            justify-content: center;
+        }
     }
 
     &__list-item {
@@ -71,7 +104,22 @@
         justify-content: right;
         grid-template-columns: repeat(5, max-content);
         
-        
+        @include respond(b-4) {
+            grid-template-columns: repeat(3, max-content);
+        }
+
+        @include respond(b-7) {
+            grid-template-columns: repeat(5, max-content);
+        }
+
+        @include respond(b-9) {
+            grid-template-columns: repeat(3, max-content);
+        }
+
+        @include respond(b-10) {
+            grid-template-columns: repeat(5, max-content);
+            justify-content: center;
+        }
     }
 
     &__svg {
@@ -87,10 +135,30 @@
 
     &__subscribe {
         text-align: right;
+
+        @include respond(b-7) {
+            grid-column: 1/-1;
+        }
+    }
+
+    &__subscribe .btn {
+        min-width: 0;
+        width: 30%;
+    }
+
+    &__subscribe .input {
+        min-width: 0;
+        width: 70%;
     }
 
     &__subscribe-input-box {
+        @include respond(b-7) {
+            padding: 0rem 5rem 3rem;
+        }
 
+        @include respond(b-9) {
+            padding: 0rem 2.5rem 3rem;
+        }
     }
 
     &__copyright {
@@ -98,11 +166,25 @@
         font-size: 1.4rem;
         text-align: right;
         grid-column: 1/3;
+
+        @include respond(b-7) {
+            grid-column: 1/2;
+        }
+
+        @include respond(b-10) {
+            grid-column: 1/-1;
+            text-align: center;
+        }
     }
 
     &__by {
         color: $--color-white;
         font-size: 1.4rem;
         text-align: left;
+
+        @include respond(b-10) {
+            grid-column: 1/-1;
+            text-align: center;
+        }
     }
 }

@@ -21,6 +21,10 @@
         min-width: 32rem;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
+
+        @include respond(b-4) {
+            min-width: 26rem;
+        }
     }
 
     &--secondary {
@@ -37,6 +41,11 @@
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 3rem;
         direction: rtl;
+
+        @include respond(b-8) {
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 0;
+        }
     }
 
     &--valid {
@@ -50,6 +59,10 @@
     &--textarea {
         height: 10rem;
         resize: none;
+    }
+
+    &--no-min-width {
+        min-width: none;
     }
 }
 

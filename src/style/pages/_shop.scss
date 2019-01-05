@@ -16,10 +16,9 @@
         display: block;
         background-color: $--color-black;
         width: 100vw;
-        height: 120vh;
+        height: 100rem;
         z-index: 0;
-        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 100%);
-        clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 100%);
+        transform: scale(1.2);
     }
 
     &__body {

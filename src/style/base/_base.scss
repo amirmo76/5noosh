@@ -13,6 +13,10 @@ html {
     box-sizing: border-box;
     font-size: 62.5%; // 1rem = 10px
     overflow-x: hidden;
+
+    @include respond(tab-land) {
+        font-size: 55%;
+    }
 }
 
 body {
@@ -21,6 +25,11 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     font-family: 'IRANSans';
+    overflow-x: hidden;
+}
+
+#appRoot {
+
 }
 
 .clickable {
