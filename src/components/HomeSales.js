@@ -18,6 +18,7 @@ export default class HomeSales extends React.Component {
                 price: 1000,
                 category: 'دسته بندی',
                 thumbnail: 'img/img-1.png',
+                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
                 off: 50
             },
             {
@@ -26,6 +27,7 @@ export default class HomeSales extends React.Component {
                 price: 2000,
                 category: 'دسته بندی',
                 thumbnail: 'img/img-2.png',
+                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
                 off: 50
             },
             {
@@ -34,6 +36,7 @@ export default class HomeSales extends React.Component {
                 price: 3000,
                 category: 'دسته بندی',
                 thumbnail: 'img/img-3.jpg',
+                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
                 off: 50
             },
             {
@@ -42,6 +45,7 @@ export default class HomeSales extends React.Component {
                 price: 4000,
                 category: 'دسته بندی',
                 thumbnail: 'img/img-4.jpg',
+                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
                 off: 50
             },
             {
@@ -50,6 +54,7 @@ export default class HomeSales extends React.Component {
                 price: 8000,
                 category: 'دسته بندی',
                 thumbnail: 'img/img-5.jpg',
+                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
                 off: 50
             }
         ]
