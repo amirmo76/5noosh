@@ -9,7 +9,7 @@
     }
 
     &__container {
-        padding: 10rem 0;
+        padding: 5rem 0;
         display: grid;
         grid-gap: 2.5rem;
         grid-template-columns: repeat(8, minmax(10rem, 1fr));
@@ -39,6 +39,7 @@
             margin-bottom: 1rem;
         }
 
+
         &--notifs {
             grid-column: 1/4;
             background-color: #00C5DC;
@@ -57,7 +58,7 @@
     }
 
     &__card-title {
-        margin-bottom: 6rem;
+        margin-bottom: 1rem;
         text-align: right;
         color: $--color-grey-2;
         font-size: 1.8rem;
@@ -67,6 +68,16 @@
             color: $--color-white;
         }
     }
+
+    &__card-subtitle {
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: $--color-grey-2;
+        opacity: .5;
+        text-align: right;
+        margin-bottom: 6rem;
+    }
+
 
     &__status-svg {
         height: 12.5rem;
@@ -103,6 +114,7 @@
     &__status-title {
         font-size: 1.4rem;
         color: $--color-grey-2;
+        text-align: center;
     }
 
     &__edit-box {
@@ -330,5 +342,12 @@
     &__order-state {
         font-size: 1.2rem;
         opacity: .5;
+    }
+
+    &__change-pass-form {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+        font-size: 1.2rem;
     }
 }
