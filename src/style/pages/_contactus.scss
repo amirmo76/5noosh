@@ -17,6 +17,10 @@
         align-items: flex-start;
         position: relative;
         z-index: 2;
+
+        @include respond(b-5) {
+            display: block;
+        }
     }
 
     &__form-box {
@@ -28,6 +32,16 @@
         align-self: flex-start;
         box-shadow: 0 1rem 2rem rgba(black, .1);
         position: relative;
+
+        @include respond(b-5) {
+            width: 100%;
+            padding: 4rem 7.5rem;
+        }
+
+        @include respond(b-8) {
+            width: 100%;
+            padding: 4rem 5rem;
+        }
     }
 
     &__form {
@@ -44,6 +58,12 @@
         position: relative;
         z-index: 10;
         transform: scale(1.1);
+
+        @include respond(b-5) {
+            width: 100%;
+            transform: scale(1);
+            margin-top: 5rem;
+        }
     }
 
     &__heading {
@@ -133,7 +153,19 @@
         height: 80rem;
         z-index: 1;
         background-color: $--color-primary;
+
         
+        @include respond(b-11) {
+            width: 13rem;
+        }
+
+        @include respond(b-12) {
+            width: 10rem;
+        }
+
+        @include respond(b-13) {
+            display: none;
+        }
     }
 
     &__error {

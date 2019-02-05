@@ -1,0 +1,50 @@
+.histories {
+
+    &__container {
+        margin: 5rem 0;
+    }
+
+    &__card {
+        display: grid;
+        grid-row-gap: 2.5rem;
+        min-height: 50vh;
+        align-content: start;
+    }
+}
+
+.history {
+    display: grid;
+    grid-template-columns: minmax(max-content, 1fr) max-content 10rem max-content;
+    grid-gap: 3rem;
+    direction: rtl;
+    align-items: center;
+    margin: 0 5rem;
+    
+    &__title {
+        font-size: 1.6rem;
+        font-weight: 300;
+    }
+
+    &__date {
+        font-size: 1.4rem;
+    }
+
+    &__detail {
+        height: 2.5rem;
+        width: 2.5rem;
+        fill: $--color-grey-4;
+        opacity: .75;
+        transition: all .25s;
+
+        &:hover {
+            cursor: pointer;
+            opacity: 1;
+        }
+    }
+
+    &__status {
+        justify-self: start;
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+}

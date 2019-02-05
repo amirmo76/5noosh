@@ -1,0 +1,31 @@
+.notifications {
+
+    &__container {
+        margin: 5rem 0;
+    }
+
+    &__card {
+        display: grid;
+        grid-row-gap: 2.5rem;
+        min-height: 50vh;
+        align-content: start;
+    }
+}
+
+.notification {
+    display: grid;
+    grid-template-columns: minmax(max-content, 1fr) repeat(2, max-content);
+    grid-gap: 3rem;
+    direction: rtl;
+    align-items: center;
+    margin: 0 5rem;
+    
+    &__title {
+        font-size: 1.6rem;
+        font-weight: 300;
+    }
+
+    &__date {
+        font-size: 1.4rem;
+    }
+}

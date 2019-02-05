@@ -23,7 +23,9 @@ const routes = (
             <Route path='/signup' component={SignupPage} exact={true} />
             <Route path='/shop' component={ShopPage} exact={true}/>
             <Route path='/product' component={Product} />
-            <Route path='/dashboard' component={Dashboard} />
+            <Route path='/dashboard' component={Dashboard} exact={true} />
+            <Route path='/dashboard/notifications' component={Dashboard} exact={true} />
+            <Route path='/dashboard/histories' component={Dashboard} exact={true} />
             <Route path='/aboutus' component={AboutusPage} exact={true}/>
             <Route path='/contactus' component={ContactUsPage} exact={true}/>
             <Route path='/cart' component={Cart} exact={true}/>

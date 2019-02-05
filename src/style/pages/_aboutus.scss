@@ -14,7 +14,7 @@
 
     &__container {
         display: grid;
-        grid-template-columns: repeat(12, minmax(8rem, 1fr));
+        grid-template-columns: repeat(12, minmax(3rem, 1fr));
         grid-gap: 1.5rem;
         grid-row-gap: 30rem;
         align-items: center;
@@ -52,8 +52,8 @@
         display: block;
         background-position: center;
         background-size: cover;
-        width: 100%;
-        height: 70vh;
+        width: 30rem;
+        height: 55rem;
         position: relative;
         z-index: 10;
         box-shadow: 0 1rem 2rem rgba(black, .2);
@@ -114,9 +114,13 @@
             top: 0;
             left: 0;
             z-index: 1;
-            width: 15vw;
+            width: 20rem;
             height: 175vh;
-            transform: translateY(-20%);
+            transform: translateY(-23%);
+
+            @include respond(tab-land) {
+                transform: translateY(-25%);
+            }
         }
 
         &--right {
