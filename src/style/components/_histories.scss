@@ -20,6 +20,17 @@
     align-items: center;
     margin: 0 5rem;
     
+
+    @include respond(b-8) {
+        margin: 0;
+        grid-gap: 2rem;
+        grid-template-columns: minmax(max-content, 1fr) max-content max-content;
+    }
+
+    @include respond(b-12) {
+        grid-template-columns: minmax(max-content, 1fr) max-content;
+    }
+    
     &__title {
         font-size: 1.6rem;
         font-weight: 300;
@@ -27,6 +38,10 @@
 
     &__date {
         font-size: 1.4rem;
+
+        @include respond(b-12) {
+            display: none;
+        }
     }
 
     &__detail {
@@ -46,5 +61,58 @@
         justify-self: start;
         font-size: 1.2rem;
         font-weight: 400;
+
+        @include respond(b-8) {
+            display: none;
+        }
+    }
+}
+
+.history-detail {
+    width: 75vw;
+    padding: 0 5rem;
+    font-size: 1.6rem;
+    font-weight: 300;
+
+    @include respond(b-13) {
+        padding: .5rem 1rem;
+    }
+
+    &__container {
+        display: grid;
+        grid-gap: 4rem;
+        justify-items: start;
+        direction: rtl;
+        grid-template-columns: minmax(max-content, 1fr) max-content max-content;
+        grid-auto-flow: dense;
+    }
+
+    &__item {
+
+        &--title {
+            grid-column: 1/2;
+        }
+
+        &--price {
+            grid-column: 2/3;
+
+        }
+
+        &--count {
+            grid-column: 3/4;
+        }
+    }
+
+    &__footer {
+        border-top: 1px solid $--color-grey-4;
+        padding: 2.5rem;
+        grid-column: 1/-1;
+        display: grid;
+        grid-gap: 2rem;
+        width: 100%;
+
+        @include respond(b-13) {
+            padding: 1rem;
+        }
     }
 }

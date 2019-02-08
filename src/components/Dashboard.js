@@ -140,11 +140,6 @@ export default class Dashboard extends React.Component {
     }
 
     updatePath = e => {
-        if (!e) {
-            console.log('not clicked');
-        } else {
-            console.log('clicked');
-        }
         let path = this.props.location.pathname.split('/')[2];
         switch (path) {
             case undefined:
@@ -369,8 +364,8 @@ export default class Dashboard extends React.Component {
                                 <p className="dashboard__notif-date">دیروز ساعت 20:50</p>
                             </div>
                         </div>
-                        <Link to="/dashboard/notifications">
-                            <button className="btn btn--tall btn--no-up-animation btn--outline">مشاهده همه</button>
+                        <Link to="/dashboard/notifications" className="margin-top-auto">
+                            <button className="btn btn--stretch-x btn--no-up-animation btn--outline">مشاهده همه</button>
                         </Link>
                     </div>
 
@@ -409,7 +404,7 @@ export default class Dashboard extends React.Component {
                             </div>
                         </div>
                         <Link to="/dashboard/histories">
-                            <button className="btn btn--tall btn--no-up-animation btn--outline-dark">مشاهده همه</button>
+                            <button className="btn btn--stretch-x btn--no-up-animation btn--outline-dark">مشاهده همه</button>
                         </Link>
                     </div>
 

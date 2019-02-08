@@ -3,14 +3,44 @@
     flex-direction: row-reverse;
     padding: 2.5rem 30rem;
     background-color: #EAEDF1;
-    width: 110vw;
+    width: 120vw;
     position: relative;
     left: 0 - $--size-padding-home;
+    left: 50%;
+    text-align: right;
+    transform: translateX(-50%);    
+
+    @include respond(b-4) {
+        padding: 2.5rem 0;
+        justify-content: center;
+    }
+
+    @include respond(b-9) {
+        padding: 2.5rem 9rem;
+    }
+
+    @include respond(b-10) {
+        width: 115vw;
+    }
+
+    @include respond(b-13) {
+        text-align: right;
+        flex-direction: column;
+        width: 125vw;
+    }
 
     &__title {
         margin-left: 5rem;
         font-size: 1.4rem;
         color: $--color-grey-2;
+
+        @include respond(b-9) {
+            margin-left: 2.5rem;
+        }
+
+        @include respond(b-13) {
+            margin-bottom: 1rem;
+        }
     }
 
     &__text {

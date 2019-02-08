@@ -157,7 +157,7 @@ export default class Navigation extends React.Component {
                     </Link>
                     {this.state.collapsable ?
                     (
-                        <svg className="navigation__menu-icon" id='Capa_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384.97 384.97' onClick={this.collapsableToggleHandler}>
+                        <svg className={"navigation__menu-icon" + (this.props.light ? " navigation__menu-icon--light" : "")} id='Capa_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384.97 384.97' onClick={this.collapsableToggleHandler}>
                             <g id='Menu_1_'>
                                 <path d='M12.03,120.303h360.909c6.641,0,12.03-5.39,12.03-12.03c0-6.641-5.39-12.03-12.03-12.03H12.03 c-6.641,0-12.03,5.39-12.03,12.03C0,114.913,5.39,120.303,12.03,120.303z'
                                 />

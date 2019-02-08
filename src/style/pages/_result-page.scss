@@ -1,18 +1,11 @@
-.cart-page {
+.result-page {
     
     background-color: $--color-black;
     min-height: 100vh;
     padding: 0 $--size-padding-home;
-
+    
     @include respond(small-desk) {
         padding: 0 $--size-padding-home-md;
-    }
-    
-    @include respond(b-12) {
-        padding: 0 3rem;
-    }
 
-    @include respond(b-13) {
-        padding: 0 2rem;
     }
 }

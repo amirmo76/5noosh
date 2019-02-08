@@ -10,6 +10,7 @@ import { Power2 } from 'gsap/TweenLite';
 export default class AboutUsPage extends React.Component {
 
     state = {
+        shiftedNav: true,
         about: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد',
         trophies: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد'
     }
@@ -66,14 +67,30 @@ export default class AboutUsPage extends React.Component {
         TweenMax.to(el4, 1, {y: (top4 - height4) / speed4 + "px", ease: Power2.easeOut});
     }
 
+    onResize = e => {
+        const shiftedNav = window.matchMedia("screen and (max-width: 35.625em)");
+        this.setState(() => ({ shiftedNav: !shiftedNav.matches }));
+    }
+
     componentDidMount() {
         this.animateText();
         window.addEventListener('scroll', this.animateImages);
+
+        const shiftedNav = window.matchMedia("screen and (max-width: 35.625em)");
+        this.setState(() => ({ shiftedNav: !shiftedNav.matches }));
+    }
+
+    componentWillMount() {
+        //scroll event listener
+        window.addEventListener('resize', this.onResize);
     }
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.animateImages);
+        window.removeEventListener("resize", this.onResize);
     }
+
+    
 
     render(){
 
@@ -95,7 +112,7 @@ export default class AboutUsPage extends React.Component {
                 <path className="aboutus__about-img-bg-top" id='Path_1052' data-name='Path 1052' d='M0,0V1080C162.7,955.3,185.4,881.6,185.4,881.6s100-163.6,30.8-404.9S216.2,0,216.2,0H0Z'
                 />
             </svg>
-                <Navigation shifted={true} transparent={true}/>
+                <Navigation shifted={this.state.shiftedNav} transparent={true}/>
                 <div className="aboutus__container">
                     <div className="aboutus__about">
                         <h1 className="aboutus__about-title mg-bottom-md">درباره پنج نوش</h1>

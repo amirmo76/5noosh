@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default class History extends React.Component {
+
     render() {
         let status = 'تحویل داده شده';
         switch (this.props.status) {
@@ -18,7 +19,7 @@ export default class History extends React.Component {
                 break;
         }
         return (
-            <div className="history">
+            <div className="history" id={"history-" + this.props.id}>
                 <h3 className="history__title">{this.props.title}</h3>
                 <svg className="history__detail" id='Capa_1' xmlns='http://www.w3.org/2000/svg' width='561' height='561'
                 viewBox='0 0 561 561'>

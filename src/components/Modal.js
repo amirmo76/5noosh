@@ -13,9 +13,19 @@ export default class Modal extends React.Component {
 
     componentDidMount() {
         const bind = this;
-        document.getElementById(this.props.triggerID).addEventListener('click', e => {
-            bind.toggleModal();
-        });
+        if (this.props.triggerID) {
+            document.getElementById(this.props.triggerID).addEventListener('click', e => {
+                bind.toggleModal();
+            });
+        } else if (this.props.querySelector) {
+            const triggers = document.querySelectorAll(this.props.querySelector);
+            triggers.forEach(el => {
+                el.addEventListener('click', e => {
+                    bind.toggleModal();
+                });
+            });
+        }
+        
 
         document.querySelector(".modal").addEventListener('click', e => {
             if (e.target.classList.contains('modal')) {

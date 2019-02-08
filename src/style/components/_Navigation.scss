@@ -162,6 +162,10 @@
             cursor: pointer;
             fill: $--color-primary;
         }
+
+        &--light {
+            fill: $--color-grey-2;
+        }
     }
 
     &__collapsable {
