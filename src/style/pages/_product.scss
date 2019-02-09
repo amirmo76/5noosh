@@ -7,6 +7,15 @@
         padding: 0 $--size-padding-home-md; 
     }
 
+    @include respond(b-8) {
+        padding: 0 4rem; 
+    }
+
+    @include respond(b-12) {
+        background-color: $--color-black;
+        padding: 0 2rem; 
+    }
+
     &__bg {
 
         &--top {
@@ -46,12 +55,27 @@
         z-index: 2;
         min-height: 200rem;
         padding: 10rem 5rem;
+
+        @include respond(b-12) {
+            padding: 7.5rem 2rem;
+            box-shadow: none;
+            margin-bottom: 5rem;
+            margin-top: 0;
+        }
+
+        @include respond(b-13) {
+            padding: 7.5rem 2.5rem;
+        }
     }
 
     &__header {
         display: flex;
         flex-direction: row-reverse;
         align-items: center;
+
+        @include respond(b-7) {
+            flex-direction: column;
+        }
     }
 
     &__gallery {
@@ -59,6 +83,17 @@
         position: relative;
         height: 40rem;
         margin-left: 7.5rem;
+
+        @include respond(b-6) {
+            width: 50%;
+        }
+        
+        @include respond(b-7) {
+            width: 100%;
+            margin-bottom: 5rem;
+            margin-left: 0;
+            height: 42vw;
+        }
     }
 
     &__info {
@@ -66,6 +101,10 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+
+        @include respond(b-7) {
+            width: 100%;
+        }
     }
 
     &__cats {
@@ -136,9 +175,25 @@
             left: 50%;
             transform: translateX(-50%);
 
+            @include respond(tab-land) {
+                width: 50rem;
+                top: 15%;
+            }
+
             &:hover {
                 transform: translateX(-50%) scale(1.1);
                 box-shadow: 0 1.3rem 1.8rem rgba($color: #000000, $alpha: .25);
+            }
+
+            @include respond(b-6) {
+                width: 43rem;
+            }
+
+            @include respond(b-7) {
+                width: 67vw;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
             }
         }
 
@@ -146,12 +201,116 @@
             width: 31rem;
             bottom: 3rem;
             left: 0;
+
+            @include respond(b-4) {
+                width: 26rem;
+            }
+
+            @include respond(b-5) {
+                width: 37rem;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: -1;
+                top: -5rem;
+                bottom: auto;
+
+                &:hover {
+                    z-index: 5;
+                    transform:translateX(-50%) scale(1.15) ;
+                    box-shadow: 0 1.5rem 2rem rgba($color: #000000, $alpha: .3);
+                }
+            }
+
+            @include respond(b-6) {
+                width: 31rem;
+                top: -2rem;
+            }
+
+            @include respond(b-7) {
+                width: 35vw;
+                bottom: auto;
+                left: 0;
+                transform: none;
+                z-index: 1;
+                top: 19vw;
+
+                &:hover {
+                    z-index: 5;
+                    transform: scale(1.15);
+                    box-shadow: 0 1.5rem 2rem rgba($color: #000000, $alpha: .3);
+                }
+            }
+
+
+            @include respond(b-10) {
+                width: 50vw;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: -1;
+                top: -7vw;
+                bottom: auto;
+
+                &:hover {
+                    z-index: 5;
+                    transform:translateX(-50%) scale(1.15) ;
+                    box-shadow: 0 1.5rem 2rem rgba($color: #000000, $alpha: .3);
+                }
+            }
         }
 
         &--sub-right {
             width: 26rem;
             right: 0;
             bottom: 0;
+
+            @include respond(b-4) {
+                width: 22rem;
+            }
+
+            @include respond(b-5) {
+                width: 36rem;
+                bottom: 0rem;
+                right: 50%;
+                transform: translateX(50%);
+
+                &:hover {
+                    z-index: 5;
+                    transform: translateX(50%) scale(1.15);
+                    box-shadow: 0 1.5rem 2rem rgba($color: #000000, $alpha: .3);
+                }
+            }
+
+            @include respond(b-6) {
+                width: 31rem;
+                bottom: 4rem;
+            }
+
+            @include respond(b-7) {
+                width: 30vw;
+                right: 0;
+                bottom: auto;
+                top: 21vw;
+                transform: none;
+
+                &:hover {
+                    z-index: 5;
+                    transform: scale(1.15);
+                    box-shadow: 0 1.5rem 2rem rgba($color: #000000, $alpha: .3);
+                }
+            }
+
+            @include respond(b-10) {
+                width: 48vw;
+                right: 50%;
+                transform: translateX(50%);
+                top: 12vw;
+
+                &:hover {
+                    z-index: 5;
+                    transform: translateX(50%) scale(1.15);
+                    box-shadow: 0 1.5rem 2rem rgba($color: #000000, $alpha: .3);
+                }
+            }
         }
     }
 
@@ -160,9 +319,13 @@
         // padding: 0 5rem;
         widows: 100%;
         display: grid;
-        grid-template-columns: repeat(8, minmax(10rem, 1fr));
+        grid-template-columns: repeat(8, minmax(2rem, 1fr));
         grid-template-rows: repeat(4, minmax(35rem, max-content));
         grid-row-gap: 15rem;
+
+        @include respond(b-10) {
+            grid-row-gap: 5rem;
+        }
     }
 
     &__desc-gp {
@@ -174,14 +337,49 @@
             grid-row: 4/5;
             align-self: start;
 
+            @include respond(b-7) {
+                grid-column: 1/7;
+                padding-right: 2.5rem;
+            }
+
+            @include respond(b-9) {
+                grid-row: 5/6;
+            }
+
+            @include respond(b-10) {
+                grid-column: 1/9;
+                padding: 0;
+            }
         }
 
         &--right {
             grid-column: 6/9;
+
+            @include respond(b-7) {
+                grid-column: 5/9;
+                grid-row: 2/3;
+            }
+
+            @include respond(b-9) {
+                grid-column: 4/9;
+                grid-row: 3/4;
+            }
+
+            @include respond(b-10) {
+                grid-column: 1/9;
+            }
         }
 
         &--mid {
             grid-column: 4/8;
+
+            @include respond(b-5) {
+                grid-column: 4/9;
+            }
+
+            @include respond(b-10) {
+                grid-column: 1/9;
+            }
         }
     }
 
@@ -205,6 +403,10 @@
         width: 100%;
         background-color: $--color-primary;
 
+        @include respond(b-10) {
+            display: none;
+        }
+
         &--left {
             height: 105%;
             grid-column: 1/3;
@@ -217,6 +419,10 @@
             height: 90%;
             position: relative;
             top: -7.5rem;
+
+            @include respond(b-9) {
+                grid-row: 4/6;
+            }
         }
     }
 
@@ -242,6 +448,19 @@
                 height: 110%;
 
             }
+
+            @include respond(b-9) {
+                grid-column: 1/9;
+                grid-row: 2/3;
+                width: 120%;
+            }
+
+            @include respond(b-10) {
+                left: 50%;
+                width: 110%;
+                transform: translateX(-50%);
+            }
+
         }
 
         &--right {
@@ -258,7 +477,18 @@
 
             @include respond(small-desk) {
                 right: -7.5rem;
+            }
 
+            @include respond(b-9) {
+                grid-row: 4/5;
+                width: 117%;
+                right: 1.5rem;
+            }
+
+            @include respond(b-10) {
+                width: 100%;
+                right: 50%;
+                transform: translateX(50%) scale(1.1);
             }
         }
     }
@@ -266,6 +496,14 @@
     &__uasge {
         text-align: right;
         padding: 0 15rem;
+
+        @include respond(b-4) {
+            padding: 0 5rem;
+        }
+
+        @include respond(b-4) {
+            padding: 5rem 0 0;
+        }
     }
 
     &__uasge-title {
@@ -280,6 +518,15 @@
         flex-direction: row-reverse;
         padding: 0 5rem;
         align-items: center;
+
+
+        @include respond(b-9) {
+            padding: 0 2.5rem;
+        }
+
+        @include respond(b-11) {
+            padding: 0;
+        }
 
         &:not(:last-child) {
             margin-bottom: 5rem;
