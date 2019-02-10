@@ -120,11 +120,75 @@
     &--slide-show-1 {
         transform: scale(.6) translateX(-275%) translateY(-75%);
         z-index: 3;
+
+        @include respond(b-5) {
+            transform: scale(.6) translateX(-260%) translateY(-75%);
+        }
+
+        @include respond(b-6) {
+            transform: scale(.6) translateX(-240%) translateY(-75%);
+        }
+
+        @include respond(b-7) {
+            transform: scale(.6) translateX(-200%) translateY(-75%);
+        }
+
+        @include respond(b-8) {
+            transform: scale(.6) translateX(-180%) translateY(-75%);
+        }
+
+        @include respond(b-11) {
+            transform: scale(.6) translateX(-165%) translateY(-75%);
+        }
+
+        @include respond(b-12) {
+            transform: scale(.6) translateX(-160%) translateY(-75%);
+        }
+
+        @include respond(b-13) {
+            transform: scale(.6) translateX(-138%) translateY(-75%);
+        }
+
+        @include respond(b-14) {
+            transform: scale(.6) translateX(-128%) translateY(-75%);
+        }
     }
     
     &--slide-show-2 {
         transform: scale(.75) translateX(-155%) translateY(-60%);
         z-index: 4;
+
+        @include respond(b-5) {
+            transform: scale(.75) translateX(-150%) translateY(-60%);
+        }
+
+        @include respond(b-6) {
+            transform: scale(.75) translateX(-130%) translateY(-60%);
+        }
+
+        @include respond(b-7) {
+            transform: scale(.75) translateX(-115%) translateY(-60%);
+        }
+
+        @include respond(b-8) {
+            transform: scale(.75) translateX(-110%) translateY(-60%);
+        }
+
+        @include respond(b-11) {
+            transform: scale(.75) translateX(-105%) translateY(-60%);
+        }
+
+        @include respond(b-12) {
+            transform: scale(.75) translateX(-102%) translateY(-60%);
+        }
+
+        @include respond(b-13) {
+            transform: scale(.75) translateX(-88%) translateY(-60%);
+        }
+
+        @include respond(b-14) {
+            transform: scale(.75) translateX(-85%) translateY(-60%);
+        }
     }
 
     &--slide-show-3 {
@@ -135,11 +199,75 @@
     &--slide-show-4 {
         transform: scale(.75) translateX(+25%) translateY(-60%);
         z-index: 4;
+
+        @include respond(b-5) {
+            transform: scale(.75) translateX(+20%) translateY(-60%);
+        }
+
+        @include respond(b-6) {
+            transform: scale(.75) translateX(+0%) translateY(-60%);
+        }
+
+        @include respond(b-7) {
+            transform: scale(.75) translateX(-15%) translateY(-60%);
+        }
+
+        @include respond(b-8) {
+            transform: scale(.75) translateX(-20%) translateY(-60%);
+        }
+
+        @include respond(b-11) {
+            transform: scale(.75) translateX(-25%) translateY(-60%);
+        }
+
+        @include respond(b-12) {
+            transform: scale(.75) translateX(-28%) translateY(-60%);
+        }
+
+        @include respond(b-13) {
+            transform: scale(.75) translateX(-42%) translateY(-60%);
+        }
+
+        @include respond(b-14) {
+            transform: scale(.75) translateX(-45%) translateY(-60%);
+        }
     }
 
     &--slide-show-5 {
         transform: scale(.6) translateX(+110%) translateY(-75%);
-        z-index: 3;        
+        z-index: 3;   
+        
+        @include respond(b-5) {
+            transform: scale(.6) translateX(+95%) translateY(-75%);
+        }
+
+        @include respond(b-6) {
+            transform: scale(.6) translateX(+75%) translateY(-75%);
+        }
+
+        @include respond(b-7) {
+            transform: scale(.6) translateX(+35%) translateY(-75%);
+        }
+
+        @include respond(b-8) {
+            transform: scale(.6) translateX(+15%) translateY(-75%);
+        }
+
+        @include respond(b-11) {
+            transform: scale(.6) translateX(+0%) translateY(-75%);
+        }
+
+        @include respond(b-12) {
+            transform: scale(.6) translateX(-5%) translateY(-75%);
+        }
+
+        @include respond(b-13) {
+            transform: scale(.6) translateX(-27%) translateY(-75%);
+        }
+
+        @include respond(b-14) {
+            transform: scale(.6) translateX(-37%) translateY(-75%);
+        }
     }
 
     &__more {

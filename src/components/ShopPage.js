@@ -219,6 +219,11 @@ export default class SignupPAge extends React.Component {
                 <span className="shop__bg"></span>
                 <div className="shop__body">
                     <div className="shop__right-side">
+                        <svg className="shop__cats-icon" id='Capa_1' xmlns='http://www.w3.org/2000/svg' width='459' height='459'
+                        viewBox='0 0 459 459'>
+                            <path d='M0,382.5h459v-51H0V382.5z M0,255h459v-51H0V255z M0,76.5v51h459v-51H0z'
+                            id='menu' />
+                        </svg>
                         <div className="shop__cats-box">
                             <h2 className="heading--secondary mg-bottom-md">دسته بندی محصولات</h2>
 

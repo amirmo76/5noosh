@@ -26,11 +26,12 @@
     }
 
     &__right-arrow {
-        transform: rotate(180deg);
+        transform: rotate(180deg) translateX(-1rem);
         margin-left: 3rem;
     }
 
     &__left-arrow {
+        transform: translateX(-1rem);
         margin-right: 3rem;
     }
 }

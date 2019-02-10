@@ -9,6 +9,14 @@
         padding: 0 $--size-padding-home-md; 
     }
 
+    @include respond(b-9) {
+        padding: 0 2.8rem; 
+    }
+
+    @include respond(b-11) {
+        background-color: $--color-black;
+    }
+
     &__bg {
         position: absolute;
         top: 0;
@@ -32,6 +40,16 @@
         display: flex;
         align-items: stretch;
         flex-direction: row-reverse;
+
+        @include respond(b-10) {
+            flex-direction: column;
+        }
+
+        @include respond(b-11) {
+            margin-top: 5rem;
+            margin-bottom: 7.5rem;
+            box-shadow: none;
+        }
     }
 
     &__right-side {
@@ -42,6 +60,51 @@
         justify-content: space-between;
         padding: 3rem 3rem 6rem;
         align-items: center; 
+
+        @include respond(b-4) {
+            width: 5rem;
+            & > *:not(:first-child) {
+                visibility: hidden;
+            }
+        }
+
+        @include respond(b-10) {
+            width: 100%;
+            height: 5rem;
+            padding: 0;
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        @include respond(b-11) {
+            width: 100vw;
+            right: 2.8rem;
+        }
+    }
+
+    &__cats-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        fill: $--color-white;
+        opacity: .5;
+        transition: all .2s;
+        display: none;
+
+        @include respond(b-4) {
+            display: block;
+        }
+
+        @include respond(b-10) {
+            position: absolute;
+            top: 50%;
+            right: 2.5rem;
+            transform: translateY(-50%);
+        }
+
+        &:hover {
+            cursor: pointer;
+            opacity: .75;
+        }
     }
 
     &__bottom-right-logo {
@@ -92,6 +155,10 @@
     &__main {
         width: 100%;
         padding: 3rem 3rem 6rem;
+
+        @include respond(b-11) {
+            padding: 3rem 0rem;
+        }
     }
 
     &__nav {
