@@ -60,6 +60,7 @@
         justify-content: space-between;
         padding: 3rem 3rem 6rem;
         align-items: center; 
+        position: relative;
 
         @include respond(b-4) {
             width: 5rem;
@@ -72,13 +73,73 @@
             width: 100%;
             height: 5rem;
             padding: 0;
-            position: relative;
             margin-bottom: 1.5rem;
         }
 
         @include respond(b-11) {
             width: 100vw;
             right: 2.8rem;
+        }
+
+        &:last-of-type {
+            display: none;
+            position: absolute;
+            z-index: 10;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 5rem;
+            // transition: all .25s 0.2s ease-in;
+        }
+    }
+
+    &__right-side--show ~ &__right-side:last-of-type {
+        display: flex;
+        width: 25rem;
+        box-shadow: -1rem 0 1rem rgba($color: #000000, $alpha: .23);
+        
+        @include respond(b-10) {
+            width: 100vw;
+            left: -2.8rem;
+            padding: 2.5rem;
+            align-items: flex-start;
+            height: auto;
+            box-shadow: 0 1rem 2rem rgba($color: #000000, $alpha: .23);
+        }
+
+        & > *:not(:first-child) {
+            visibility: visible;
+        }
+    }
+
+    &__right-side--show ~ &__right-side:last-of-type &__cats-icon {
+        position: absolute;
+        right: 1.7rem;
+
+        @include respond(b-10) {
+            top: 2.5rem;
+            right: 2.5rem;
+        }
+    }
+
+    &__right-side--show ~ &__right-side:last-of-type &__bottom-right-logo {
+        @include respond(b-10) {
+            display: none;
+        }
+    }
+
+    &__right-side--show ~ &__right-side:last-of-type &__cats-box {
+        @include respond(b-10) {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+            grid-gap: 2.5rem;
+        }
+    }
+
+    &__right-side--show ~ &__right-side:last-of-type &__cats-box h2 {
+        @include respond(b-10) {
+            grid-column: 1/-1;
+            justify-self: center;
         }
     }
 

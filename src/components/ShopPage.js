@@ -69,7 +69,8 @@ export default class SignupPAge extends React.Component {
             } 
         ],
         lookAtResaults: false,
-        results: []
+        results: [],
+        categoryShow: false
     }
 
     updateCartNumber = e => {
@@ -83,9 +84,10 @@ export default class SignupPAge extends React.Component {
     }
 
     componentDidMount = e => {
+        const newNode = document.querySelector('.shop__right-side').cloneNode(true);
+        document.querySelector('.shop__body').appendChild(newNode);
         
         const bind = this;
-
         axios({
             method: 'get',
             url: '/api/products'
@@ -210,6 +212,14 @@ export default class SignupPAge extends React.Component {
         }
     }
 
+    categoryToggleClickHandler = e => {
+        if (e.target.parentNode.classList.contains('shop__right-side') && e.target.classList.contains('shop__cats-icon')) {
+            this.setState(prev => ({ categoryShow: !prev.categoryShow }));
+        } else if (e.target.parentNode.parentNode.classList.contains('shop__right-side') && e.target.parentNode.classList.contains('shop__cats-icon')) {
+            this.setState(prev => ({ categoryShow: !prev.categoryShow }));
+        }
+    }
+
 
     render() {
 
@@ -217,8 +227,8 @@ export default class SignupPAge extends React.Component {
             <div className="shop">
                 <Navigation />
                 <span className="shop__bg"></span>
-                <div className="shop__body">
-                    <div className="shop__right-side">
+                <div className="shop__body" onClick={this.categoryToggleClickHandler}>
+                    <div className={"shop__right-side" + (this.state.categoryShow ? " shop__right-side--show" : "")}>
                         <svg className="shop__cats-icon" id='Capa_1' xmlns='http://www.w3.org/2000/svg' width='459' height='459'
                         viewBox='0 0 459 459'>
                             <path d='M0,382.5h459v-51H0V382.5z M0,255h459v-51H0V255z M0,76.5v51h459v-51H0z'
