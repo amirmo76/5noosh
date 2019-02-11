@@ -11,6 +11,14 @@
         padding: 0 $--size-padding-home-sm; 
     }
 
+    @include respond(b-12) {
+        padding: 0 3rem; 
+    }
+
+    @include respond(b-13) {
+        padding: 0 2.5rem; 
+    }
+
     &__body {
         min-height: calc(100vh - 7.5rem);
         display: flex;
