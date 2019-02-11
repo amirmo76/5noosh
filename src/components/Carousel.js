@@ -29,7 +29,8 @@ export default class Carousel extends React.Component {
     state = {
         isActive: true,
         slides: [],
-        current: 0
+        current: 0,
+        isCompressed: false
     }
 
     addSlide(
@@ -49,6 +50,23 @@ export default class Carousel extends React.Component {
         }));
         console.log(this.state);
     }
+
+    screenChangeHandler = e => {
+        if (window.innerWidth < 1250) {
+            this.setState(() => ({isCompressed: true}));
+        } else {
+            this.setState(() => ({isCompressed: false}));
+        }
+    }
+
+    componentDidMount() {
+        this.screenChangeHandler();
+        window.addEventListener("resize", this.screenChangeHandler);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.screenChangeHandler);
+    }
     
     render() {
 
@@ -58,7 +76,15 @@ export default class Carousel extends React.Component {
 
         return (
             <div className="carousel">
-                <h2 className="carousel__title">{this.state.slides[this.state.current].title}</h2>
+                {
+                    this.state.isCompressed ? (
+                        <a href={this.state.slides[this.state.current].btnHref}>
+                            <h2 className="carousel__title carousel__title--link">{this.state.slides[this.state.current].title}</h2>
+                        </a>
+                    ) : (
+                        <h2 className="carousel__title">{this.state.slides[this.state.current].title}</h2>
+                    )
+                }
                 <p className="carousel__desc">{this.state.slides[this.state.current].desc}</p>
                 <button className={`btn carousel__btn btn--no-up-animation btn--shadow-animation btn--${this.state.slides[this.state.current].color}`}>{this.state.slides[this.state.current].btnText}</button>
                 <div className={`carousel__bg carousel__bg--${this.state.slides[this.state.current].color}`}></div>

@@ -61,7 +61,7 @@
             }
         }
 
-        @include respond(tiny-desk) {
+        @include respond(b-7) {
             grid-template-columns: repeat(1, minmax(max-content, 1fr));
         }
     }

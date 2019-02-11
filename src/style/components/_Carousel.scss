@@ -2,7 +2,7 @@
 
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: repeat(12,[col-start] minmax(2rem, 1fr) [col-end]);
+    grid-template-columns: repeat(12,[col-start] 1fr [col-end]);
     grid-template-rows: minmax(min-content, 35vh) 2rem minmax(min-content, 35vh) min-content;
     direction: rtl;
     color: $--color-white;
@@ -31,6 +31,10 @@
         @include respond(b-4) {
             right: 5%;
         }
+
+        @include respond(b-12) {
+            font-size: 3rem;
+        }
     }
 
     &__desc {
@@ -49,6 +53,10 @@
 
         @include respond(b-4) {
             right: 5%;
+        }
+
+        @include respond(b-12) {
+            font-size: 1.4rem;
         }
     }
 
@@ -70,6 +78,11 @@
         width: 18rem;
         height: 77rem;
         z-index: 1;
+
+        @include respond(b-13) {
+            left: -12rem;
+
+        }
 
         &--primary {
             background-color: $--color-primary;
@@ -128,6 +141,14 @@
         @include respond(tab-land) {
             grid-column: 1/ -1;
         }
+
+        @include respond(b-9) {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(max-content, 1fr));
+            align-items: center;
+            justify-content: stretch;
+            grid-gap: 4.5rem;  
+        }
     }
 
     &__slide {
@@ -147,6 +168,11 @@
             @include respond(tab-land) {
                 margin-left: auto;
             }
+
+            @include respond(b-9) {
+                // justify-self: stretch;
+                margin: 0;
+            }
         }
 
         &:hover {
@@ -156,7 +182,11 @@
 
         @include respond(small-desk) {
             padding-left: 3rem;
-    
+        }
+
+        @include respond(b-9) {
+            // justify-self: stretch;
+            margin: 0;
         }
     }
 }
