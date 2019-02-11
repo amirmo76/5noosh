@@ -68,6 +68,48 @@ export default class SignupPAge extends React.Component {
                 shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
             } 
         ],
+        slideShowItems: [
+            {
+                id: 1,
+                title: 'دوچرخه',
+                price: 22500,
+                category: 'دسته بندی',
+                thumbnail: 'img/img-1.png',
+                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
+            },
+            {
+                id: 2,
+                title: 'خوراکی',
+                price: 18100,
+                category: 'دسته بندی',
+                thumbnail: 'img/img-2.png',
+                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
+            },
+            {
+                id: 3,
+                title: 'بهرام',
+                price: 12000,
+                category: 'دسته بندی',
+                thumbnail: 'img/img-3.jpg',
+                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
+            },
+            {
+                id: 4,
+                title: 'شکلات',
+                price: 9000,
+                category: 'دسته بندی',
+                thumbnail: 'img/img-4.jpg',
+                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
+            },
+            {
+                id: 5,
+                title: 'دانشگاه',
+                price: 8500,
+                category: 'دسته بندی',
+                thumbnail: 'img/img-5.jpg',
+                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
+            } 
+        ],
         lookAtResaults: false,
         results: [],
         categoryShow: false
@@ -90,9 +132,9 @@ export default class SignupPAge extends React.Component {
         const bind = this;
         axios({
             method: 'get',
-            url: '/api/products'
+            url: '/api/products/top_selling/all'
         }).then(function (response) {
-            if (response.data.status === 200) {
+            if (response.status === 200) {
                 const temp = response.data.data;
                 const data = temp.map(cur => {
                     const item = {
@@ -100,7 +142,30 @@ export default class SignupPAge extends React.Component {
                         title: cur.name,
                         thumbnail: cur.logo,
                         price: cur.price,
-                        category: cur.category
+                        category: cur.category,
+                        shortDesc: cur.short_description
+                    }
+
+                    return item;
+                });
+                bind.setState(() => ({slideShowItems: data}));
+            }
+        });
+
+        axios({
+            method: 'get',
+            url: '/api/products'
+        }).then(function (response) {
+            if (response.status === 200) {
+                const temp = response.data.data;
+                const data = temp.map(cur => {
+                    const item = {
+                        id: cur.id,
+                        title: cur.name,
+                        thumbnail: cur.logo,
+                        price: cur.price,
+                        category: cur.category,
+                        shortDesc: cur.short_description
                     }
 
                     return item;
@@ -339,11 +404,11 @@ export default class SignupPAge extends React.Component {
                                     </svg>
 
                                     <div className="product-slideshow__box">
-                                        <ProductPrev slideshow={this.state.first} product={this.state.items[2]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
-                                        <ProductPrev slideshow={this.state.second} product={this.state.items[3]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
-                                        <ProductPrev slideshow={this.state.third} product={this.state.items[4]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
-                                        <ProductPrev slideshow={this.state.fourth} product={this.state.items[0]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
-                                        <ProductPrev slideshow={this.state.fifth} product={this.state.items[2]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
+                                        <ProductPrev slideshow={this.state.first} product={this.state.slideShowItems[0]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
+                                        <ProductPrev slideshow={this.state.second} product={this.state.slideShowItems[1]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
+                                        <ProductPrev slideshow={this.state.third} product={this.state.slideShowItems[2]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
+                                        <ProductPrev slideshow={this.state.fourth} product={this.state.slideShowItems[3]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
+                                        <ProductPrev slideshow={this.state.fifth} product={this.state.slideShowItems[4]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
                                     </div>
 
                                     <svg onClick={this.goLeft} className="product-slideshow__left-arrow" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.666 26.666'>

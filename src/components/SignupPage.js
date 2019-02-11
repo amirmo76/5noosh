@@ -30,27 +30,22 @@ export default class SignupPage extends React.Component {
         if(this.state.nameValid && this.state.phoneValid && this.state.addressValid && this.state.emailValid && this.state.passValid && this.state.passConfirmValid) {
             axios({
                 method: 'post',
-                url: '/api/users',
+                url: '/api/register',
                 data: {
                     name: document.getElementById('name').value,
                     email: document.getElementById('email').value,
-                    mobile: document.getElementById('phone').value,
+                    phone: document.getElementById('phone').value,
                     address: document.getElementById('address').value,
                     password: document.getElementById('pass').value,
                     password_confirmation: document.getElementById('pass-confirm').value
                 }
             }).catch(function (error) {
-                //422
-                console.log('error: ' + error.response);
-                bind.setState(() => ({error: 'ایمیل وارد شده موجود می باشد'}));
+                bind.setState(() => ({error: error.data.errors}));
             }).then(function (response){
                 if (response.status === 201) {
                     //ok
-                    console.log('response: ' + response);
                     bind.setState(() => ({error: ''}));
-                    const json = JSON.stringify(response.data.data.accessToken);
-                    localStorage.setItem('token', json);
-                    return bind.props.history.push('/dashboard');
+                    return bind.props.history.push('/login');
                 }
             });
         } else {

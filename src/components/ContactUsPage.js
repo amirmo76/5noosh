@@ -27,11 +27,11 @@ export default class ContactUsPage extends React.Component {
         if(this.state.nameValid && this.state.emailValid && this.state.textValid) {
             axios({
                 method: 'post',
-                url: '/api/contactus',
+                url: '/api/contact_us',
                 data: {
                     name: document.getElementById('name').value,
                     email: document.getElementById('email').value,
-                    message: document.getElementById('text').value
+                    body: document.getElementById('text').value
                 }
             }).then(function (response){
                 if (response.data.status === 200) {

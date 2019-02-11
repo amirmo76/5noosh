@@ -22,20 +22,16 @@ export default class LoginPage extends React.Component {
         if(this.state.emailValid && this.state.passValid) {
             axios({
                 method: 'post',
-                url: '/api/users/login',
+                url: '/api/login',
                 data: {
                     email: document.getElementById('email').value,
                     password: document.getElementById('pass').value,
                     remember_me: document.getElementById('remember').checked
                 }
             }).catch(function (error) {
-                //422 -> validation error
-                console.log('error: ' + error.response);
-                bind.setState(() => ({error: 'ایمیل یا رمز عبور اشتباه می باشد'}));
+                bind.setState(() => ({error: error.data.errors}));
             }).then(function (response) {
                 if (response.status === 200) {
-                    //ok
-                    console.log('response: ' + response);
                     bind.setState(() => ({error: ''}));
                     const json = JSON.stringify(response.data.data.accessToken);
                     localStorage.setItem('token', json);

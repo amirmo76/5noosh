@@ -24,6 +24,7 @@ export default class Dashboard extends React.Component {
             zipCode: '991786542',
             state: 'تهران',
             city: 'تهران',
+            profilePic: 'img/pic-5.png',
             address: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است'
         },
         news: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است',
@@ -159,10 +160,44 @@ export default class Dashboard extends React.Component {
         this.updatePath();
     }
 
+    componentWillMount() {
+        const bind = this;
+        const token = JSON.parse(localStorage.getItem('token'));
+        axios({
+            method: 'get',
+            header: {
+                'Authorization': 'Bearer ' + token
+            },
+            url: '/api/users/'
+        }).catch(function(error) {
+            return bind.props.history.push('/');
+        }).then(function (response) {
+            if (response.status === 200) {
+                const temp = response.data.data;
+                
+                const item = {
+                    id: temp.id,
+                    name: temp.name,
+                    email: temp.email,
+                    phone: temp.phone,
+                    zipCode: temp.zip_code,
+                    state: temp.state,
+                    city: temp.city,
+                    address: temp.address,
+                    profilePic: temp.profile_pic
+                }
+
+                bind.setState(() => ({user: item}));
+            } else {
+                bind.setState(() => ({error: true}));
+            }
+        });
+    }
+
     render(){
 
         const style = {
-            backgroundImage: `url(img/pic-5.png)`
+            backgroundImage: this.state.user.profilePic
         }
 
         return (

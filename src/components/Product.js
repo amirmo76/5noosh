@@ -19,22 +19,22 @@ export default class Product extends React.Component {
             pics: [
                 {
                     "id": 1,
-                    "picture": "img/img-2.png",
+                    "location": "img/img-2.png",
                     "product_id": 1
                 },
                 {
                     "id": 2,
-                    "picture": "img/img-3.jpg",
+                    "location": "img/img-3.jpg",
                     "product_id": 1
                 },
                 {
                     "id": 3,
-                    "picture": "img/img-4.jpg",
+                    "location": "img/img-4.jpg",
                     "product_id": 1
                 },
                 {
                     "id": 4,
-                    "picture": "img/img-5.jpg",
+                    "location": "img/img-5.jpg",
                     "product_id": 1
                 }
             ]
@@ -66,7 +66,7 @@ export default class Product extends React.Component {
             method: 'get',
             url: '/api/products/' + id
         }).then(function (response) {
-            if (response.data.status === 200) {
+            if (response.status === 200) {
                 const temp = response.data.data;
                 
                 const item = {
@@ -128,11 +128,11 @@ export default class Product extends React.Component {
         });
 
         let style1 = {
-            backgroundImage: `url(${this.state.product.pics[2].picture})`
+            backgroundImage: `url(${this.state.product.pics[2].location})`
         }
 
         let style2 = {
-            backgroundImage: `url(${this.state.product.pics[3].picture})`
+            backgroundImage: `url(${this.state.product.pics[3].location})`
         }
 
         if (this.state.error) {
@@ -175,8 +175,8 @@ export default class Product extends React.Component {
                     <div className="product__header">
                         <div className="product__gallery">
                             <img src={this.state.product.thumbnail} className="product__img product__img--main"/>
-                            <img src={this.state.product.pics[0].picture} className="product__img product__img--sub-left"/>
-                            <img src={this.state.product.pics[1].picture} className="product__img product__img--sub-right"/>
+                            <img src={this.state.product.pics[0].location} className="product__img product__img--sub-left"/>
+                            <img src={this.state.product.pics[1].location} className="product__img product__img--sub-right"/>
                         </div>
                         <div className="product__info">
                             <h1 className="product__title">{this.state.product.title}</h1>
