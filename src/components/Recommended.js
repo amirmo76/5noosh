@@ -77,7 +77,7 @@ export default class Recommended extends React.Component {
 
         return (
             <div className={"recommended" + (this.props.direction ? " recommended--rtl" : "")}>
-                <span id={"recommended-" + this.props.id} className={"recommended__hero recommended__hero--left " + (this.props.landscape && "recommended__hero--landscape")} style={style}></span>
+                <span id={"recommended-" + this.props.id} className={"recommended__hero" + (this.props.direction === 'rtl' ? " recommended__hero--right" : " recommended__hero--left") + (this.props.landscape ? " recommended__hero--landscape" : "")} style={style}></span>
                 <span className={"recommended__hero-bg" + (this.props.direction === 'rtl' ? " recommended__hero-bg--right" : " recommended__hero-bg--left") + (this.props.landscape ? " recommended__hero-bg--landscape" : "")}></span>
                 <div className={"recommended__product" + (this.props.direction === 'rtl' ? " recommended__product--left" : " recommended__product--right")} id={"recommended__product-" + this.props.id}>
                     <img className="recommended__logo" src={this.props.logo}/>

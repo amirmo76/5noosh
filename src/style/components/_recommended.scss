@@ -40,6 +40,11 @@
                 width: 90vw;
                 left: -4rem;
             }
+
+            @include respond(b-13) {
+                width: 90vw;
+                left: 1rem;
+            }
         }
 
         &--right {
@@ -58,6 +63,10 @@
             @include respond(tiny-desk) {
                 width: 85vw;
                 right: -3.5rem;
+            }
+
+            @include respond(b-10) {
+                right: auto;
             }
         }
     }

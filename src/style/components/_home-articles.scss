@@ -10,6 +10,22 @@
         left: 0;
         top: 0;
         fill: $--color-primary;
+
+        @include respond(b-4) {
+            width: 125rem;
+        }
+
+        @include respond(b-7) {
+            width: 240rem;
+        }
+
+        @include respond(b-9) {
+            top: 3rem;
+        }
+
+        @include respond(b-13) {
+            top: 1rem;
+        }
     }
 
     &__header {
@@ -29,9 +45,24 @@
     }
 
     &__box {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(max-content, 1fr));
+        grid-gap: 2.5rem;
+        align-items: center;
+        justify-items: center;
         position: relative;
         top: -10rem;
+
+        @include respond(tiny-desk) {
+            grid-template-columns: repeat(2, minmax(max-content, 1fr));
+
+            & > *:last-of-type {
+                display: none;
+            }
+        }
+
+        @include respond(tiny-desk) {
+            grid-template-columns: repeat(1, minmax(max-content, 1fr));
+        }
     }
 }

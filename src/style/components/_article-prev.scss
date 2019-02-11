@@ -1,13 +1,36 @@
 .article-prev {
     background-color: #998119;
-    width: 30%;
+    width: 40rem;
     text-align: right;
     box-shadow: 1px .5rem 2rem rgba(black, .15);
-    // transition: all .2s;
     
-    // &:hover {
-    //     background-color: $--color-primary;
-    // }
+    @include respond(tiny-desk) {
+        width: 49rem;
+    }
+
+    @include respond(b-5) {
+        width: 45rem;
+    }
+
+    @include respond(b-6) {
+        width: 40rem;
+    }
+
+    @include respond(b-7) {
+        width: 50rem;
+    }
+
+    @include respond(b-11) {
+        width: 44rem;
+    }
+
+    @include respond(b-12) {
+        width: 40rem;
+    }
+
+    @include respond(b-14) {
+        width: 38rem;
+    }
 
     &__img {
         transition: all .2s ease-in;
@@ -32,6 +55,10 @@
         margin-top: 4rem;
         font-weight: 400;
         margin-right: 2rem;
+
+        @include respond(b-12) {
+            font-size: 2rem;
+        }
     }
 
     &__desc {
