@@ -2,8 +2,12 @@
     display: flex;
     justify-content: space-between;
     flex-direction: row-reverse;
-
     padding: 0 0 10rem;
+
+    @include respond(b-8) {
+        flex-direction: column;
+        align-items: center;
+    }
 
     &__component {
         display: flex;
@@ -13,6 +17,30 @@
         width: 25%;
         align-items: center; 
         padding: 5rem 3rem;
+
+        @include respond(b-5) {
+            width: 30%;
+        }
+
+        @include respond(b-6) {
+            width: 35%;
+        }
+
+        @include respond(b-8) {
+            width: 75%;
+
+            &:not(:last-of-type) {
+                margin-bottom: 5rem;
+            }
+        }
+
+        @include respond(b-12) {
+            width: 90%;
+        }
+
+        @include respond(b-13) {
+            width: 100%;
+        }
 
         &:hover {
             // background-color: $--color-black-dark;

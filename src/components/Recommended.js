@@ -76,12 +76,12 @@ export default class Recommended extends React.Component {
 
 
         return (
-            <div className={"recommended " + (this.props.direction && "recommended--rtl")}>
+            <div className={"recommended" + (this.props.direction ? " recommended--rtl" : "")}>
                 <span id={"recommended-" + this.props.id} className={"recommended__hero recommended__hero--left " + (this.props.landscape && "recommended__hero--landscape")} style={style}></span>
-                <span className={"recommended__hero-bg recommended__hero-bg--left " + (this.props.landscape && "recommended__hero-bg--landscape")}></span>
-                <div className="recommended__product recommended__product--right" id={"recommended__product-" + this.props.id}>
+                <span className={"recommended__hero-bg" + (this.props.direction === 'rtl' ? " recommended__hero-bg--right" : " recommended__hero-bg--left") + (this.props.landscape ? " recommended__hero-bg--landscape" : "")}></span>
+                <div className={"recommended__product" + (this.props.direction === 'rtl' ? " recommended__product--left" : " recommended__product--right")} id={"recommended__product-" + this.props.id}>
                     <img className="recommended__logo" src={this.props.logo}/>
-                    <span className="recommended__product-bg recommended__product-bg--left"></span>
+                    <span className={"recommended__product-bg" + (this.props.direction === 'rtl' ? " recommended__product-bg--left" : " recommended__product-bg--right")}></span>
                     <h2 className="recommended__desc">{this.props.shortDesc}</h2>
                     <div className="recommended__buttons">
                         <button className="recommended__more btn btn--outline-primary">جزئیات بیشتر</button>

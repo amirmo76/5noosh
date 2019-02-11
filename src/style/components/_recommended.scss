@@ -1,11 +1,21 @@
 .recommended {
-    margin: 17rem 0;
+    margin: 20rem 0 17rem;
     display: flex;
     justify-content: space-between;
     position: relative;
 
+    @include respond(b-5) {
+        flex-direction: column;
+        margin: 25rem 0 20rem;
+    }
+
     &--rtl {
         flex-direction: row-reverse;
+
+        @include respond(tiny-desk) {
+            flex-direction: column;
+            margin: 25rem 0 20rem;
+        }
     }
 
     &__hero {
@@ -18,7 +28,18 @@
         box-shadow: 0 1rem 2rem rgba(black, .2);
 
         &--left {
+            @include respond(b-5) {
+                width: 65rem;
+            }
 
+            @include respond(b-9) {
+                width: 83vw;
+            }
+
+            @include respond(b-12) {
+                width: 90vw;
+                left: -4rem;
+            }
         }
 
         &--right {
@@ -32,6 +53,11 @@
             @include respond(small-desk) {
                 width: 80rem;
                 height: 40rem; 
+            }
+
+            @include respond(tiny-desk) {
+                width: 85vw;
+                right: -3.5rem;
             }
         }
     }
@@ -49,6 +75,18 @@
 
         &--left {
             top: -6rem;
+
+            @include respond(b-11) {
+                left: -17.5rem
+            }
+
+            @include respond(b-12) {
+                left: -20rem
+            }
+
+            @include respond(b-14) {
+                left: -25rem
+            }
         }
 
         &--right {
@@ -58,6 +96,10 @@
         &--landscape {
             width: 85rem;
             height: 40rem;
+
+            @include respond(tiny-desk) {
+                width: 80vw;
+            }
         }
     }
 
@@ -65,8 +107,6 @@
         left: auto;
         right: 0 - $--size-padding-home;
     }
-
-    
 
     &__product-bg {
         display: block;
@@ -80,11 +120,13 @@
         background-color: $--color-primary;
 
         &--left {
-
+            
         }
 
         &--right {
-            
+            @include respond(b-5) {
+                top: 0;
+            }
         }
     }
 
@@ -103,18 +145,49 @@
         right: 10rem;
         z-index: 2;
 
+        @include respond(b-5) {
+            margin-top: 7.5rem;
+        }
+
+        @include respond(b-12) {
+            margin-top: 20rem;
+        }
+
+        @include respond(b-13) {
+            right: 5rem;
+        }
+
+        @include respond(b-14) {
+            right: 0;
+        }
+
         &--left {
-            
+            right: auto;
+            left: 10rem;
+
+            @include respond(tiny-desk) {
+                align-self: flex-start;
+                margin-top: 10rem;
+            }
+
+            @include respond(b-12) {
+                left: 7.5rem;
+            }
+
+            @include respond(b-13) {
+                left: 5rem;
+            }
+
+            @include respond(b-14) {
+                left: 0;
+            }
         }
 
         &--right {
-            
+            @include respond(b-5) {
+                align-self: flex-end;
+            }
         }
-    }
-
-    &--rtl  &__product {
-        right: auto;
-        left: 10rem;
     }
 
     &__logo {

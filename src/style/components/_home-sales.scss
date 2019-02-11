@@ -15,6 +15,31 @@
         top: 0;
         z-index: 0;
         display: block;
+
+        @include respond(b-6) {
+            right: -7rem;
+            width: 55vw;
+        }
+
+        @include respond(b-8) {
+            width: 60vw;
+        }
+
+        @include respond(b-10) {
+            width: 70vw;
+        }
+
+        @include respond(b-11) {
+            width: 80vw;
+        }
+
+        @include respond(b-12) {
+            width: 90vw;
+        }
+
+        @include respond(b-13) {
+            width: 100vw;
+        }
     }
 
     &__bg {
@@ -26,6 +51,10 @@
         top: 50%;
         transform: translateY(-50%);
         z-index: 1;
+
+        @include respond(b-10) {
+            width: 70vw;
+        }
     }
 
     &__products {
@@ -35,6 +64,10 @@
         top: 50%;
         transform: translateY(-50%);
         z-index: 3;
+
+        @include respond(b-10) {
+            right: 29%;
+        }
 
         & > * {
             margin-left: 5rem;

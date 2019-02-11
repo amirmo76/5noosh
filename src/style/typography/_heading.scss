@@ -4,6 +4,15 @@
         font-size: 6rem;
         font-weight: 300;
         color: $--color-heading;
+        line-height: 1.2;
+
+        @include respond(b-11) {
+            font-size: 5rem;
+        }
+
+        @include respond(b-13) {
+            font-size: 4rem;
+        }
     }
 
     &--secondary {
@@ -15,6 +24,10 @@
 .sub-heading {
     color: $--color-white;
     font-size: 1.6rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
     font-weight: 200;
+
+    @include respond(b-11) {
+        font-size: 1.4rem;
+    }
 }
