@@ -157,7 +157,7 @@ export default class Dashboard extends React.Component {
     }
 
     profilePicOnChangeHandler = e => {
-        const input = document.getElementById('avatar-form');
+        const input = document.getElementById('avatar');
         const bind = this;
         const token = JSON.parse(localStorage.getItem('token'));
         axios({
