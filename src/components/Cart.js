@@ -91,10 +91,10 @@ export default class Cart extends React.Component {
                     },
                     loggedIn: true 
                 }));
-                this.setState(() => ({loggedIn: true,}));        
+                bind.setState(() => ({loggedIn: true,}));        
             }
         }).catch(function (error) {
-            this.setState(() => ({loggedIn: false}));
+            bind.setState(() => ({loggedIn: false}));
         });
 
         this.updateCart();
