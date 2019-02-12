@@ -163,6 +163,7 @@ export default class Dashboard extends React.Component {
     componentWillMount() {
         const bind = this;
         const token = JSON.parse(localStorage.getItem('token'));
+        console.log("'Authorization': 'Bearer '" + token);
         axios({
             method: 'get',
             header: {
