@@ -166,10 +166,8 @@ export default class Dashboard extends React.Component {
         console.log(token);
         axios({
             method: 'get',
-            header: {
+            headers: {
                 'Authorization': 'Bearer ' + token,
-                'Content-Type': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'
             },
             url: '/api/users/'
         }).then(function (response) {
