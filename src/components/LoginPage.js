@@ -59,7 +59,6 @@ export default class LoginPage extends React.Component {
             emailValid: result
         }));
 
-        console.log(this.state);
     }
 
 

@@ -163,11 +163,13 @@ export default class Dashboard extends React.Component {
     componentWillMount() {
         const bind = this;
         const token = JSON.parse(localStorage.getItem('token'));
-        console.log("'Authorization': 'Bearer '" + token);
+        console.log(token);
         axios({
             method: 'get',
             header: {
-                'Authorization': 'Bearer ' + token
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
             },
             url: '/api/users/'
         }).then(function (response) {
@@ -191,7 +193,7 @@ export default class Dashboard extends React.Component {
                 bind.setState(() => ({error: true}));
             }
         }).catch(function(error) {
-            console.log(error);
+            if (error.status === 401)
             return bind.props.history.push('/');
         });
     }
