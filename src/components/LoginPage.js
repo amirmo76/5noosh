@@ -75,6 +75,26 @@ export default class LoginPage extends React.Component {
 
     }
 
+    componentWillMount() {
+        const bind = this;
+        const token = JSON.parse(localStorage.getItem('token'));
+        axios({
+            method: 'get',
+            url: '/api/users',
+            header: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        }).then(function (response) {
+            if (response.status === 200) {
+                return bind.props.history.push('/');                
+            }
+        }).catch(function (error) {
+
+        });
+    }
+
     render() {
         return (
             <div className="login">
@@ -98,7 +118,7 @@ export default class LoginPage extends React.Component {
                             <input id="pass" className={"input input--secondary mg-bottom-md " + (this.state.passTouched && (this.state.passValid ? "input--valid" : "input--unvalid"))} type="password" onChange={this.passChangeHandler} required/>
                             <span className={"error" + ((!this.state.passValid && this.state.passTouched) ? ' error--show' : '')}>رمز عبور باید حداقل 5 کاراکتر باشد</span>
                             
-                            <input type="checkbox" className="input--checkbox" id="remember" name="remember"/>
+                            <input type="checkbox" className="input--checkbox" id="remember" name="remember" checked/>
                             <label className="checkbox" htmlFor="remember">
                                 <div className="checkbox__container">
                                     {/* <svg className="checkbox__tick" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'>
