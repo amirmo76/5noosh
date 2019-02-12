@@ -88,10 +88,11 @@ export default class LoginPage extends React.Component {
             }
         }).then(function (response) {
             if (response.status === 200) {
-                return bind.props.history.push('/');                
+                console.log('ok');
+                return bind.props.history.push('/dashboard');                
             }
         }).catch(function (error) {
-
+            console.log('not ok');
         });
     }
 
