@@ -156,14 +156,62 @@ export default class Dashboard extends React.Component {
         this.setState(() => ({ path }));
     }
 
+    profilePicOnChangeHandler = e => {
+        const input = document.getElementById('avatar-form');
+        const bind = this;
+        const token = JSON.parse(localStorage.getItem('token'));
+        axios({
+            method: 'post',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            },
+            url: '/api/users/profile_pic/new',
+            data: {
+                profile_pic: input.files[0]
+            }
+        }).then(function (response) {
+            if (response.status === 201) {
+                
+                axios({
+                    method: 'get',
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                    },
+                    url: '/api/users/'
+                }).then(function (response) {
+                    if (response.status === 201) {
+                        const temp = response.data.data;
+                        bind.setState(prev => ({user: {
+                            id: prev.id,
+                            name: prev.name,
+                            email: prev.email,
+                            phone: prev.phone,
+                            zipCode: prev.zip_code,
+                            state: prev.state,
+                            city: prev.city,
+                            address: prev.address,
+                            profilePic: temp.profile_pic
+                        }}));
+                    }
+                }).catch(function(error) {
+        
+                }); 
+
+            }
+        }).catch(function(error) {
+
+        });        
+
+    }
+
     componentDidMount() {
         this.updatePath();
+        document.getElementById('avatar').addEventListener('change', this.profilePicOnChangeHandler);
     }
 
     componentWillMount() {
         const bind = this;
         const token = JSON.parse(localStorage.getItem('token'));
-        console.log(token);
         axios({
             method: 'get',
             headers: {
@@ -191,9 +239,14 @@ export default class Dashboard extends React.Component {
                 bind.setState(() => ({error: true}));
             }
         }).catch(function(error) {
-            return bind.props.history.push('/login');
+            // return bind.props.history.push('/login');
         });
     }
+
+    componentWillUnmount() {
+        document.getElementById('avatar').removeEventListener('change', this.profilePicOnChangeHandler);
+    }
+    
 
     render(){
 
@@ -302,7 +355,7 @@ export default class Dashboard extends React.Component {
                             }
                         </div>
 
-                        <form className="dashboard__avatar-form">
+                        <form className="dashboard__avatar-form" id="avatar-form">
                             <label className="dashboard__avatar" style={style} htmlFor="avatar">
                                 <svg className="dashboard__avatar-icon" id='Capa_1' xmlns='http://www.w3.org/2000/svg' width='475.078' height='475.077'
                                     viewBox='0 0 475.078 475.077'>
