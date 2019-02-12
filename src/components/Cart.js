@@ -20,7 +20,18 @@ export default class Cart extends React.Component {
         loggedIn: true,
         agreedInfo: false,
         agreedTerms: false,
-        isOpen: false
+        isOpen: false,
+        user: {
+            id: 1,
+            name: 'محمد قاسمی',
+            email: 'amir.mohseni7697@gmail.com',
+            phone: '09132669877',
+            zipCode: '991786542',
+            state: 'تهران',
+            city: 'تهران',
+            profilePic: 'img/pic-5.png',
+            address: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است'
+        }
     }
     
     //call this to reac cart properly from local storage and it keeps the data
@@ -53,6 +64,38 @@ export default class Cart extends React.Component {
     }
 
     componentDidMount() {
+
+        const bind = this;
+        const token = JSON.parse(localStorage.getItem('token'));
+        axios({
+            method: 'get',
+            url: '/api/users',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            }
+        }).then(function (response) {
+            if (response.status === 200) {
+                const temp = response.data.data;
+                bind.setState(prev => ({
+                    user: {
+                        id: temp.id,
+                        name: temp.name,
+                        email: temp.email,
+                        phone: temp.phone,
+                        zipCode: temp.zip_code,
+                        state: temp.state,
+                        city: temp.city,
+                        address: temp.address,
+                        profilePic: temp.profile_pic
+                    },
+                    loggedIn: true 
+                }));
+                this.setState(() => ({loggedIn: true,}));        
+            }
+        }).catch(function (error) {
+            this.setState(() => ({loggedIn: false}));
+        });
+
         this.updateCart();
     }
 
