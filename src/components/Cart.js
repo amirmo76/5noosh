@@ -323,17 +323,17 @@ export default class Cart extends React.Component {
                             </h3>
                             <div className="cart__info-box">
                                 <p className="cart__info-title cart__info-title--name">نام و نام خانوادگی</p>
-                                <p className="cart__info cart__info--name">امیر محسنی مقدم</p>
+                                <p className="cart__info cart__info--name">{this.state.user.name}</p>
                                 <p className="cart__info-title cart__info-title--phone">شماره همراه</p>
-                                <p className="cart__info cart__info--phone">09032512281</p>
+                                <p className="cart__info cart__info--phone">{this.state.user.phone}</p>
                                 <p className="cart__info-title cart__info-title--state">استان</p>
-                                <p className="cart__info cart__info--state">خراسان رضوی</p>
+                                <p className="cart__info cart__info--state">{this.state.user.state}</p>
                                 <p className="cart__info-title cart__info-title--city">شهر</p>
-                                <p className="cart__info cart__info--city">مشهد</p>
+                                <p className="cart__info cart__info--city">{this.state.user.city}</p>
                                 <p className="cart__info-title cart__info-title--address">آدرس</p>
-                                <p className="cart__info cart__info--address">قاضی طباطبایی 10 - مجتمع فیروزه - فاز 5</p>
+                                <p className="cart__info cart__info--address">{this.state.user.address}</p>
                                 <p className="cart__info-title cart__info-title--zip-code">کد پستی</p>
-                                <p className="cart__info cart__info--zip-code">99125789</p>
+                                <p className="cart__info cart__info--zip-code">{this.state.user.zipCode}</p>
                             </div>
 
                             <div className="cart__agreement">
