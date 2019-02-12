@@ -93,7 +93,7 @@ export default class LoginPage extends React.Component {
             }
         }).catch(function (error) {
             console.log('not ok');
-            console.log(header = {
+            console.log({
                 'X-Requested-With': 'XMLHttpRequest',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token,
