@@ -5,7 +5,7 @@ import Modal from './Modal';
 import { Link } from 'react-router-dom';
 import Notifications from './Notifications';
 import Histories from './Histories';
-
+import axios from 'axios';
 
 
 export default class Dashboard extends React.Component {
@@ -169,8 +169,6 @@ export default class Dashboard extends React.Component {
                 'Authorization': 'Bearer ' + token
             },
             url: '/api/users/'
-        }).catch(function(error) {
-            return bind.props.history.push('/');
         }).then(function (response) {
             if (response.status === 200) {
                 const temp = response.data.data;
@@ -191,6 +189,8 @@ export default class Dashboard extends React.Component {
             } else {
                 bind.setState(() => ({error: true}));
             }
+        }).catch(function(error) {
+            return bind.props.history.push('/');
         });
     }
 

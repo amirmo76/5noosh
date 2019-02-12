@@ -28,8 +28,6 @@ export default class LoginPage extends React.Component {
                     password: document.getElementById('pass').value,
                     remember_me: document.getElementById('remember').checked
                 }
-            }).catch(function (error) {
-                bind.setState(() => ({error: error.data.errors}));
             }).then(function (response) {
                 if (response.status === 200) {
                     bind.setState(() => ({error: ''}));
@@ -37,6 +35,8 @@ export default class LoginPage extends React.Component {
                     localStorage.setItem('token', json);
                     return bind.props.history.push('/dashboard');
                 }
+            }).catch(function (error) {
+                bind.setState(() => ({error: 'ایمیل یا رمز عبور اشتباه است'}));
             });
         } else {
             bind.setState(() => ({error: 'ورودی های خود را کنترل کنید'}));
