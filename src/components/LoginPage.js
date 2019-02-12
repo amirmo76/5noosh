@@ -82,9 +82,9 @@ export default class LoginPage extends React.Component {
             method: 'get',
             url: '/api/users',
             header: {
-                'Authorization': 'Bearer ' + token,
+                'X-Requested-With': 'XMLHttpRequest',
                 'Content-Type': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'
+                'Authorization': 'Bearer ' + token,
             }
         }).then(function (response) {
             if (response.status === 200) {
@@ -93,6 +93,11 @@ export default class LoginPage extends React.Component {
             }
         }).catch(function (error) {
             console.log('not ok');
+            console.log(header = {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token,
+            });
             console.log(error);
         });
     }
