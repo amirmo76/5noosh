@@ -31,7 +31,7 @@ export default class LoginPage extends React.Component {
             }).then(function (response) {
                 if (response.status === 200) {
                     bind.setState(() => ({error: ''}));
-                    const json = JSON.stringify(response.data.data.accessToken);
+                    const json = response.data.data.accessToken;
                     localStorage.setItem('token', json);
                     return bind.props.history.push('/dashboard');
                 }
@@ -77,7 +77,7 @@ export default class LoginPage extends React.Component {
 
     componentWillMount() {
         const bind = this;
-        const token = JSON.parse(localStorage.getItem('token'));
+        const token = localStorage.getItem('token');
         axios({
             method: 'get',
             url: '/api/users',
