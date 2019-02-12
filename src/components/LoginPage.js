@@ -93,6 +93,7 @@ export default class LoginPage extends React.Component {
             }
         }).catch(function (error) {
             console.log('not ok');
+            console.log(error);
         });
     }
 
