@@ -39,14 +39,14 @@ export default class SignupPage extends React.Component {
                     password: document.getElementById('pass').value,
                     password_confirmation: document.getElementById('pass-confirm').value
                 }
-            }).catch(function (error) {
-                bind.setState(() => ({error: error.response.errors}));
             }).then(function (response){
                 if (response.status === 201) {
                     //ok
                     bind.setState(() => ({error: ''}));
                     return bind.props.history.push('/login');
                 }
+            }).catch(function (error) {
+                bind.setState(() => ({error: 'آدرس ایمیل وارد شده قبلا استفاده شده است'}));
             });
         } else {
             bind.setState(() => ({error: 'ورودی های خود را کنترل کنید'}));
