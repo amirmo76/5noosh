@@ -198,7 +198,7 @@ export default class Dashboard extends React.Component {
     render(){
 
         const style = {
-            backgroundImage: this.state.user.profilePic
+            backgroundImage: 'url(' + this.state.user.profilePic + ')'
         }
 
         return (
