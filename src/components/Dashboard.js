@@ -191,7 +191,7 @@ export default class Dashboard extends React.Component {
                 bind.setState(() => ({error: true}));
             }
         }).catch(function(error) {
-            return bind.props.history.push('/');
+            return bind.props.history.push('/login');
         });
     }
 

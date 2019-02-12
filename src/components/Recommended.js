@@ -57,6 +57,13 @@ export default class Recommended extends React.Component {
         })
         .setTween(anim)
         .addTo(controller);
+
+        if (id === 'recommended__product-1') {
+            scene.triggerHook(0.4);
+        } else {
+            scene.triggerHook(0.85);            
+        }
+
     }
 
     componentDidMount() {

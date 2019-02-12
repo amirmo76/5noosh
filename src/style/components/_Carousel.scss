@@ -103,7 +103,7 @@
         background-position: center;
 
         @include respond(tiny-desk) {
-            width: 75rem;
+            width: 58vw;
         }
 
         @include respond(tab-land) {
