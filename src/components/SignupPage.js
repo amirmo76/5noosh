@@ -40,7 +40,7 @@ export default class SignupPage extends React.Component {
                     password_confirmation: document.getElementById('pass-confirm').value
                 }
             }).catch(function (error) {
-                bind.setState(() => ({error: error.data.errors}));
+                bind.setState(() => ({error: error.response.errors}));
             }).then(function (response){
                 if (response.status === 201) {
                     //ok
