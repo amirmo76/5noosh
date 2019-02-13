@@ -39,16 +39,16 @@ export default class Dashboard extends React.Component {
 
         activePurchases: [
             {
-                id: "2354849",
+                id: "#1231231",
                 titles: ['عنوان محصول اول', 'عنوان محصول دوم'],
                 // between 0 to 3
-                status: "1"
+                status: 1
             },
             {
                 id: "5851721",
                 titles: ['عنوان محصول اول', 'عنوان محصول دوم', 'عنوان محصول سوم'],
                 // between 0 to 3
-                status: "2"
+                status: 2
             },
         ],
 
@@ -56,13 +56,13 @@ export default class Dashboard extends React.Component {
             {
                 titles: ['عنوان محصول اول', 'عنوان محصول دوم'],
                 // between 0 to 3
-                status: "1"
+                status: 1
             },
             {
                 id: "5851721",
                 titles: ['عنوان محصول اول', 'عنوان محصول دوم', 'عنوان محصول سوم'],
                 // between 0 to 3
-                status: "3"
+                status: 3
             }
         ]
     }
@@ -322,13 +322,13 @@ export default class Dashboard extends React.Component {
     
     getStatus(stat) {
         switch (stat) {
-            case "0": 
+            case 0: 
                 return 'ثبت شده';
-            case "1":
+            case 1:
                 return 'در حال آماده سازی';
-            case "2":
+            case 2:
                 return 'ارسال محموله';
-            case "3": 
+            case 3: 
                 return 'دریافت محموله'; 
         }
     }
@@ -568,7 +568,7 @@ export default class Dashboard extends React.Component {
                     {
                         this.state.activePurchases.map(cur => (
                         <div className="dashboard__card dashboard__card--status">
-                            <h2 className="dashboard__card-title">وضعیت سفارش شماره {cur.id}</h2>
+                            <h2 className="dashboard__card-title">{cur.id} وضعیت سفارش شماره</h2>
                             <h2 className="dashboard__card-subtitle">{this.activePurchaceTitleMaker(cur.titles)}</h2>
                             <div className="dashboard__status-container">
 
