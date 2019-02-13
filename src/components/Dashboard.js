@@ -387,7 +387,7 @@ export default class Dashboard extends React.Component {
                                     transform='translate(-380.74 -130.469)' />
                                 </g>
                             </svg>
-                            <span className="dashboard__nav-text">سفارش ها شما</span>
+                            <span className="dashboard__nav-text">سفارش های شما</span>
                         </li>
                     </Link>
 
@@ -548,11 +548,16 @@ export default class Dashboard extends React.Component {
                         <h2 className="dashboard__card-title mg-bottom-md">سفارش های شما</h2>
                         <div className="dashboard__orders-container">
                             {
-                                this.state.purchases.map(cur => 
-                                    <div className="dashboard__order-container">
-                                        <p className="dashboard__order-text">{this.activePurchaceTitleMaker(cur.titles)}</p>
-                                        <p className="dashboard__order-state">{this.getStatus(cur.status)}</p>
-                                    </div>
+                                this.state.purchases.map((cur, i) => {
+                                    if (i > 5) {
+                                        return false
+                                    }
+                                    return (
+                                        <div className="dashboard__order-container">
+                                            <p className="dashboard__order-text">{this.activePurchaceTitleMaker(cur.titles)}</p>
+                                            <p className="dashboard__order-state">{this.getStatus(cur.status)}</p>
+                                        </div>
+                                    )}
                                 )
                             }
                         </div>
