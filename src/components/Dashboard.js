@@ -220,7 +220,7 @@ export default class Dashboard extends React.Component {
             if (response.status === 200) {
                 const activePurchases = response.data.data.map(cur => {
                     let title = '';
-                    cur.purchase_products.forEach((cur, i) => {
+                    cur.purchased_products.forEach((cur, i) => {
                         if (i < 2) {
                             if (title.length > 0) {
                                 title += ' و';
@@ -229,7 +229,7 @@ export default class Dashboard extends React.Component {
                         }
                     })
 
-                    if (cur.purchase_products.length > 2) {
+                    if (cur.purchased_products.length > 2) {
                         title += ' و ...'
                     }
 
