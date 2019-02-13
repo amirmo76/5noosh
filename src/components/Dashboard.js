@@ -50,6 +50,20 @@ export default class Dashboard extends React.Component {
                 // between 0 to 3
                 status: 2
             },
+        ],
+
+        purchases: [
+            {
+                titles: ['عنوان محصول اول', 'عنوان محصول دوم'],
+                // between 0 to 3
+                status: 0
+            },
+            {
+                id: "5851721",
+                titles: ['عنوان محصول اول', 'عنوان محصول دوم', 'عنوان محصول سوم'],
+                // between 0 to 3
+                status: 2
+            }
         ]
     }
 
@@ -238,6 +252,34 @@ export default class Dashboard extends React.Component {
         }).catch(function(error) {
             console.log(error);
         });
+
+        axios({
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            },
+            url: '/api/purchases/'
+        }).then(function (response) {
+            if (response.status === 200) {
+                const activePurchases = response.data.data.map(cur => {
+                    let title = [];
+                    cur.purchased_products.forEach(cur => {
+                        title.push(cur.name);
+                    })
+
+                    const temp = {
+                        status: cur.status,
+                        titles: title
+                    } 
+
+                    return temp;
+                });
+
+                bind.setState(() => ({ purchases }));
+            }
+        }).catch(function(error) {
+            console.log(error);
+        });
     }
 
     componentWillMount() {
@@ -278,6 +320,18 @@ export default class Dashboard extends React.Component {
         document.getElementById('avatar').removeEventListener('change', this.profilePicOnChangeHandler);
     }
     
+    getStatus(stat) {
+        switch (stat) {
+            case 0: 
+                return 'ثبت شده';
+            case 1:
+                return 'در حال آماده سازی';
+            case 2:
+                return 'ارسال شده';
+            case 3: 
+                return 'دریافت محموله'; 
+        }
+    }
 
     render(){
 
@@ -493,35 +547,14 @@ export default class Dashboard extends React.Component {
                     <div className="dashboard__card dashboard__card--history">
                         <h2 className="dashboard__card-title mg-bottom-md">سفارش های شما</h2>
                         <div className="dashboard__orders-container">
-                            <div className="dashboard__order-container">
-                                <p className="dashboard__order-text">لورم ایپسوم متنی ساختگی جهت استفاده</p>
-                                <p className="dashboard__order-state">در حال بررسی</p>
-                            </div>
-
-                            <div className="dashboard__order-container">
-                                <p className="dashboard__order-text">طراحان و چاپگرها و متون بلکه روزنامه و مجله</p>
-                                <p className="dashboard__order-state">ارسال شده</p>
-                            </div>
-
-                            <div className="dashboard__order-container">
-                                <p className="dashboard__order-text">در ستون و سطرآنچنان</p>
-                                <p className="dashboard__order-state">تحویل داده شده</p>
-                            </div>
-
-                            <div className="dashboard__order-container">
-                                <p className="dashboard__order-text">که لازم است و برای شرایط فعلی تکنولوژی</p>
-                                <p className="dashboard__order-state">تحویل داده شده</p>
-                            </div>
-
-                            <div className="dashboard__order-container">
-                                <p className="dashboard__order-text">مورد نیاز و کاربردهای متنوع با هدف</p>
-                                <p className="dashboard__order-state">تحویل داده شده</p>
-                            </div>
-
-                            <div className="dashboard__order-container">
-                                <p className="dashboard__order-text">هبود ابزارهای کاربردی می باشد</p>
-                                <p className="dashboard__order-state">تحویل داده شده</p>
-                            </div>
+                            {
+                                this.state.purchases.map(cur => 
+                                    <div className="dashboard__order-container">
+                                        <p className="dashboard__order-text">{this.activePurchaceTitleMaker(cur.titles)}</p>
+                                        <p className="dashboard__order-state">{this.getStatus(cur.status)}</p>
+                                    </div>
+                                )
+                            }
                         </div>
                         <Link to="/dashboard/histories">
                             <button className="btn btn--stretch-x btn--no-up-animation btn--outline-dark">مشاهده همه</button>
