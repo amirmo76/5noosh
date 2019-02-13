@@ -136,7 +136,8 @@ export default class Navigation extends React.Component {
                 bind.setState(() => ({
                     avatar: response.data.data.profile_pic,
                     isLoggedIn: true
-                }));            
+                }),
+                console.log(this.state));            
             }
         }).catch(function (error) {
             console.log(error);
