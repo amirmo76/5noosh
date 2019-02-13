@@ -219,24 +219,15 @@ export default class Dashboard extends React.Component {
         }).then(function (response) {
             if (response.status === 200) {
                 const activePurchases = response.data.data.map(cur => {
-                    let title = '';
-                    cur.purchased_products.forEach((cur, i) => {
-                        if (i < 2) {
-                            if (title.length > 0) {
-                                title += ' و';
-                            }
-                            title += cur.name;
-                        }
+                    let title = [];
+                    cur.purchased_products.forEach(cur => {
+                        title.push(cur.name);
                     })
-
-                    if (cur.purchased_products.length > 2) {
-                        title += ' و ...'
-                    }
 
                     const temp = {
                         status: cur.status,
                         id: cur.purchase_number,
-                        title: title
+                        titles: title
                     } 
 
                     return temp;
