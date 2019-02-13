@@ -133,13 +133,11 @@ export default class Navigation extends React.Component {
             }
         }).then(function (response) {
             if (response.status === 200) {
-                console.log(response.data.data.profile_pic);
                 const pic = response.data.data.profile_pic;
                 bind.setState(() => ({
                     avatar: pic,
                     isLoggedIn: true
-                }),
-                console.log(bind.state));            
+                }));            
             }
         }).catch(function (error) {
             console.log(error);
@@ -155,6 +153,30 @@ export default class Navigation extends React.Component {
     collapsableToggleHandler = e => {
         const collapsed = !this.state.collapsed;
         this.setState(() => ({collapsed}));
+    }
+
+    logoutClickHandler = e => {
+        const bind = this;
+        const token = JSON.parse(localStorage.getItem('token'));
+        axios({
+            method: 'get',
+            url: '/api/logout',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            }
+        }).then(function (response) {
+            if (response.status === 200) {
+                bind.setState(() => ({isLoggedIn: false}));
+                localStorage.removeItem('token');
+
+                if (bind.props.location) {
+                    return bind.props.history.push('/');
+                }
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+
     }
 
     render() {
@@ -239,7 +261,7 @@ export default class Navigation extends React.Component {
                                 <div className="navigation__avatar" style={style}></div>                        
                             </Link>
                             
-                            <Link to="/dashboard/notifications">
+                            <Link to="/dashboard/notifications" className="navigation__notif-link">
                                 <svg className="navigation__notif" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 25'>
                                     <defs />
                                     <path id='Path_1341' data-name='Path 1341' d='M24.631,17.866c-2.94-2.941-3.383-4.417-3.383-9.116a8.748,8.748,0,1,0-17.5,0,14.782,14.782,0,0,1-.416,4.641A10.72,10.72,0,0,1,.368,17.866,1.25,1.25,0,0,0,1.252,20H8.188l-.063.625a4.374,4.374,0,1,0,8.748,0L16.811,20h6.937A1.25,1.25,0,0,0,24.631,17.866ZM12.5,23.75a3.125,3.125,0,0,1-3.125-3.125L9.439,20h6.123l.064.625A3.125,3.125,0,0,1,12.5,23.75Zm-11.248-5C5,15,5,12.5,5,8.75a7.5,7.5,0,1,1,15,0c0,3.75,0,6.25,3.749,10Z'
@@ -247,7 +269,7 @@ export default class Navigation extends React.Component {
                                 </svg>
                             </Link>
 
-                            <svg className="navigation__logout" viewBox='-15 -35 493.33522 493' xmlns='http://www.w3.org/2000/svg'>
+                            <svg className="navigation__logout" viewBox='-15 -35 493.33522 493' xmlns='http://www.w3.org/2000/svg' onClick={this.logoutClickHandler}>
                                 <path d='m412.902344-1.105469h-167.617188c-27.550781 0-50.074218 22.824219-50.074218 50.371094v44.515625c0 6.898438 5.59375 12.488281 12.492187 12.488281s12.488281-5.589843 12.488281-12.488281v-44.515625c.035156-13.890625 11.203125-25.191406 25.09375-25.390625h167.617188c13.777344 0 24.617187 11.617188 24.617187 25.390625v322.980469c.164063 13.691406-10.800781 24.921875-24.492187 25.082031h-167.738282c-13.835937-.050781-25.039062-11.25-25.097656-25.082031v-43.585938c0-6.902344-5.589844-12.492187-12.488281-12.492187s-12.492187 5.589843-12.492187 12.492187v43.585938c.074218 27.625 22.449218 49.996094 50.074218 50.0625h167.617188c27.496094-.101563 49.707031-22.484375 49.597656-49.984375v-323.058594c0-27.546875-22.046875-50.371094-49.597656-50.371094zm0 0'
                                 />
                                 <path d='m42.871094 223.71875h295.601562c6.898438 0 12.492188-5.59375 12.492188-12.492188 0-6.894531-5.59375-12.488281-12.492188-12.488281h-298.375l64.082032-74.074219c4.519531-5.253906 3.957031-13.167968-1.246094-17.734374-5.191406-4.539063-13.078125-4.011719-17.613282 1.175781v.007812l-80.773437 93.035157c-2.976563 2.449218-4.652344 6.136718-4.54296875 9.984374.11718775 3.855469 2.00781275 7.441407 5.12890575 9.707032l80.78125 80.78125c4.878907 4.878906 12.789063 4.878906 17.660157 0 4.816406-4.726563 4.890625-12.453125.167969-17.269532-.054688-.050781-.109376-.105468-.167969-.160156zm0 0'

@@ -230,4 +230,9 @@
             cursor: pointer;
         }
     }
+
+    &__notif-link {
+        display: flex;
+        align-items: center;
+    }
 }

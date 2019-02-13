@@ -102,6 +102,7 @@ export default class AboutUsPage extends React.Component {
             backgroundImage: `url(img/pic-4.png)`
         }
 
+
         return (
             <div className="aboutus">
             <svg className="aboutus__about-img-bg aboutus__about-img-bg--left" id='Group_130' data-name='Group 130' xmlns='http://www.w3.org/2000/svg'
