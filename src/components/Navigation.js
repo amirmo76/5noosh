@@ -5,7 +5,7 @@ import {TweenMax} from "gsap/TweenMax";
 
 export default class Navigation extends React.Component {
     state = {
-        isLoggedIn: this.props.logged,
+        isLoggedIn: false,
         avatar: this.props.avatar,
         collapsable: false,
         collapsed: false,
@@ -122,6 +122,25 @@ export default class Navigation extends React.Component {
             this.setState(() => ({collapsable: true}));
         }
         window.addEventListener("resize", this.screenChangeHandler);
+
+        //logged in
+        const token = JSON.parse(localStorage.getItem('token'));
+        axios({
+            method: 'get',
+            url: '/api/users',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            }
+        }).then(function (response) {
+            if (response.status === 200) {
+                this.setState(() => ({
+                    avatar: response.data.data.profile_pic,
+                    isLoggedIn: true
+                }));            
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 
     componentWillUnmount() {
