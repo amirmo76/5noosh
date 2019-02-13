@@ -133,7 +133,7 @@ export default class Navigation extends React.Component {
             }
         }).then(function (response) {
             if (response.status === 200) {
-                this.setState(() => ({
+                bind.setState(() => ({
                     avatar: response.data.data.profile_pic,
                     isLoggedIn: true
                 }));            
