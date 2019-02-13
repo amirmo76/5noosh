@@ -18,7 +18,7 @@ export default class Cart extends React.Component {
     state = {
         items: [],
         price: 0,
-        loggedIn: true,
+        loggedIn: false,
         agreedInfo: false,
         agreedTerms: false,
         isOpen: false,
