@@ -133,6 +133,7 @@ export default class Navigation extends React.Component {
             }
         }).then(function (response) {
             if (response.status === 200) {
+                console.log(response.data.data.profile_pic);
                 const pic = response.data.data.profile_pic;
                 bind.setState(() => ({
                     avatar: pic,
