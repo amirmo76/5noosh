@@ -207,6 +207,46 @@ export default class Dashboard extends React.Component {
     componentDidMount() {
         this.updatePath();
         document.getElementById('avatar').addEventListener('change', this.profilePicOnChangeHandler);
+
+        const bind = this;
+        const token = JSON.parse(localStorage.getItem('token'));
+        axios({
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            },
+            url: '/api/purchases/active/all'
+        }).then(function (response) {
+            if (response.status === 200) {
+                const activePurchases = response.data.data.map(cur => {
+                    let title = '';
+                    cur.purchase_products.forEach((cur, i) => {
+                        if (i < 2) {
+                            if (title.length > 0) {
+                                title += ' و';
+                            }
+                            title += cur.name;
+                        }
+                    })
+
+                    if (cur.purchase_products.length > 2) {
+                        title += ' و ...'
+                    }
+
+                    const temp = {
+                        status: cur.status,
+                        id: cur.purchase_number,
+                        title: title
+                    } 
+
+                    return temp;
+                });
+
+                bind.setState(() => ({ activePurchases }));
+            }
+        }).catch(function(error) {
+            console.log(error);
+        });
     }
 
     componentWillMount() {
