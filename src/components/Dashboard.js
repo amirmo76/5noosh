@@ -261,7 +261,7 @@ export default class Dashboard extends React.Component {
             url: '/api/purchases/'
         }).then(function (response) {
             if (response.status === 200) {
-                const activePurchases = response.data.data.map(cur => {
+                const purchases = response.data.data.map(cur => {
                     let title = [];
                     cur.purchased_products.forEach(cur => {
                         title.push(cur.name);
