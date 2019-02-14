@@ -21,16 +21,13 @@ export default class Result extends React.Component {
     }
 
     componentDidMount () {
-        //purchases/verify
-        //token
-        //201
         const bind = this;
         const token = JSON.parse(localStorage.getItem('token'));
         const purchaseToken = this.getParameterByName('token');
         if (this.getParameterByName('status') === 1) {
             axios({
                 method: 'post',
-                url: '/api/purchases/verify',
+                url: '/api/purchases/purchase/verify',
                 headers: {
                     'Authorization': 'Bearer ' + token,
                 },
@@ -38,8 +35,10 @@ export default class Result extends React.Component {
                     token: purchaseToken
                 }
             }).then(function(repsonse) {
+                console.log(response.data);
                 if (repsonse.status === 201) {
                     bind.setState(() => ({success: true}));
+                    localStorage.removeItem('cart');
                 }
             }).catch(function(error) {
                 bind.setState(() => ({success: false}));
