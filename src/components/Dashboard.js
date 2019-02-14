@@ -170,12 +170,20 @@ export default class Dashboard extends React.Component {
     }
 
     submitInfoFormHandler = e => {
-        document.getElementById('avatar-form');
+        const formData = new FormData();
+        formData.append("image", document.getElementById('avatar').files[0]);
+        console.log(document.getElementById('avatar').files[0]);
+
+        // axios({
+        //     method: 'post',
+        //     headers: {
+        //         'Authorization': 'Bearer ' + token,
+        //     },
+        // })
     }
 
     componentDidMount() {
         this.updatePath();
-        document.getElementById('avatar').addEventListener('change', this.profilePicOnChangeHandler);
 
         const bind = this;
         const token = JSON.parse(localStorage.getItem('token'));
@@ -271,10 +279,6 @@ export default class Dashboard extends React.Component {
         });
     }
 
-    componentWillUnmount() {
-        document.getElementById('avatar').removeEventListener('change', this.profilePicOnChangeHandler);
-    }
-    
     getStatus(stat) {
         switch (stat) {
             case 0: 
@@ -411,7 +415,7 @@ export default class Dashboard extends React.Component {
                             
                             {
                                 !this.state.editMode
-                                ? (<p className="dashboard__edit-text" onClick={this.submitInfoFormHandler}>ویرایش</p>)
+                                ? (<p className="dashboard__edit-text">ویرایش</p>)
                                 : (<p className="dashboard__edit-text" onClick={this.submitInfoFormHandler}>ثبت تغییرات</p>)
                             }
                         </div>

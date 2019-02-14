@@ -6,30 +6,14 @@ import { Link } from 'react-router-dom';
 export default class Result extends React.Component {
 
     state = {
-        success: false,
-        error: false
+        success: false
     }
 
     componentDidMount () {
-        const id = this.props.location.pathname.split('/')[2];
 
-        if (!id || (id !== 'success' && id !== 'failure')){
-            this.setState(() => ({error: true}));
-            return;  
-        }
-
-        if (id === 'success') {
-            this.setState(() => ({success: true}));
-        }
     }
 
-    render () {
-        if (this.state.error) {
-            return (
-                <p>this is a placeholder for 404 page</p>
-            );
-        }
-        
+    render () {   
         return (
             <div className="result-page">
                 <Navigation />
