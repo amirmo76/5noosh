@@ -169,52 +169,8 @@ export default class Dashboard extends React.Component {
         this.setState(() => ({ path }));
     }
 
-    profilePicOnChangeHandler = e => {
-        const input = document.getElementById('avatar');
-        const bind = this;
-        const token = JSON.parse(localStorage.getItem('token'));
-        axios({
-            method: 'post',
-            headers: {
-                'Authorization': 'Bearer ' + token,
-            },
-            url: '/api/users/profile_pic/new',
-            data: {
-                profile_pic: input.files[0]
-            }
-        }).then(function (response) {
-            if (response.status === 201) {
-                
-                axios({
-                    method: 'get',
-                    headers: {
-                        'Authorization': 'Bearer ' + token,
-                    },
-                    url: '/api/users/'
-                }).then(function (response) {
-                    if (response.status === 201) {
-                        const temp = response.data.data;
-                        bind.setState(prev => ({user: {
-                            id: prev.id,
-                            name: prev.name,
-                            email: prev.email,
-                            phone: prev.phone,
-                            zipCode: prev.zip_code,
-                            state: prev.state,
-                            city: prev.city,
-                            address: prev.address,
-                            profilePic: temp.profile_pic
-                        }}));
-                    }
-                }).catch(function(error) {
-        
-                }); 
-
-            }
-        }).catch(function(error) {
-
-        });        
-
+    submitInfoFormHandler = e => {
+        document.getElementById('avatar-form');
     }
 
     componentDidMount() {
@@ -455,13 +411,13 @@ export default class Dashboard extends React.Component {
                             
                             {
                                 !this.state.editMode
-                                ? (<p className="dashboard__edit-text">ویرایش</p>)
-                                : (<p className="dashboard__edit-text">ثبت تغییرات</p>)
+                                ? (<p className="dashboard__edit-text" onClick={this.submitInfoFormHandler}>ویرایش</p>)
+                                : (<p className="dashboard__edit-text" onClick={this.submitInfoFormHandler}>ثبت تغییرات</p>)
                             }
                         </div>
 
                         <form className="dashboard__avatar-form" id="avatar-form">
-                            <label className="dashboard__avatar" style={style} htmlFor="avatar">
+                            <label className={"dashboard__avatar" + (this.state.editMode ? " dashboard__avatar--editable" : "")} style={style} htmlFor={this.state.editMode ? "avatar" : ""}>
                                 <svg className="dashboard__avatar-icon" id='Capa_1' xmlns='http://www.w3.org/2000/svg' width='475.078' height='475.077'
                                     viewBox='0 0 475.078 475.077'>
                                         <path d='M467.081,327.767c-5.321-5.331-11.797-7.994-19.411-7.994h-121.91c-3.994,10.657-10.705,19.411-20.126,26.262 c-9.425,6.852-19.938,10.28-31.546,10.28h-73.096c-11.609,0-22.126-3.429-31.545-10.28c-9.423-6.851-16.13-15.604-20.127-26.262 H27.408c-7.612,0-14.083,2.663-19.414,7.994C2.664,333.092,0,339.563,0,347.178v91.361c0,7.61,2.664,14.089,7.994,19.41 c5.33,5.329,11.801,7.991,19.414,7.991h420.266c7.61,0,14.086-2.662,19.41-7.991c5.332-5.328,7.994-11.8,7.994-19.41v-91.361 C475.078,339.563,472.416,333.099,467.081,327.767z M360.025,423.978c-3.621,3.617-7.905,5.428-12.854,5.428 s-9.227-1.811-12.847-5.428c-3.614-3.613-5.421-7.898-5.421-12.847s1.807-9.236,5.421-12.847c3.62-3.613,7.898-5.428,12.847-5.428 s9.232,1.814,12.854,5.428c3.613,3.61,5.421,7.898,5.421,12.847S363.638,420.364,360.025,423.978z M433.109,423.978 c-3.614,3.617-7.898,5.428-12.848,5.428c-4.948,0-9.229-1.811-12.847-5.428c-3.613-3.613-5.42-7.898-5.42-12.847 s1.807-9.236,5.42-12.847c3.617-3.613,7.898-5.428,12.847-5.428c4.949,0,9.233,1.814,12.848,5.428 c3.617,3.61,5.427,7.898,5.427,12.847S436.729,420.364,433.109,423.978z'

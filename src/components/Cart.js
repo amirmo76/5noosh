@@ -65,7 +65,6 @@ export default class Cart extends React.Component {
     }
 
     componentDidMount() {
-
         const bind = this;
         const token = JSON.parse(localStorage.getItem('token'));
         axios({
@@ -174,6 +173,36 @@ export default class Cart extends React.Component {
         const arr = [];
         localStorage.setItem('cart', JSON.stringify(arr));
         this.updateCart();
+    }
+
+    submitPurchase = e => {
+        const products = [];
+        this.state.items.forEach(cur => {
+            const item = {
+                id: cur.id,
+                quantity: cur.count
+            }
+            products.push(item);
+        });
+
+        const bind = this;
+        const token = JSON.parse(localStorage.getItem('token'));
+        axios({
+            method: 'post',
+            url: '/api/purchases',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            },
+            data: {
+                products: products
+            }
+        }).then(function (response) {
+            if (response.status === 200) {
+                console.log('submited purchase');     
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });        
     }
 
     render(){
@@ -346,8 +375,12 @@ export default class Cart extends React.Component {
                             </div>
                         </div>
                     }
-                    {this.state.items.length > 0 &&
+                    {(this.state.items.length > 0 && !this.state.loggedIn) &&
                         <button className="btn btn--green btn--no-radius btn--color-animation-blue btn--no-up-animation btn--stretch-x cart__btn">برای ادامه و ثبت خرید وارد حساب کاربری خود شوید</button>
+                    }
+
+                    {(this.state.items.length > 0 && this.state.loggedIn) &&
+                        <button className="btn btn--green btn--no-radius btn--color-animation-blue btn--no-up-animation btn--stretch-x cart__btn" onClick={this.submitPurchase}>ثبت سفارش</button>
                     }
                 </div>
                 <Footer />
