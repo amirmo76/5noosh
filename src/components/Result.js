@@ -35,7 +35,7 @@ export default class Result extends React.Component {
                 data: {
                     token: purchaseToken
                 }
-            }).then(function(repsonse) {
+            }).then(function(response) {
                 console.log(response.data);
                 bind.setState(() => ({success: true}));
                 localStorage.removeItem('cart');
