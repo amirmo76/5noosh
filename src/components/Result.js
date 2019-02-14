@@ -41,6 +41,7 @@ export default class Result extends React.Component {
                     localStorage.removeItem('cart');
                 }
             }).catch(function(error) {
+                console.log(error);
                 bind.setState(() => ({success: false}));
             });
         } else {
