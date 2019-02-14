@@ -24,7 +24,7 @@ export default class Result extends React.Component {
         const bind = this;
         const token = JSON.parse(localStorage.getItem('token'));
         const purchaseToken = this.getParameterByName('token');
-        if (this.getParameterByName('status') === 1) {
+        if (this.getParameterByName('status') === "1") {
             axios({
                 method: 'post',
                 url: '/api/purchases/purchase/verify',
