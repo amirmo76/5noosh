@@ -18,7 +18,7 @@ export default class Cart extends React.Component {
     state = {
         items: [],
         price: 0,
-        loggedIn: true,
+        loggedIn: false,
         agreedInfo: false,
         agreedTerms: false,
         isOpen: false,
@@ -93,7 +93,7 @@ export default class Cart extends React.Component {
                 bind.setState(() => ({loggedIn: true,}));        
             }
         }).catch(function (error) {
-            // bind.setState(() => ({loggedIn: false}));
+            bind.setState(() => ({loggedIn: false}));
         });
 
         this.updateCart();
@@ -185,8 +185,6 @@ export default class Cart extends React.Component {
             products.push(item);
         });
 
-        console.log(products);
-
         const bind = this;
         const token = JSON.parse(localStorage.getItem('token'));
         axios({
@@ -200,7 +198,7 @@ export default class Cart extends React.Component {
             }
         }).then(function (response) {
             if (response.status === 200) {
-                console.log('submited purchase');     
+                window.location.replace(response.data.data);                   
             }
         }).catch(function (error) {
             console.log(error);

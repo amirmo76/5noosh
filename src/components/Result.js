@@ -2,6 +2,7 @@ import React from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default class Result extends React.Component {
 
@@ -9,9 +10,44 @@ export default class Result extends React.Component {
         success: false
     }
 
-    componentDidMount () {
-
+    getParameterByName(name, url)  {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
     }
+
+    componentDidMount () {
+        //purchases/verify
+        //token
+        //201
+        const bind = this;
+        const token = JSON.parse(localStorage.getItem('token'));
+        const purchaseToken = this.getParameterByName('token');
+        if (this.getParameterByName('status') === 1) {
+            axios({
+                method: 'post',
+                url: '/api/purchases/verify',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                },
+                data: {
+                    token: purchaseToken
+                }
+            }).then(function(repsonse) {
+                if (repsonse.status === 201) {
+                    bind.setState(() => ({success: true}));
+                }
+            }).catch(function(error) {
+                bind.setState(() => ({success: false}));
+            });
+        } else {
+            this.setState(() => ({success: false}));
+        }
+    }   
 
     render () {   
         return (
