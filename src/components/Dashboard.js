@@ -37,12 +37,12 @@ export default class Dashboard extends React.Component {
         path: this.DASHBOARD,
 
         activePurchases: [
-            // {
-            //     id: "#1231231",
-            //     titles: ['عنوان محصول اول', 'عنوان محصول دوم'],
-            //     // between 0 to 3
-            //     status: 1
-            // }
+            {
+                id: "#1231231",
+                titles: ['عنوان محصول اول'],
+                // between 0 to 3
+                status: 1
+            }
         ],
 
         purchases: [
@@ -130,13 +130,15 @@ export default class Dashboard extends React.Component {
     }
 
     activePurchaceTitleMaker(titles) {
-        let res = '';
-        if (titles.length > 2) {
-            res = `... ${titles[0]} و ${titles[1]} و`;
-        } else {
-            titles.forEach(cur => res.length > 2 ? res = res + cur : res =  cur + ' و ');
-        }
-        return res;
+        if (titles) {
+            let res = '';
+            if (titles.length > 2) {
+                res = `... ${titles[0]} و ${titles[1]} و`;
+            } else {
+                titles.forEach(cur => res.length > 2 ? res = res + cur : res =  cur + ' و ');
+            }
+            return res;
+        } 
     }
 
     updatePath = e => {
