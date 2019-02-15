@@ -4,23 +4,7 @@ import Notification from './Notification';
 export default class Notifications extends React.Component {
 
     state = {
-        data : [
-            {
-                id: '25',
-                content: 'عنوان هشدار',
-                date: '1396/11/05'
-            },
-            {
-                id: '37',
-                content: 'عنوان هشدار',
-                date: '1395/12/23'
-            },
-            {
-                id: '45',
-                content: 'عنوان هشدار',
-                date: '1397/09/21'
-            }
-        ]
+        data : this.props.notifications
     }
 
     render() {

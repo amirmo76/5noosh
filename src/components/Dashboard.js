@@ -37,33 +37,19 @@ export default class Dashboard extends React.Component {
         path: this.DASHBOARD,
 
         activePurchases: [
-            {
-                id: "#1231231",
-                titles: ['عنوان محصول اول', 'عنوان محصول دوم'],
-                // between 0 to 3
-                status: 1
-            },
-            {
-                id: "5851721",
-                titles: ['عنوان محصول اول', 'عنوان محصول دوم', 'عنوان محصول سوم'],
-                // between 0 to 3
-                status: 2
-            },
+            // {
+            //     id: "#1231231",
+            //     titles: ['عنوان محصول اول', 'عنوان محصول دوم'],
+            //     // between 0 to 3
+            //     status: 1
+            // }
         ],
 
         purchases: [
-            {
-                titles: ['عنوان محصول اول', 'عنوان محصول دوم'],
-                // between 0 to 3
-                status: 1
-            },
-            {
-                id: "5851721",
-                titles: ['عنوان محصول اول', 'عنوان محصول دوم', 'عنوان محصول سوم'],
-                // between 0 to 3
-                status: 3
-            }
-        ]
+            
+        ],
+
+        notifications: []
     }
 
     changePassClickHandler = e => {
@@ -183,6 +169,7 @@ export default class Dashboard extends React.Component {
         formData.append('city', this.state.user.city);
 
         console.log('sending form data');
+        const token = JSON.parse(localStorage.getItem('token'));
         axios({
             method: 'put',
             url: '/api/users',
@@ -248,7 +235,10 @@ export default class Dashboard extends React.Component {
 
                     const temp = {
                         status: cur.status,
-                        titles: title
+                        titles: title,
+                        date: created_at,
+                        transID: trans_id,
+                        products: purchased_products
                     } 
 
                     return temp;
@@ -322,6 +312,30 @@ export default class Dashboard extends React.Component {
                 bind.setState(() => ({isLoggedIn: false}));
                 localStorage.removeItem('token');
                 return bind.props.history.push('/');
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+
+    }
+
+    logoutClickHandler = e => {
+        const bind = this;
+        const token = JSON.parse(localStorage.getItem('token'));
+        axios({
+            method: 'get',
+            url: '/api/logout',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            }
+        }).then(function (response) {
+            if (response.status === 200) {
+                bind.setState(() => ({isLoggedIn: false}));
+                localStorage.removeItem('token');
+
+                if (bind.props.location) {
+                    return bind.props.history.push('/');
+                }
             }
         }).catch(function (error) {
             console.log(error);
@@ -524,15 +538,11 @@ export default class Dashboard extends React.Component {
                     <div className="dashboard__card dashboard__card--notifs">
                         <h2 className="dashboard__card-title dashboard__card-title--light mg-bottom-md">آخرین اعلان های شما</h2>
                         <div className="dashboard__notifs-container">
-                            <div className="dashboard__notif-container">
-                                <p className="dashboard__notif-text">سفارش شما ارسال شده است</p>
-                                <p className="dashboard__notif-date">امروز ساعت 22:10</p>
-                            </div>
-
-                            <div className="dashboard__notif-container">
-                                <p className="dashboard__notif-text">سفارش شما با موفقیت ثبت شد</p>
-                                <p className="dashboard__notif-date">دیروز ساعت 20:50</p>
-                            </div>
+                            {
+                                this.state.notifications.length === 0 &&
+                                <p className="dashboard__empety">موردی برای نمایش وجود ندارد</p>
+                            }
+                            
                         </div>
                         <Link to="/dashboard/notifications" className="margin-top-auto">
                             <button className="btn btn--stretch-x btn--no-up-animation btn--outline">مشاهده همه</button>
@@ -543,7 +553,7 @@ export default class Dashboard extends React.Component {
                     <div className="dashboard__card dashboard__card--history">
                         <h2 className="dashboard__card-title mg-bottom-md">سفارش های شما</h2>
                         <div className="dashboard__orders-container">
-                            {
+                            {   this.state.purchases.length > 0 ?
                                 this.state.purchases.map((cur, i) => {
                                     if (i > 5) {
                                         return false
@@ -555,9 +565,11 @@ export default class Dashboard extends React.Component {
                                         </div>
                                     )}
                                 )
+                                :
+                                <p className="dashboard__empety">موردی برای نمایش وجود ندارد</p>
                             }
                         </div>
-                        <Link to="/dashboard/histories">
+                        <Link to="/dashboard/histories" className="margin-top-auto">
                             <button className="btn btn--stretch-x btn--no-up-animation btn--outline-dark">مشاهده همه</button>
                         </Link>
                     </div>
@@ -742,14 +754,14 @@ export default class Dashboard extends React.Component {
                 {
                     this.state.path === this.HISTORY &&
                     <div className="histories__container">
-                        <Histories />
+                        <Histories purchases={this.state.purchases}/>
                     </div>
                 }
 
                 {
                     this.state.path === this.NOTIFICATIONS &&
                     <div className="notifications__container">
-                        <Notifications />     
+                        <Notifications notifications={this.state.notifications}/>     
                     </div>
                 }
                 
