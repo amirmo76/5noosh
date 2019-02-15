@@ -39,14 +39,34 @@ export default class Dashboard extends React.Component {
         activePurchases: [
             {
                 id: "#1231231",
-                titles: ['عنوان محصول اول'],
+                titles: 'عنوان محصول اول',
                 // between 0 to 3
                 status: 1
             }
         ],
 
         purchases: [
-            
+            {
+                id: 24,
+                status: 2,
+                titles: 'محصول و محصول دوم',
+                date: '1397/12/24',
+                transID: '#3232323',
+                products: [
+                    {
+                        id: 2,
+                        name: 'محصول',
+                        price: 12000,
+                        quantity: 3
+                    },
+                    {
+                        id: 1,
+                        name: 'محصول دوم',
+                        price: 11000,
+                        quantity: 1
+                    }
+                ]
+            }
         ],
 
         notifications: []
@@ -260,7 +280,7 @@ export default class Dashboard extends React.Component {
                     const temp = {
                         status: cur.status,
                         id: cur.purchase_number,
-                        titles: title
+                        titles: bind.activePurchaceTitleMaker(title)
                     } 
 
                     return temp;
@@ -287,8 +307,9 @@ export default class Dashboard extends React.Component {
                     })
 
                     const temp = {
+                        id: cur.id,
                         status: cur.status,
-                        titles: cur.title,
+                        titles: bind.activePurchaceTitleMaker(title),
                         date: cur.created_at,
                         transID: cur.trans_id,
                         products: cur.purchased_products
@@ -587,7 +608,7 @@ export default class Dashboard extends React.Component {
                                     }
                                     return (
                                         <div className="dashboard__order-container">
-                                            <p className="dashboard__order-text">{this.activePurchaceTitleMaker(cur.titles)}</p>
+                                            <p className="dashboard__order-text">{cur.titles}</p>
                                             <p className="dashboard__order-state">{this.getStatus(cur.status)}</p>
                                         </div>
                                     )}
@@ -609,7 +630,7 @@ export default class Dashboard extends React.Component {
                         this.state.activePurchases.map(cur => (
                         <div className="dashboard__card dashboard__card--status">
                             <h2 className="dashboard__card-title">{cur.id} وضعیت سفارش شماره</h2>
-                            <h2 className="dashboard__card-subtitle">{this.activePurchaceTitleMaker(cur.titles)}</h2>
+                            <h2 className="dashboard__card-subtitle">{cur.titles}</h2>
                             <div className="dashboard__status-container">
 
                                 <div className={"dashboard__status-box" + (cur.status >= 0 ? ' dashboard__status-box--active' : '')}>
@@ -781,7 +802,7 @@ export default class Dashboard extends React.Component {
                 {
                     this.state.path === this.HISTORY &&
                     <div className="histories__container">
-                        <Histories purchases={this.state.purchases}/>
+                        <Histories purchases={this.state.purchases} titleMaker={this.activePurchaceTitleMaker}/>
                     </div>
                 }
 
