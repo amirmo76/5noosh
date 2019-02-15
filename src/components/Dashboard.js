@@ -52,24 +52,41 @@ export default class Dashboard extends React.Component {
         notifications: []
     }
 
+    //changing password
     changePassClickHandler = e => {
         e.preventDefault();
         if (this.state.currentPassValid && this.state.newPassValid && this.state.newPassConfirmValid) {
-            console.log('send request to change password!');
-        }
-    }
+            console.log('sending request to change password!');
+            //gatehring values
+            const prevPass = document.getElementById('prev-pass').value;
+            const newPass = document.getElementById('new-pass').value;
+            const newPassConfirm = document.getElementById('new-pass-confirmation').value;
+            
+            //clearing inputs
+            document.getElementById('prev-pass').value = '';
+            document.getElementById('new-pass').value = '';
+            document.getElementById('new-pass-confirmation').value = '';
 
-    changePassJSX = (
-        <form className="dashboard__change-pass-form">
-            <label htmlFor="prev-pass" className="label">رمز عبور فعلی</label>
-            <input type="password" className="input input--tertiary mg-bottom-md" id="prev-pass" required/>
-            <label htmlFor="new-pass" className="label">رمز عبور جدید</label>
-            <input type="password" className="input input--tertiary mg-bottom-md" id="new-pass" required/>
-            <label htmlFor="new-pass-confirmation" className="label">تکرار رمز عبور جدید</label>
-            <input type="password" className="input input--tertiary mg-bottom-md" id="new-pass-confirmation" required/>
-            <button type="submit" class="btn btn--tall btn--no-up-animation btn--outline-dark" onClick={this.changePassClickHandler}>ثبت</button>
-        </form>
-    )
+            //sending request
+            const token = JSON.parse(localStorage.getItem('token'));            
+            axios({
+                method: 'post',               
+                url: '/api/users/update/password',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                data: {
+                    current_password: prevPass,
+                    new_password: newPass,
+                    new_password_confirmation: newPassConfirm
+                }
+            }).then(function(response){
+                console.log(response);
+            }).catch(function(error){
+                console.log(error);
+            });
+        }
+    }    
 
     editClickHandler = e => {
         this.setState(() => ({editMode: !this.state.editMode}));
@@ -84,6 +101,7 @@ export default class Dashboard extends React.Component {
                     name: value
                 }
             }));
+
         } else if (e.target.classList.contains('dashboard__info-input--email')) {
             this.setState(prev => ({
                 user: {
@@ -91,6 +109,7 @@ export default class Dashboard extends React.Component {
                     email: value
                 }
             }));
+
         } else if (e.target.classList.contains('dashboard__info-input--phone')) {
             this.setState(prev => ({
                 user: {
@@ -98,6 +117,7 @@ export default class Dashboard extends React.Component {
                     phone: value
                 }
             }));
+            
         } else if (e.target.classList.contains('dashboard__info-input--zip-code')) {
             this.setState(prev => ({
                 user: {
@@ -105,6 +125,7 @@ export default class Dashboard extends React.Component {
                     zipCode: value
                 }
             }));
+
         } else if (e.target.classList.contains('dashboard__info-input--address')) {
             this.setState(prev => ({
                 user: {
@@ -112,6 +133,7 @@ export default class Dashboard extends React.Component {
                     address: value
                 }
             }));
+
         } else if (e.target.classList.contains('dashboard__info-input--state')) {
             this.setState(prev => ({
                 user: {
@@ -119,6 +141,7 @@ export default class Dashboard extends React.Component {
                     state: value
                 }
             }));
+
         } else if (e.target.classList.contains('dashboard__info-input--city')) {
             this.setState(prev => ({
                 user: {
@@ -126,8 +149,36 @@ export default class Dashboard extends React.Component {
                     city: value
                 }
             }));
+
+        } else if (e.target.classList.contains('dashboard__info-input--pass')) {
+            const result = (document.getElementById('prev-pass').value.length >= 5);
+            this.setState(() => ({currentPassTouched: true, currentPassValid: result}));
+
+        } else if (e.target.classList.contains('dashboard__info-input--new-pass')) {
+            let result = (document.getElementById('new-pass').value.length >= 5);
+            this.setState(() => ({newPassTouched: true, newPassValid: result}));
+
+            result = (document.getElementById('new-pass-confirmation').value === document.getElementById('new-pass').value);
+            this.setState(() => ({newPassConfirmValid: result}));
+
+        } else if (e.target.classList.contains('dashboard__info-input--new-pass-confirmation')) {
+            const result = (document.getElementById('new-pass-confirmation').value === document.getElementById('new-pass').value);
+            this.setState(() => ({newPassConfirmTouched: true, newPassConfirmValid: result}));
+
         }
     }
+
+    changePassJSX = (
+        <form className="dashboard__change-pass-form">
+            <label htmlFor="prev-pass" className="label">رمز عبور فعلی</label>
+            <input type="password" className="input input--tertiary dashboard__info-input--pass mg-bottom-md" id="prev-pass" required onChange={this.inputOnChangeHandle}/>
+            <label htmlFor="new-pass" className="label">رمز عبور جدید</label>
+            <input type="password" className="input input--tertiary dashboard__info-input--new-pass mg-bottom-md" id="new-pass" required onChange={this.inputOnChangeHandle}/>
+            <label htmlFor="new-pass-confirmation" className="label">تکرار رمز عبور جدید</label>
+            <input type="password" className="input input--tertiary dashboard__info-input--new-pass-confirmation mg-bottom-md" id="new-pass-confirmation" required onChange={this.inputOnChangeHandle}/>
+            <button type="submit" class="btn btn--tall btn--no-up-animation btn--outline-dark" onClick={this.changePassClickHandler}>ثبت</button>
+        </form>
+    )
 
     activePurchaceTitleMaker(titles) {
         if (titles) {
@@ -311,38 +362,12 @@ export default class Dashboard extends React.Component {
             }
         }).then(function (response) {
             if (response.status === 200) {
-                bind.setState(() => ({isLoggedIn: false}));
                 localStorage.removeItem('token');
                 return bind.props.history.push('/');
             }
         }).catch(function (error) {
             console.log(error);
         });
-
-    }
-
-    logoutClickHandler = e => {
-        const bind = this;
-        const token = JSON.parse(localStorage.getItem('token'));
-        axios({
-            method: 'get',
-            url: '/api/logout',
-            headers: {
-                'Authorization': 'Bearer ' + token,
-            }
-        }).then(function (response) {
-            if (response.status === 200) {
-                bind.setState(() => ({isLoggedIn: false}));
-                localStorage.removeItem('token');
-
-                if (bind.props.location) {
-                    return bind.props.history.push('/');
-                }
-            }
-        }).catch(function (error) {
-            console.log(error);
-        });
-
     }
 
     render(){
