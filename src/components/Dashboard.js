@@ -172,13 +172,13 @@ export default class Dashboard extends React.Component {
     submitInfoFormHandler = e => {
         const formData = new FormData();
         if (document.getElementById('avatar').files[0]) {
-            formData.append("image", document.getElementById('avatar').files[0]);
+            formData.append("profile_pic", document.getElementById('avatar').files[0]);
         }
         formData.append('name', this.state.user.name);
         formData.append('email', this.state.user.email);
         formData.append('phone', this.state.user.phone);
         formData.append('address', this.state.user.address);
-        formData.append('zip-code', this.state.user.zipCode);
+        formData.append('zip_code', this.state.user.zipCode);
         formData.append('state', this.state.user.state);
         formData.append('city', this.state.user.city);
 
