@@ -171,8 +171,8 @@ export default class Dashboard extends React.Component {
         console.log('sending form data');
         const token = JSON.parse(localStorage.getItem('token'));
         axios({
-            method: 'put',
-            url: '/api/users',
+            method: 'post',
+            url: '/api/users/update/profile',
             headers: {
                 'Authorization': 'Bearer ' + token,
                 'content-type': 'multipart/form-data'
@@ -235,10 +235,10 @@ export default class Dashboard extends React.Component {
 
                     const temp = {
                         status: cur.status,
-                        titles: title,
-                        date: created_at,
-                        transID: trans_id,
-                        products: purchased_products
+                        titles: cur.title,
+                        date: cur.created_at,
+                        transID: cur.trans_id,
+                        products: cur.purchased_products
                     } 
 
                     return temp;
