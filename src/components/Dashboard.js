@@ -171,15 +171,31 @@ export default class Dashboard extends React.Component {
 
     submitInfoFormHandler = e => {
         const formData = new FormData();
-        formData.append("image", document.getElementById('avatar').files[0]);
-        console.log(document.getElementById('avatar').files[0]);
+        if (document.getElementById('avatar').files[0]) {
+            formData.append("image", document.getElementById('avatar').files[0]);
+        }
+        formData.append('name', this.state.user.name);
+        formData.append('email', this.state.user.email);
+        formData.append('phone', this.state.user.phone);
+        formData.append('address', this.state.user.address);
+        formData.append('zip-code', this.state.user.zipCode);
+        formData.append('state', this.state.user.state);
+        formData.append('city', this.state.user.city);
 
-        // axios({
-        //     method: 'post',
-        //     headers: {
-        //         'Authorization': 'Bearer ' + token,
-        //     },
-        // })
+        console.log('sending form data');
+        axios({
+            method: 'put',
+            url: '/api/users',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'content-type': 'multipart/form-data'
+            },
+            data: formData
+        }).then(function(response) {
+            console.log(response);
+        }).catch(function(error) {
+            console.log(error);
+        });
     }
 
     componentDidMount() {
