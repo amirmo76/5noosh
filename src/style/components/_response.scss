@@ -1,0 +1,39 @@
+.response {
+    font-size: 1.4rem;
+    width: 100%;
+    border-radius: .5rem;
+    border-top-left-radius: none;
+    display: flex;
+    flex-direction: column;
+    padding: .75rem 1.5rem;
+
+
+    &__close {
+        border: none;
+        background-color: transparent;  
+        color: inherit;   
+        align-self: flex-end;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__message {
+        padding: 1rem;
+        text-align: right;
+    }
+
+    &--warning {
+        background-color: $--color-primary;
+    }
+
+    &--success {
+        background-color: $--color-green-sat;
+    }
+
+    &--error {
+        background-color: $--color-pink;
+        color: $--color-white;
+    }
+}

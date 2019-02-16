@@ -2,6 +2,7 @@ import React from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import axios from 'axios';
+import ResponseManager from './ResponseManager';
 
 export default class ContactUsPage extends React.Component {
 
@@ -17,7 +18,9 @@ export default class ContactUsPage extends React.Component {
         phone: '999-633458',
         text: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است',
         error: '',
-        success: ''
+        success: '',
+
+        responses: []
     }
 
     submitHandler = e => {
@@ -43,7 +46,9 @@ export default class ContactUsPage extends React.Component {
                 }
             });
         } else {
-            bind.setState(() => ({error: 'ورودی های خود را کنترل کنید'}));
+            let responses = this.state.responses;
+            responses.push({ type: 'warning', message: '!ورودی های خود را کنترل کنید' });
+            this.setState(()=> ({ responses }));
         }
     }
 
@@ -84,7 +89,6 @@ export default class ContactUsPage extends React.Component {
             textValid: result
         }));
 
-        console.log(this.state);
     }
 
     errorCloseHandler = e => {
@@ -197,6 +201,7 @@ export default class ContactUsPage extends React.Component {
                         </div>
                     </div>
                 </div>
+                <ResponseManager responses={this.state.responses}/>
                 <Footer />
             </div>
         );

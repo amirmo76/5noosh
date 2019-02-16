@@ -1,0 +1,11 @@
+.response-manager {
+    position: fixed;
+    top: 10rem;
+    right: 5rem;
+    z-index: 50;
+    width: 27.5rem;
+    max-height: 75vh;
+    display: grid;
+    grid-gap: 2rem;
+    overflow-y: auto;
+}
