@@ -151,10 +151,6 @@ export default class Navigation extends React.Component {
             backgroundImage: `url(${this.state.avatar})`
         }
 
-        if (!this.state.avatar) {
-            style.backgroundImage = `url(img/pic-5.png)`;
-        }
-
         return (
             <div className="navigation__container">
                 <nav className={'navigation' + (this.props.shifted ? ' navigation--shifted' : '')

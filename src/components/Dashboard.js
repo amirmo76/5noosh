@@ -15,17 +15,7 @@ export default class Dashboard extends React.Component {
 
     state = {
         editMode: false,
-        user: {
-            id: 1,
-            name: 'محمد قاسمی',
-            email: 'amir.mohseni7697@gmail.com',
-            phone: '09132669877',
-            zipCode: '991786542',
-            state: 'تهران',
-            city: 'تهران',
-            profilePic: 'img/pic-5.png',
-            address: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است'
-        },
+        user: {},
         news: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است',
         currentPassValid: false,
         currentPassTouched: false,
@@ -33,48 +23,16 @@ export default class Dashboard extends React.Component {
         newPassTouched: false,
         newPassConfirmValid: false,
         newPassConfirmTouched: false,
-        
         path: this.DASHBOARD,
-
-        activePurchases: [
-            {
-                id: "#1231231",
-                titles: 'عنوان محصول اول',
-                // between 0 to 3
-                status: 1
-            }
-        ],
-
-        purchases: [
-            {
-                id: 24,
-                status: 2,
-                titles: 'محصول و محصول دوم',
-                date: '1397/12/24',
-                transID: '#3232323',
-                products: [
-                    {
-                        id: 2,
-                        name: 'محصول',
-                        price: 12000,
-                        quantity: 3
-                    },
-                    {
-                        id: 1,
-                        name: 'محصول دوم',
-                        price: 11000,
-                        quantity: 1
-                    }
-                ]
-            }
-        ],
-
+        activePurchases: [],
+        purchases: [],
         notifications: []
     }
 
     //changing password
     changePassClickHandler = e => {
         e.preventDefault();
+        // console.log(`curPass: ${this.state.currentPassValid} newPass ${this.state.newPassValid} newPassConfirm ${this.state.newPassConfirmValid}`);
         if (this.state.currentPassValid && this.state.newPassValid && this.state.newPassConfirmValid) {
             console.log('sending request to change password!');
             //gatehring values
@@ -89,6 +47,7 @@ export default class Dashboard extends React.Component {
 
             //sending request
             const token = JSON.parse(localStorage.getItem('token'));            
+            console.log('send');
             axios({
                 method: 'post',               
                 url: '/api/users/update/password',
@@ -172,19 +131,15 @@ export default class Dashboard extends React.Component {
 
         } else if (e.target.classList.contains('dashboard__info-input--pass')) {
             const result = (document.getElementById('prev-pass').value.length >= 5);
-            this.setState(() => ({currentPassTouched: true, currentPassValid: result}));
+            this.setState(() => ({currentPassValid: result}));
 
         } else if (e.target.classList.contains('dashboard__info-input--new-pass')) {
             let result = (document.getElementById('new-pass').value.length >= 5);
             this.setState(() => ({newPassTouched: true, newPassValid: result}));
 
-            result = (document.getElementById('new-pass-confirmation').value === document.getElementById('new-pass').value);
-            this.setState(() => ({newPassConfirmValid: result}));
-
         } else if (e.target.classList.contains('dashboard__info-input--new-pass-confirmation')) {
-            const result = (document.getElementById('new-pass-confirmation').value === document.getElementById('new-pass').value);
+            let result = (document.getElementById('new-pass-confirmation').value === document.getElementById('new-pass').value);
             this.setState(() => ({newPassConfirmTouched: true, newPassConfirmValid: result}));
-
         }
     }
 
@@ -343,9 +298,9 @@ export default class Dashboard extends React.Component {
                     name: temp.name,
                     email: temp.email,
                     phone: temp.phone,
-                    zipCode: temp.zip_code,
-                    state: temp.state,
-                    city: temp.city,
+                    zipCode: temp.zip_code || 'ثبت نشده',
+                    state: temp.state || 'ثبت نشده',
+                    city: temp.city || 'ثبت نشده',
                     address: temp.address,
                     profilePic: temp.profile_pic
                 }
