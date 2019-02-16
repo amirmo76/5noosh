@@ -49,7 +49,7 @@ export default class Dashboard extends React.Component {
 
             //sending request
             const token = JSON.parse(localStorage.getItem('token'));   
-            const bind = this;         
+            const bind = this;   
             axios({
                 method: 'post',               
                 url: '/api/users/update/password',
@@ -66,6 +66,7 @@ export default class Dashboard extends React.Component {
                     let responses = bind.state.responses;
                     responses.push({ type: 'success', message: 'رمز عبور با موفقیت بروزرسانی شد!' });
                     bind.setState(()=> ({ responses }));
+                    document.getElementById('change-pass').click();
                 }
             }).catch(function(error){
                 if (error.response.status == 422) {
@@ -81,6 +82,10 @@ export default class Dashboard extends React.Component {
                     bind.setState(()=> ({ responses }));
                 }
             });
+        } else {
+            let responses = this.state.responses;
+            responses.push({ type: 'warning', message: 'ورودی های خود را کنترل کنید!' });
+            this.setState(()=> ({ responses }));
         }
     }    
 
