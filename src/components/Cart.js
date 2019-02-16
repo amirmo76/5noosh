@@ -199,7 +199,7 @@ export default class Cart extends React.Component {
         }).then(function (response) {
             if (response.status === 202) {
                 console.log(response.data.data);
-                window.location.replace(response.data.data);                   
+                window.location.replace(response.data.data);
             }
         }).catch(function (error) {
             console.log(error);

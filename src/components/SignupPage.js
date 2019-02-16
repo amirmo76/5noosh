@@ -3,7 +3,7 @@ import Navigation from './Navigation';
 import Footer from './Footer';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import ResponseManager from './ResponseManager';
 
 export default class SignupPage extends React.Component {
 
@@ -20,7 +20,8 @@ export default class SignupPage extends React.Component {
         passValid: false,
         passConfirmTouched: false,
         passConfirmValid: false,
-        error: ''
+        error: '',
+        responses: []
     }
 
     submitHandler = e => {
@@ -42,14 +43,32 @@ export default class SignupPage extends React.Component {
             }).then(function (response){
                 if (response.status === 201) {
                     //ok
-                    bind.setState(() => ({error: ''}));
-                    return bind.props.history.push('/login');
+                    let responses = this.state.responses;
+                    responses.push({ type: 'success', message: '!ثبت نام با موفقیت انجام شد' });
+                    bind.setState(()=> ({ responses }));
+                    setTimeout(() => {
+                        return bind.props.history.push('/login');
+                    }, 3000);
                 }
             }).catch(function (error) {
-                bind.setState(() => ({error: 'آدرس ایمیل وارد شده قبلا استفاده شده است'}));
+                if (error.status === 422) {
+                    let responses = this.state.responses;
+                    for (var key in error.response.data) {
+                        if (error.response.data.hasOwnProperty(key)) {
+                            responses.push({ type: 'warning', message: error.response.data[key][0] });
+                        }
+                    }
+                    bind.setState(()=> ({ responses }));
+                } else {
+                    let responses = this.state.responses;
+                    responses.push({ type: 'warning', message: '!خطا در اتصال به سرور' });
+                    bind.setState(()=> ({ responses }));
+                }
             });
         } else {
-            bind.setState(() => ({error: 'ورودی های خود را کنترل کنید'}));
+            let responses = this.state.responses;
+            responses.push({ type: 'warning', message: '!ورودی های خود را کنترل کنید' });
+            this.setState(()=> ({ responses }));
         }
     }
 
@@ -116,7 +135,7 @@ export default class SignupPage extends React.Component {
             phoneTouched: true
         }));
 
-        const re = /^09(0[1-2]|1[0-9]|3[0-9]|2[0-1])-?[0-9]{3}-?[0-9]{4}$/;
+        const re = /^09(0[0-9]|1[0-9]|3[0-9]|2[0-1])-?[0-9]{3}-?[0-9]{4}$/;
         const result = re.test(String(document.getElementById('phone').value));
 
         this.setState(() => ({
@@ -199,6 +218,7 @@ export default class SignupPage extends React.Component {
                     </div>
                     
                 </div>
+                <ResponseManager responses={this.state.responses}/>
                 <Footer />
             </div>
         );
