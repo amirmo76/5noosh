@@ -69,7 +69,7 @@ export default class Dashboard extends React.Component {
                     document.getElementById('change-pass').click();
                 }
             }).catch(function(error){
-                if (error.response.status == 422) {
+                if (error.response.status === 422) {
                     let responses = bind.state.responses;
                     for (var key in error.response.data.errors) {
                         if (error.response.data.errors.hasOwnProperty(key)) {
