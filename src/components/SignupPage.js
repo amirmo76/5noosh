@@ -43,7 +43,7 @@ export default class SignupPage extends React.Component {
             }).then(function (response){
                 if (response.status === 201) {
                     //ok
-                    let responses = this.state.responses;
+                    let responses = bind.state.responses;
                     responses.push({ type: 'success', message: '!ثبت نام با موفقیت انجام شد' });
                     bind.setState(()=> ({ responses }));
                     setTimeout(() => {
@@ -52,7 +52,7 @@ export default class SignupPage extends React.Component {
                 }
             }).catch(function (error) {
                 if (error.status === 422) {
-                    let responses = this.state.responses;
+                    let responses = bind.state.responses;
                     for (var key in error.response.data) {
                         if (error.response.data.hasOwnProperty(key)) {
                             responses.push({ type: 'warning', message: error.response.data[key][0] });
@@ -60,7 +60,7 @@ export default class SignupPage extends React.Component {
                     }
                     bind.setState(()=> ({ responses }));
                 } else {
-                    let responses = this.state.responses;
+                    let responses = bind.state.responses;
                     responses.push({ type: 'warning', message: '!خطا در اتصال به سرور' });
                     bind.setState(()=> ({ responses }));
                 }
