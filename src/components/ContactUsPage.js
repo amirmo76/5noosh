@@ -47,7 +47,7 @@ export default class ContactUsPage extends React.Component {
             });
         } else {
             let responses = this.state.responses;
-            responses.push({ type: 'warning', message: '!ورودی های خود را کنترل کنید' });
+            responses.push({ type: 'warning', message: 'ورودی های خود را کنترل کنید!' });
             this.setState(()=> ({ responses }));
         }
     }

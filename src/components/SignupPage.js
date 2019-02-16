@@ -44,7 +44,7 @@ export default class SignupPage extends React.Component {
                 if (response.status === 201) {
                     //ok
                     let responses = bind.state.responses;
-                    responses.push({ type: 'success', message: '!ثبت نام با موفقیت انجام شد' });
+                    responses.push({ type: 'success', message: 'ثبت نام با موفقیت انجام شد!' });
                     bind.setState(()=> ({ responses }));
                     setTimeout(() => {
                         return bind.props.history.push('/login');
@@ -61,13 +61,13 @@ export default class SignupPage extends React.Component {
                     bind.setState(()=> ({ responses }));
                 } else {
                     let responses = bind.state.responses;
-                    responses.push({ type: 'warning', message: '!خطا در اتصال به سرور' });
+                    responses.push({ type: 'warning', message: 'خطا در اتصال به سرور!' });
                     bind.setState(()=> ({ responses }));
                 }
             });
         } else {
             let responses = this.state.responses;
-            responses.push({ type: 'warning', message: '!ورودی های خود را کنترل کنید' });
+            responses.push({ type: 'warning', message: 'ورودی های خود را کنترل کنید!' });
             this.setState(()=> ({ responses }));
         }
     }

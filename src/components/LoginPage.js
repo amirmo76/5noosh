@@ -4,6 +4,7 @@ import Footer from './Footer';
 import axios from 'axios';
 import { Route, Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
+import ResponseManager from './ResponseManager';
 
 export default class LoginPage extends React.Component {
 
@@ -12,7 +13,8 @@ export default class LoginPage extends React.Component {
         emailValid: false,
         passTouched: false,
         passValid: false,
-        error: ''
+        error: '',
+        responses: []
     }
 
     submitHandler = e => {
@@ -25,21 +27,33 @@ export default class LoginPage extends React.Component {
                 url: '/api/login',
                 data: {
                     email: document.getElementById('email').value,
-                    password: document.getElementById('pass').value,
-                    remember_me: document.getElementById('remember').checked
+                    password: document.getElementById('pass').value
                 }
             }).then(function (response) {
                 if (response.status === 200) {
-                    bind.setState(() => ({error: ''}));
                     const json = JSON.stringify(response.data.data.accessToken);
                     localStorage.setItem('token', json);
                     return bind.props.history.push('/dashboard');
                 }
             }).catch(function (error) {
-                bind.setState(() => ({error: 'ایمیل یا رمز عبور اشتباه است'}));
+                if (error.response.status === 422) {
+                    let responses = bind.state.responses;
+                    for (var key in error.response.data.errors) {
+                        if (error.response.data.errors.hasOwnProperty(key)) {
+                            responses.push({ type: 'warning', message: error.response.data.errors[key][0] });
+                        }
+                    }
+                    bind.setState(()=> ({ responses }));
+                } else {
+                    let responses = bind.state.responses;
+                    responses.push({ type: 'warning', message: 'خطا در اتصال به سرور!' });
+                    bind.setState(()=> ({ responses }));
+                }
             });
         } else {
-            bind.setState(() => ({error: 'ورودی های خود را کنترل کنید'}));
+            let responses = this.state.responses;
+            responses.push({ type: 'warning', message: 'ورودی های خود را کنترل کنید!' });
+            this.setState(()=> ({ responses }));
         }
     }
     
@@ -86,12 +100,12 @@ export default class LoginPage extends React.Component {
             }
         }).then(function (response) {
             if (response.status === 200) {
-                console.log('ok');
                 return bind.props.history.push('/dashboard');                
             }
         }).catch(function (error) {
-            console.log('not ok');
-            console.log(error);
+            if (error.response.status === 401) {
+                
+            }
         });
     }
 
@@ -117,22 +131,6 @@ export default class LoginPage extends React.Component {
                             <label className="label label--secondary">رمز عبور</label>
                             <input id="pass" className={"input input--secondary mg-bottom-md " + (this.state.passTouched && (this.state.passValid ? "input--valid" : "input--unvalid"))} type="password" onChange={this.passChangeHandler} required/>
                             <span className={"error" + ((!this.state.passValid && this.state.passTouched) ? ' error--show' : '')}>رمز عبور باید حداقل 5 کاراکتر باشد</span>
-                            
-                            <input type="checkbox" className="input--checkbox" id="remember" name="remember" checked/>
-                            <label className="checkbox" htmlFor="remember">
-                                <div className="checkbox__container">
-                                    {/* <svg className="checkbox__tick" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'>
-                                        <path d='m.3,14c-0.2-0.2-0.3-0.5-0.3-0.7s0.1-0.5 0.3-0.7l1.4-1.4c0.4-0.4 1-0.4 1.4,0l.1,.1 5.5,5.9c0.2,0.2 0.5,0.2 0.7,0l13.4-13.9h0.1v-8.88178e-16c0.4-0.4 1-0.4 1.4,0l1.4,1.4c0.4,0.4 0.4,1 0,1.4l0,0-16,16.6c-0.2,0.2-0.4,0.3-0.7,0.3-0.3,0-0.5-0.1-0.7-0.3l-7.8-8.4-.2-.3z'
-                                        />
-                                    </svg> */}
-                                    <svg id='Capa_1' xmlns='http://www.w3.org/2000/svg' className="checkbox__tick"
-                                    viewBox='0 0 490.434 490.433'>
-                                        <path d='M472.003,58.36l-13.132-11.282c-21.798-18.732-54.554-16.644-73.799,4.697L165.39,295.359l-66.312-57.112 c-21.775-18.753-54.536-16.707-73.804,4.611l-11.611,12.848c-9.416,10.413-14.305,24.149-13.595,38.18 c0.717,14.023,6.973,27.188,17.402,36.6l121.553,111.311c10.524,9.883,24.628,15.037,39.044,14.272 c14.416-0.763,27.894-7.386,37.311-18.329l262.245-304.71c9.162-10.646,13.717-24.494,12.661-38.496 C489.229,80.522,482.655,67.512,472.003,58.36z'
-                                        />
-                                    </svg>
-                                </div>
-                                <span className="checkbox__text">من را به خاطر بسپار</span>
-                            </label>
 
                             <button className="btn btn--fat btn--primary mg-bottom-md btn--no-up-animation btn--shadow-animation" type="submit" onClick={this.submitHandler}>ورود</button>
                             <div className="login__options">
@@ -150,6 +148,7 @@ export default class LoginPage extends React.Component {
                     </div>
                     
                 </div>
+                <ResponseManager responses={this.state.responses} />
                 <Footer />
             </div>
         );
