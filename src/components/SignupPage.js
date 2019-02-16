@@ -51,7 +51,7 @@ export default class SignupPage extends React.Component {
                     }, 3000);
                 }
             }).catch(function (error) {
-                if (error.status === 422) {
+                if (error.response.status === 422) {
                     let responses = bind.state.responses;
                     for (var key in error.response.data) {
                         if (error.response.data.hasOwnProperty(key)) {
