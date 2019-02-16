@@ -80,40 +80,6 @@ export default class Navigation extends React.Component {
     }
 
     componentWillMount() {
-        const bind = this;
-        axios({
-            method: 'get',
-            url: '/api/isRemembered'
-        }).then(function (response) {
-            if (response.status === 200) {
-                console.log('isRemembered response: ' + response);
-                let isRemembered = response.data.isRemembered;
-                if (isRemembered) {
-
-                    const token = JSON.parse(localStorage.getItem('token'));
-                    const config = {
-                        headers: {'Authorization': "bearer " + token}
-                    };
-
-                    axios({
-                        method: 'get',
-                        url: '/api/users/user',
-                        config: config
-                    }).catch(function (error) {
-                        console.log('error: ' + error.response);
-                        isRemembered = false;
-                    }).then(function (response) {
-                        if (response.status === 200) {
-                            console.log('profile_pic response: ' + response);
-                            const avatar = response.data.data.profile_pic;
-                            bind.setState(() => ({ avatar }));
-                        }
-                    });
-                }
-                bind.setState(() => ({ isRemembered }));
-            }
-        });
-
         //scroll event listener
         window.addEventListener('scroll', this.scrollHandler);
 
@@ -140,7 +106,7 @@ export default class Navigation extends React.Component {
                 }));            
             }
         }).catch(function (error) {
-            console.log(error);
+            
         });
     }
 
