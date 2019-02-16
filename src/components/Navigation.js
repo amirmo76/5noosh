@@ -106,7 +106,7 @@ export default class Navigation extends React.Component {
                 }));            
             }
         }).catch(function (error) {
-            
+            console.log(error);
         });
     }
 
@@ -147,8 +147,11 @@ export default class Navigation extends React.Component {
 
     render() {
 
-        let style = {
-            backgroundImage: `url(${this.state.avatar})`
+        let style = '';
+        if (this.state.avatar) {
+            style = {
+                backgroundImage: `url(${this.state.avatar})`
+            } 
         }
 
         return (

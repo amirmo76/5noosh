@@ -36,7 +36,6 @@ export default class Dashboard extends React.Component {
         e.preventDefault();
         // console.log(`curPass: ${this.state.currentPassValid} newPass ${this.state.newPassValid} newPassConfirm ${this.state.newPassConfirmValid}`);
         if (this.state.currentPassValid && this.state.newPassValid && this.state.newPassConfirmValid) {
-            console.log('sending request to change password!');
             //gatehring values
             const prevPass = document.getElementById('prev-pass').value;
             const newPass = document.getElementById('new-pass').value;
