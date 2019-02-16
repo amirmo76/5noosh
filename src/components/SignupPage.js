@@ -55,7 +55,7 @@ export default class SignupPage extends React.Component {
                     let responses = bind.state.responses;
                     for (var key in error.response.data) {
                         if (error.response.data.hasOwnProperty(key)) {
-                            responses.push({ type: 'warning', message: error.response.data[key][0] });
+                            responses.push({ type: 'warning', message: error.response.data.errors[key][0] });
                         }
                     }
                     bind.setState(()=> ({ responses }));
@@ -160,6 +160,14 @@ export default class SignupPage extends React.Component {
     }
 
     render(){
+
+        let responses = ['hello', '2', '3'];
+        for (var key in responses) {
+            if (responses.hasOwnProperty(key)) {
+                responses.push({ type: 'warning', message: responses[key] });
+            }
+        }
+
         return (
             <div className="signup">
                 <Navigation />
