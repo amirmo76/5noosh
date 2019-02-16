@@ -89,7 +89,12 @@ export default class Navigation extends React.Component {
         }
         window.addEventListener("resize", this.screenChangeHandler);
 
+        
+    }
+
+    componentDidMount() {
         //logged in
+        console.log('request');
         const token = JSON.parse(localStorage.getItem('token'));
         axios({
             method: 'get',
