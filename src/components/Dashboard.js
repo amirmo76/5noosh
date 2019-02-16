@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Notifications from './Notifications';
 import Histories from './Histories';
 import axios from 'axios';
+import ResponseManager from './ResponseManager';
 
 export default class Dashboard extends React.Component {
 
@@ -26,7 +27,8 @@ export default class Dashboard extends React.Component {
         path: this.DASHBOARD,
         activePurchases: [],
         purchases: [],
-        notifications: []
+        notifications: [],
+        responses: []
     }
 
     //changing password
@@ -46,8 +48,8 @@ export default class Dashboard extends React.Component {
             document.getElementById('new-pass-confirmation').value = '';
 
             //sending request
-            const token = JSON.parse(localStorage.getItem('token'));            
-            console.log('send');
+            const token = JSON.parse(localStorage.getItem('token'));   
+            const bind = this;         
             axios({
                 method: 'post',               
                 url: '/api/users/update/password',
@@ -60,9 +62,24 @@ export default class Dashboard extends React.Component {
                     new_password_confirmation: newPassConfirm
                 }
             }).then(function(response){
-                console.log(response);
+                if (response.status === 200) {
+                    let responses = bind.state.responses;
+                    responses.push({ type: 'success', message: 'رمز عبور با موفقیت بروزرسانی شد!' });
+                    bind.setState(()=> ({ responses }));
+                }
             }).catch(function(error){
-                console.log(error);
+                if (error.response.status == 422) {
+                    let responses = bind.state.responses;
+                    for (var key in error.response.data.errors) {
+                        if (error.response.data.errors.hasOwnProperty(key)) {
+                            responses.push({ type: 'warning', message: error.response.data.errors[key][0] });
+                        }
+                    }
+                } else {
+                    let responses = bind.state.responses;
+                    responses.push({ type: 'warning', message: 'خطا در اتصال به سرور!' });
+                    bind.setState(()=> ({ responses }));
+                }
             });
         }
     }    
@@ -767,7 +784,7 @@ export default class Dashboard extends React.Component {
                         <Notifications notifications={this.state.notifications}/>     
                     </div>
                 }
-                
+                <ResponseManager responses={this.state.responses} />
                 <Footer />
             </div>
         );
