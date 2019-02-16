@@ -94,7 +94,7 @@ export default class Navigation extends React.Component {
 
     componentDidMount() {
         //logged in
-        console.log('request');
+        const bind = this;
         const token = JSON.parse(localStorage.getItem('token'));
         axios({
             method: 'get',
