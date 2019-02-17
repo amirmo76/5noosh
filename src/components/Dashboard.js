@@ -218,7 +218,6 @@ export default class Dashboard extends React.Component {
         formData.append('state', this.state.user.state);
         formData.append('city', this.state.user.city);
 
-        console.log('sending form data');
         const token = JSON.parse(localStorage.getItem('token'));
         const bind = this;
 
@@ -244,7 +243,6 @@ export default class Dashboard extends React.Component {
                         responses.push({ type: 'warning', message: error.response.data.errors[key][0] });
                     }
                 }
-                console.log(responses);
                 bind.setState(()=> ({ responses }));
             } else {
                 let responses = bind.state.responses;
