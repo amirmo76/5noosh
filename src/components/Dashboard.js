@@ -48,7 +48,7 @@ export default class Dashboard extends React.Component {
 
             //sending request
             const token = JSON.parse(localStorage.getItem('token'));   
-            const bind = this;   
+            const bind = this;
             axios({
                 method: 'post',               
                 url: '/api/users/update/password',
@@ -221,6 +221,7 @@ export default class Dashboard extends React.Component {
         console.log('sending form data');
         const token = JSON.parse(localStorage.getItem('token'));
         const bind = this;
+
         axios({
             method: 'post',
             url: '/api/users/update/profile',
@@ -235,7 +236,6 @@ export default class Dashboard extends React.Component {
                 responses.push({ type: 'success', message: 'پروفایل با موفقیت بروزرسانی شد!' });
                 bind.setState(()=> ({ responses }));
             }
-            console.log(response);
         }).catch(function(error) {
             if (error.response.status === 422) {
                 let responses = bind.state.responses;
@@ -244,13 +244,13 @@ export default class Dashboard extends React.Component {
                         responses.push({ type: 'warning', message: error.response.data.errors[key][0] });
                     }
                 }
+                console.log(responses);
                 bind.setState(()=> ({ responses }));
             } else {
                 let responses = bind.state.responses;
                 responses.push({ type: 'warning', message: 'خطا در اتصال به سرور!' });
                 bind.setState(()=> ({ responses }));
             }
-            console.log(error);
         });
     }
 
