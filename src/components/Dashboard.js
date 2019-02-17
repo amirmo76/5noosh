@@ -219,6 +219,7 @@ export default class Dashboard extends React.Component {
 
         console.log('sending form data');
         const token = JSON.parse(localStorage.getItem('token'));
+        const bind = this;
         axios({
             method: 'post',
             url: '/api/users/update/profile',
@@ -228,9 +229,24 @@ export default class Dashboard extends React.Component {
             },
             data: formData
         }).then(function(response) {
-            console.log(response);
+            if (response.status === 200) {
+                let responses = bind.state.responses;
+                responses.push({ type: 'success', message: 'اطلاعات پروفایل با موفقیت بروزرسانی شد!' });
+                bind.setState(()=> ({ responses }));
+            }
         }).catch(function(error) {
-            console.log(error);
+            if (error.response.status === 422) {
+                let responses = bind.state.responses;
+                for (var key in error.response.data.errors) {
+                    if (error.response.data.errors.hasOwnProperty(key)) {
+                        responses.push({ type: 'warning', message: error.response.data.errors[key][0] });
+                    }
+                }
+            } else {
+                let responses = bind.state.responses;
+                responses.push({ type: 'warning', message: 'خطا در اتصال به سرور!' });
+                bind.setState(()=> ({ responses }));
+            }
         });
     }
 
