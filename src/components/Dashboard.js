@@ -229,11 +229,11 @@ export default class Dashboard extends React.Component {
             },
             data: formData
         }).then(function(response) {
-            // if (response.status === 200) {
-            //     let responses = bind.state.responses;
-            //     responses.push({ type: 'success', message: 'اطلاعات پروفایل با موفقیت بروزرسانی شد!' });
-            //     bind.setState(()=> ({ responses }));
-            // }
+            if (response.status === 200) {
+                let responses = bind.state.responses;
+                responses.push({ type: 'success', message: 'رمز عبور با موفقیت بروزرسانی شد!' });
+                bind.setState(()=> ({ responses }));
+            }
             console.log(response);
         }).catch(function(error) {
             // if (error.response.status === 422) {
