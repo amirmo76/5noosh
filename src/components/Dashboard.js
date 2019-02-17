@@ -234,9 +234,10 @@ export default class Dashboard extends React.Component {
                 responses.push({ type: 'success', message: 'پروفایل با موفقیت بروزرسانی شد!' });
                 bind.setState(()=> ({ responses }));
             }
+            console.log(response);
         }).catch(function(error) {
             if (error.response.status === 422) {
-                console.log('adding response for 422');
+                console.log('422');
                 let responses = bind.state.responses;
                 for (var key in error.response.data.errors) {
                     if (error.response.data.errors.hasOwnProperty(key)) {
@@ -248,6 +249,7 @@ export default class Dashboard extends React.Component {
                 responses.push({ type: 'warning', message: 'خطا در اتصال به سرور!' });
                 bind.setState(()=> ({ responses }));
             }
+            console.log(error);
         });
     }
 
