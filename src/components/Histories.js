@@ -1,6 +1,7 @@
 import React from 'react';
 import History from './History';
 import Modal from './Modal';
+import axios from 'axios';
 
 export default class Histories extends React.Component {
 
