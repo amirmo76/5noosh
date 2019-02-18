@@ -111,6 +111,10 @@
     &__logout {
         height: 2.5rem; 
         fill: $--color-white;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     &--light &__logout,  &--light &__notif{

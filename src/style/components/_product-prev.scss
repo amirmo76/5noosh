@@ -2,7 +2,7 @@
 
     display: flex;
     flex-direction: column;
-    border-radius: 2rem;
+    border-radius: 1rem;
     background-color: $--color-black-light-2;
     width: 30rem;
     box-shadow: 0 .3rem 1rem rgba(black, .15);
@@ -25,8 +25,8 @@
         height: 23rem;
         background-size: cover;
         margin-bottom: 1rem;
-        border-top-left-radius: 2rem;
-        border-top-right-radius: 2rem;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
         overflow: hidden;
 
         @include respond(small-desk) {

@@ -19,6 +19,43 @@ export default class Histories extends React.Component {
         }
     }
 
+    componentDidMount() {
+        const bind = this;
+        const token = JSON.parse(localStorage.getItem('token'));
+
+        axios({
+            method: 'get',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            },
+            url: '/api/purchases/'
+        }).then(function (response) {
+            if (response.status === 200) {
+                const purchases = response.data.data.map(cur => {
+                    let title = [];
+                    cur.purchased_products.forEach(cur => {
+                        title.push(cur.name);
+                    })
+
+                    const temp = {
+                        id: cur.id,
+                        status: cur.status,
+                        titles: bind.activePurchaceTitleMaker(title),
+                        date: cur.created_at,
+                        transID: cur.trans_id,
+                        products: cur.purchased_products
+                    } 
+
+                    return temp;
+                });
+                console.log('purchases: ' + purchases);
+                bind.setState(() => ({ data: purchases }));
+            }
+        }).catch(function(error) {
+            console.log(error);
+        });
+    }
+
     onDetailClickListener = e => {
         let p = e.target;
         let found = false;
@@ -77,7 +114,7 @@ export default class Histories extends React.Component {
 
     render() {
         let modalJSX = <p>خطا در بارگزاری</p>;
-        console.log(this.state.detailedPurchase.pruductPrices);
+        console.log("histories: " + this.state.data);
         if (this.state.detailedPurchase.pruductPrices) {
             modalJSX = (
                 <div className="history-detail">
