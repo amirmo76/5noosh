@@ -41,7 +41,7 @@ export default class extends React.Component {
                         />
                     </svg>
                     <h3 className="features__title">پشتیبانی کامل</h3>
-                    <p className="features__text">برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد</p>
+                    <p className="features__text">با پشتیبانی و حمایت مشتری تا پایان مصرف همه محصولات خود را ضمانت می کنیم</p>
                 </div>
     
                 <div className="features__component">
@@ -50,7 +50,7 @@ export default class extends React.Component {
                         />
                     </svg>
                     <h3 className="features__title">قابل اطمینان</h3>
-                    <p className="features__text">چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
+                    <p className="features__text">آزمایش های علمی و بررسی جزییات و استفاده از گیاهان طبیعی و با کیفیت ضامن سلامتی و آسودگی خاطر مشتری است</p>
                 </div>
     
                 <div className="features__component">
@@ -63,7 +63,7 @@ export default class extends React.Component {
                         />
                     </svg>
                     <h3 className="features__title">تضمین کیفیت</h3>
-                    <p className="features__text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک </p>
+                    <p className="features__text">استفاده از با کیفیت ترین مواد در آزمایش ها و تولید بهترین و مجرب ترین کادر نشان دهنده ی کیفیت و سطح احترام به مشتری است</p>
                 </div>
             </div>
         )

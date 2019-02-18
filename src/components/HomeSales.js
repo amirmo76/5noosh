@@ -13,22 +13,22 @@ export default class HomeSales extends React.Component {
 
         items: [
             {
-                id: 1,
-                title: 'نام محصول - 1',
-                price: 1000,
+                id: 5,
+                title: 'دمنوش قند خون',
+                price: 3500,
                 category: 'دسته بندی',
                 thumbnail: 'img/img-1.png',
-                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
-                off: 50
+                shortDesc: "کنترل کلستلرول و تری گلیسیرید، تقویت سیستم ایمنی بدن",
+                off: 10
             },
             {
-                id: 2,
-                title: 'نام محصول - 2',
-                price: 2000,
+                id: 4,
+                title: 'دمنوش آرتیشو',
+                price: 4600,
                 category: 'دسته بندی',
                 thumbnail: 'img/img-2.png',
-                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
-                off: 50
+                shortDesc: "احیا کننده سلول های کبد، جلوگیری از تجمع چربی در کبد",
+                off: 25
             },
             {
                 id: 3,
@@ -40,22 +40,22 @@ export default class HomeSales extends React.Component {
                 off: 50
             },
             {
-                id: 4,
-                title: 'نام محصول - 4',
-                price: 4000,
+                id: 2,
+                title: 'دمنوش آرتیشو',
+                price: 4800,
                 category: 'دسته بندی',
-                thumbnail: 'img/img-4.jpg',
-                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
-                off: 50
+                thumbnail: 'img/product-2.jpg',
+                shortDesc: "احیا کننده سلول های کبد، جلوگیری از تجمع چربی در کبد",
+                off: 25
             },
             {
-                id: 5,
-                title: 'نام محصول - 5',
-                price: 8000,
+                id: 1,
+                title: 'دمنوش قند خون',
+                price: 4500,
                 category: 'دسته بندی',
-                thumbnail: 'img/img-5.jpg',
-                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
-                off: 50
+                thumbnail: 'img/product-1.jpg',
+                shortDesc: "کنترل کلستلرول و تری گلیسیرید، تقویت سیستم ایمنی بدن",
+                off: 10
             }
         ]
     }
@@ -181,7 +181,8 @@ export default class HomeSales extends React.Component {
             <div className="home-sales" id="sales">
                 <div className="home-sales__header">
                     <h2 className="heading--primary">پیشنهادات ویژه ماه</h2>
-                    <h3 className="sub-heading">چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</h3>
+                    <h3 className="sub-heading">قیمت فوق العاده و کیفیت عالی، 
+تطبیق بهترین کیفیت و قیمتها</h3>
                 </div>
                 <span className="home-sales__hero"></span>
                 <span className="home-sales__bg"></span>

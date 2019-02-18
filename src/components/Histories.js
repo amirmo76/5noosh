@@ -6,7 +6,7 @@ import axios from 'axios';
 export default class Histories extends React.Component {
 
     state = {
-        data : this.props.purchases,
+        data : [],
         
         detailedPurchase: {
             id: 23,
@@ -18,6 +18,24 @@ export default class Histories extends React.Component {
             status: 'در حال آماده سازی',
             refrenceCode: '21354535'
         }
+    }
+
+    activePurchaceTitleMaker(titles) {
+        if (titles) {
+            let res = '';
+            if (titles.length > 2) {
+                res = `... ${titles[0]} و ${titles[1]} و`;
+            } else {
+                titles.forEach(cur => res.length > 2 ? res = res + cur : res =  cur + ' و ');
+            }
+            return res;
+        } 
+    }
+
+    getTotalPrice(prices) {
+        let sum = 0;
+        prices.forEach(cur => sum += cur);
+        return sum;
     }
 
     componentDidMount() {
@@ -49,7 +67,6 @@ export default class Histories extends React.Component {
 
                     return temp;
                 });
-                console.log('purchases: ' + purchases);
                 bind.setState(() => ({ data: purchases }));
             }
         }).catch(function(error) {
@@ -70,29 +87,53 @@ export default class Histories extends React.Component {
         
         if (found) {
             const id = parseInt(p.id.split('-')[1]);
-            console.log(`id is ${id}`);
-            this.state.data.forEach(cur => {
-                if (cur.id === id) {
-                    const titles = cur.products.map(cur => cur.name);
-                    const counts = cur.products.map(cur => cur.quantity);
-                    const prices = cur.products.map(cur => cur.price);
-                    let totalPrice = 0;
-                    prices.forEach(cur => totalPrice += cur);
-                    console.log(titles);
-                    this.setState(() => ({
-                        detailedPurchase: {
-                            id: id,
-                            productTitles: titles,
-                            pruductCounts: counts,
-                            pruductPrices: prices,
-                            totalPrice: totalPrice,
-                            date: cur.date,
-                            status: cur.status,
-                            refrenceCode: cur.transID
-                        }
-                    }));
+            
+            const bind = this;
+            const token = JSON.parse(localStorage.getItem('token'));
+            axios({
+                method: 'get',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                },
+                url: '/api/purchases/' + id
+            }).then(function (response) {
+                if (response.status === 200) {
+                    const p = response.data.data;
+                    console.log(response.data.data);
+                    let detailedPurchase = {
+                        id: p.id,
+                        productTitles: p.purchased_products.map(cur => cur.name),
+                        pruductCounts: p.purchased_products.map(cur => cur.number_of_purchases),
+                        pruductPrices: p.purchased_products.map(cur => cur.price),
+                        totalPrice: bind.getTotalPrice(p.purchased_products.map(cur => cur.price)),
+                        date: p.created_at,
+                        status: p.status,
+                        refrenceCode: p.trans_id
+                    }
+                    console.log(p.id);
+                    console.log(p.purchased_products.map(cur => cur.name));
+                    console.log(p.purchased_products.map(cur => cur.number_of_purchases));
+                    console.log(p.purchased_products.map(cur => cur.price));
+                    console.log(bind.getTotalPrice(p.purchased_products.map(cur => cur.price)));
+                    console.log(p.created_at);
+                    console.log(p.status);
+                    console.log(p.trans_id);
+                    console.log(detailedPurchase)
+
+                    bind.setState(prev => ({ detailedPurchase: {
+                        id: detailedPurchase.id,
+                        productTitles: detailedPurchase.productTitles,
+                        pruductCounts: detailedPurchase.pruductCounts,
+                        pruductPrices: detailedPurchase.pruductPrices,
+                        totalPrice: detailedPurchase.totalPrice,
+                        date: detailedPurchase.date,
+                        status: detailedPurchase.status,
+                        refrenceCode: detailedPurchase.refrenceCode
+                    } }), console.log(bind.state.detailedPurchase));
                 }
-            })
+            }).catch(function(error) {
+                console.log(error);
+            });
         }
     }
 
@@ -115,7 +156,6 @@ export default class Histories extends React.Component {
 
     render() {
         let modalJSX = <p>خطا در بارگزاری</p>;
-        console.log("histories: " + this.state.data);
         if (this.state.detailedPurchase.pruductPrices) {
             modalJSX = (
                 <div className="history-detail">
@@ -165,7 +205,7 @@ export default class Histories extends React.Component {
                     this.state.data.length === 0 &&
                     <p className="dashboard__empety">موردی یافت نشد</p>
                 }
-                <Modal content={<p>sd</p>} querySelector={".history__detail"} content={modalJSX}/>
+                <Modal querySelector={".history__detail"} content={modalJSX}/>
             </div>
         );
         

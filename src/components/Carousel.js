@@ -20,10 +20,8 @@ export default class Carousel extends React.Component {
     constructor(props) {
         super(props);
 
-        this.addSlide('دوستی با طبیعت', 'زندگی سالم تر با دارو ها و دمنوش های گیاهی پنج نوش', '/img/img-1.png');
-        this.addSlide('داروی جدید سرماخوردگی', 'رفع علائم و پیش گیری از سرماخوردگی', '/img/img-2.png');
-        this.addSlide('عنوان یک مقاله', 'توضیحاتی از مقاله در این جا قرار می گیرد', '/img/blog-1.jpg');
-        this.addSlide('داروی ضد سرطان', 'تمامی عنوان ها و متن ها نمادین بوده ', '/img/img-5.jpg');
+        this.addSlide('هدیه سلامتی', 'با دمنوش های گیاهی پنج نوش سلامتی را از طبیعت هدیه بگیرید', '/img/pic-9.jpg');
+        this.addSlide('دمنوش آرتیشو', 'سم زدایی و پاکسازی و احیای سلول های کبد', '/img/pic-11.jpg', 'primary', 'خرید محصول', '/product/2');
     }
 
     state = {

@@ -16,18 +16,18 @@ const HomePage = props => {
             <Navigation shifted={true}/>
             <Carousel />
             <Recommended 
-            hero='img/product-hero-1.png' 
-            logo='img/product.png' 
+            hero='img/product-hero-1.jpg' 
+            logo='img/product-1-no-bg.png' 
             id={1}
             landscape={false} 
-            shortDesc='افزایش شادابی و نشاط با عنوان محصول' />
+            shortDesc='تنظیم قند خون بدن' />
             <Recommended
             direction='rtl'
             landscape={true} 
-            hero='img/product-hero-2.png' 
-            logo='img/product.png' 
+            hero='img/product-hero-2.jpg' 
+            logo='img/product-1-no-bg.png' 
             id={2}
-            shortDesc='بهبود تمرکز و آرامش' />
+            shortDesc='سم زدایی و پاک سازی کبد' />
             <Features />
             <HomeSales />
             <Testemonials />
