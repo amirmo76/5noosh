@@ -10,7 +10,7 @@ export default class HomeArticles extends React.Component {
             <div className="home-articles">
                 <div className="home-articles__header mg-bottom-lg">
                     <h2 className="heading--primary">آخرین نوشته های پنج نوش</h2>
-                    <h3 className="sub-heading">چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                    <h3 className="sub-heading">این بخش به زودی راه اندازی خواهد شد
                     <Link to="/" className="home-articles__all">
                         همه نوشته ها
                     </Link>
@@ -27,20 +27,20 @@ export default class HomeArticles extends React.Component {
                 <div className="home-articles__box">
                     <ArticlePrev 
                     thumbnail="img/blog-1.jpg"
-                    title="خوش طعم"
-                    desc="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است"
+                    title="پست آزمایشی"
+                    desc="وبلاگ پنج نوش در حال ساخت و آماده سازی می باشد. به زودی مطالب جذاب و کاربردی مربوط به سلامت در پنج نوش"
                     />
     
                     <ArticlePrev 
                     thumbnail="img/blog-2.jpg"
-                    title="خوش طعم"
-                    desc="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است"
+                    title="پست آزمایشی"
+                    desc="وبلاگ پنج نوش در حال ساخت و آماده سازی می باشد. به زودی مطالب جذاب و کاربردی مربوط به سلامت در پنج نوش"
                     />
     
                     <ArticlePrev 
                     thumbnail="img/blog-3.jpg"
-                    title="خوش طعم"
-                    desc="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است"
+                    title="پست آزمایشی"
+                    desc="وبلاگ پنج نوش در حال ساخت و آماده سازی می باشد. به زودی مطالب جذاب و کاربردی مربوط به سلامت در پنج نوش"
                     />
                 </div>
             </div>

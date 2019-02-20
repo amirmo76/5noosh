@@ -35,7 +35,18 @@ const routes = (
     </HashRouter>
 );
 
-ReactDOM.render(routes, document.getElementById('appRoot'));
+function cssPropertyValueSupported(prop, value) {
+    var d = document.createElement('div');
+    d.style[prop] = value;
+    return d.style[prop] === value;
+}
+
+console.log(cssPropertyValueSupported('display', 'grid'));
+if (cssPropertyValueSupported('display', 'grid')) {
+    ReactDOM.render(routes, document.getElementById('appRoot'));
+} else {
+    ReactDOM.render(routes, <h3>.نسخه مرورگر شما قدیمی می باشد. با بروزرسانی آن از پنج نوش دیدن کنید</h3>);
+}
 // ReactDOM.render(<LoginPage />, document.getElementById('appRoot'));
 // ReactDOM.render(<SignupPage />, document.getElementById('appRoot'));
 

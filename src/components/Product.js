@@ -66,11 +66,10 @@ export default class Product extends React.Component {
                     thumbnail: temp.logo,
                     price: temp.price,
                     category: temp.category,
-                    body: temp.description,
-                    use: temp.how_to_use,
+                    body: (temp.description || bind.state.product.body),
+                    use: (temp.how_to_use || bind.state.product.use),
                     pics: temp.pictures
                 }
-
                 bind.setState(() => ({product: item}));
             } else {
                 bind.setState(() => ({error: true}));

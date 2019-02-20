@@ -42,73 +42,49 @@ export default class SignupPAge extends React.Component {
                 category: 'دسته بندی',
                 thumbnail: 'img/img-3.jpg',
                 shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
-            },
-            {
-                id: 4,
-                title: 'شکلات',
-                price: 9000,
-                category: 'دسته بندی',
-                thumbnail: 'img/img-4.jpg',
-                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
-            },
-            {
-                id: 5,
-                title: 'دانشگاه',
-                price: 8500,
-                category: 'دسته بندی',
-                thumbnail: 'img/img-5.jpg',
-                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
-            },
-            {
-                id: 6,
-                title: 'آسایشگاه',
-                price: 10500,
-                category: 'دسته بندی',
-                thumbnail: 'img/img-6.jpg',
-                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
-            } 
+            }
         ],
         slideShowItems: [
-            {
-                id: 1,
-                title: 'دوچرخه',
-                price: 22500,
-                category: 'دسته بندی',
-                thumbnail: 'img/img-1.png',
-                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
-            },
-            {
-                id: 2,
-                title: 'خوراکی',
-                price: 18100,
-                category: 'دسته بندی',
-                thumbnail: 'img/img-2.png',
-                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
-            },
-            {
-                id: 3,
-                title: 'بهرام',
-                price: 12000,
-                category: 'دسته بندی',
-                thumbnail: 'img/img-3.jpg',
-                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
-            },
-            {
-                id: 4,
-                title: 'شکلات',
-                price: 9000,
-                category: 'دسته بندی',
-                thumbnail: 'img/img-4.jpg',
-                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
-            },
-            {
-                id: 5,
-                title: 'دانشگاه',
-                price: 8500,
-                category: 'دسته بندی',
-                thumbnail: 'img/img-5.jpg',
-                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
-            } 
+            // {
+            //     id: 1,
+            //     title: 'دوچرخه',
+            //     price: 22500,
+            //     category: 'دسته بندی',
+            //     thumbnail: 'img/img-1.png',
+            //     shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
+            // },
+            // {
+            //     id: 2,
+            //     title: 'خوراکی',
+            //     price: 18100,
+            //     category: 'دسته بندی',
+            //     thumbnail: 'img/img-2.png',
+            //     shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
+            // },
+            // {
+            //     id: 3,
+            //     title: 'بهرام',
+            //     price: 12000,
+            //     category: 'دسته بندی',
+            //     thumbnail: 'img/img-3.jpg',
+            //     shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
+            // },
+            // {
+            //     id: 4,
+            //     title: 'شکلات',
+            //     price: 9000,
+            //     category: 'دسته بندی',
+            //     thumbnail: 'img/img-4.jpg',
+            //     shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
+            // },
+            // {
+            //     id: 5,
+            //     title: 'دانشگاه',
+            //     price: 8500,
+            //     category: 'دسته بندی',
+            //     thumbnail: 'img/img-5.jpg',
+            //     shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
+            // } 
         ],
         lookAtResaults: false,
         results: [],
@@ -303,46 +279,9 @@ export default class SignupPAge extends React.Component {
                             <h2 className="heading--secondary mg-bottom-md">دسته بندی محصولات</h2>
 
                             <div className="shop__cats-gp">
-                                <h3 className="shop__cat-main">دسته کلی</h3>
                                 <ul className="shop__cats">
                                     <li className="shop__cat">
-                                        <Link to="/" className="shop__cat-link">دسته جزئی اول</Link>
-                                    </li>
-                                    <li className="shop__cat">
-                                        <Link to="/" className="shop__cat-link">دسته جزئی دوم</Link>
-                                    </li>
-                                    <li className="shop__cat">
-                                        <Link to="/" className="shop__cat-link">دسته جزئی سوم</Link>
-                                    </li>
-                                    <li className="shop__cat">
-                                        <Link to="/" className="shop__cat-link">دسته جزئی چهارم</Link>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div className="shop__cats-gp">
-                                <h3 className="shop__cat-main">دسته کلی</h3>
-                                <ul className="shop__cats">
-                                    <li className="shop__cat">
-                                        <Link to="/" className="shop__cat-link">دسته جزئی اول</Link>
-                                    </li>
-                                    <li className="shop__cat">
-                                        <Link to="/" className="shop__cat-link">دسته جزئی دوم</Link>
-                                    </li>
-                                    <li className="shop__cat">
-                                        <Link to="/" className="shop__cat-link">دسته جزئی سوم</Link>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div className="shop__cats-gp">
-                                <h3 className="shop__cat-main">دسته کلی</h3>
-                                <ul className="shop__cats">
-                                    <li className="shop__cat">
-                                        <Link to="/" className="shop__cat-link">دسته جزئی اول</Link>
-                                    </li>
-                                    <li className="shop__cat">
-                                        <Link to="/" className="shop__cat-link">دسته جزئی دوم</Link>
+                                        <Link to="/" className="shop__cat-link">دمنوش گیاهی</Link>
                                     </li>
                                 </ul>
                             </div>
@@ -386,7 +325,7 @@ export default class SignupPAge extends React.Component {
 
                         </div>
 
-                        {this.state.slideshow && 
+                        {(this.state.slideshow && this.state.slideShowItems.length > 0) && 
                         (
                             <div className="shop__featured mg-bottom-lg">
                                 <h2 className="heading--secondary text-center mg-bottom-sm">پرفروش ترین محصولات</h2>
@@ -405,10 +344,10 @@ export default class SignupPAge extends React.Component {
 
                                     <div className="product-slideshow__box">
                                         <ProductPrev slideshow={this.state.first} product={this.state.slideShowItems[0]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
-                                        <ProductPrev slideshow={this.state.second} product={this.state.slideShowItems[1]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
-                                        <ProductPrev slideshow={this.state.third} product={this.state.slideShowItems[2]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
-                                        <ProductPrev slideshow={this.state.fourth} product={this.state.slideShowItems[3]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
-                                        <ProductPrev slideshow={this.state.fifth} product={this.state.slideShowItems[4]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
+                                        <ProductPrev slideshow={this.state.second} product={this.state.slideShowItems[1] || this.state.slideShowItems[0]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
+                                        <ProductPrev slideshow={this.state.third} product={this.state.slideShowItems[2] || this.state.slideShowItems[0]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
+                                        <ProductPrev slideshow={this.state.fourth} product={this.state.slideShowItems[3] || this.state.slideShowItems[0]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
+                                        <ProductPrev slideshow={this.state.fifth} product={this.state.slideShowItems[4] || this.state.slideShowItems[0]} addToCartCallBack={this.updateCartNumber} onClick={this.slideshowProductPrevClickHandler}/>
                                     </div>
 
                                     <svg onClick={this.goLeft} className="product-slideshow__left-arrow" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.666 26.666'>

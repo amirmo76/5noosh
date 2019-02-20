@@ -13,7 +13,7 @@ import HomeSales from './HomeSales';
 const HomePage = props => {
     return (
         <div className="home">
-            <Navigation shifted={true}/>
+            <Navigation shifted={window.innerWidth > 1250}/>
             <Carousel />
             <Recommended 
             hero='img/product-hero-1.jpg' 

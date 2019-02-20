@@ -37,7 +37,7 @@ export default class Testemonials extends React.Component {
     
                 <div className="testemonials__header">
                     <h2 className="heading--primary">برخی از مشتریان ما</h2>
-                    <h3 className="sub-heading">چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</h3>
+                    <h3 className="sub-heading">چرا پنج نوش؟ از زبان مشتریان ما</h3>
                 </div>
                 
                 <div className="testemonials__content">

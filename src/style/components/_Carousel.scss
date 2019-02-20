@@ -22,8 +22,8 @@
         @include respond(tab-land) {
             grid-row: 1/2;
             position: absolute;
-            right: 20%;
-            bottom: 5rem;
+            right: 5%;
+            bottom: 5.5rem;
             grid-column: 1/ -1;
             z-index: 5;
         }
@@ -46,7 +46,7 @@
             z-index: 5;
             grid-column: 1/ -1;
             position: absolute;
-            right: 20%;
+            right: 5%;
             bottom: 2rem;
             grid-row: 1/2;
         }
@@ -79,9 +79,8 @@
         height: 77rem;
         z-index: 1;
 
-        @include respond(b-13) {
-            left: -12rem;
-
+        @include respond(tab-land) {
+            display: none;
         }
 
         &--primary {
@@ -103,11 +102,11 @@
         background-position: center;
 
         @include respond(tiny-desk) {
-            width: 57vw;
+            width: 56vw;
         }
 
         @include respond(tab-land) {
-            width: 85%;
+            width: 100%;
             grid-column: 1/-1;
             margin-top: 5rem;
             grid-row: 1/2;
@@ -123,10 +122,6 @@
                 height: 100.2%;
                 background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.9) 10%,rgba(0, 0, 0, 0.2) 35%, transparent 100%);
             }
-        }
-
-        @include respond(b-4) {
-            width: 100%;
         }
     }
 

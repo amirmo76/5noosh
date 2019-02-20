@@ -2,7 +2,7 @@ import React from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import Modal from './Modal';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Notifications from './Notifications';
 import Histories from './Histories';
 import axios from 'axios';
@@ -349,7 +349,7 @@ export default class Dashboard extends React.Component {
                 bind.setState(() => ({error: true}));
             }
         }).catch(function(error) {
-            // return bind.props.history.push('/login');
+            return bind.props.history.push('/login');
         });
     }
 
@@ -389,6 +389,10 @@ export default class Dashboard extends React.Component {
 
         const style = {
             backgroundImage: 'url(' + this.state.user.profilePic + ')'
+        }
+
+        if (!localStorage.getItem('token')) {
+            return false;
         }
 
         return (
