@@ -9,26 +9,16 @@ export default class Product extends React.Component {
     state = {
         product: {
             id: 1,
-            title: "دمنوش",
-            shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
-            thumbnail: "img/img-1.png",
-            price: 15000,
-            category: "دسته بندی",
-            body: "%h%عنوان اول در توضیحات کامل%h%%p%لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد%p%%h%عنوان دوم در توضیحات کامل%h%%p%لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد%p%لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد%p%%p%ایپسوم متن ساختگی با تولید سادگی نامفرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد%p%",
-            use: "%step%لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را%step%%step%لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را%step%%step%لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را%step%",
+            title: "دمنوش گیاهی آرتیشو",
+            shortDesc: "دم نوش گیاهی آرتیشو (تونیک کبد)  مشتمل بر پنج دارو از سری دم نوش های صنایع تولیدی پنج نوش رفسنجان می باشد",
+            thumbnail: "img/artisho.jpg",
+            price: 6500,
+            category: "دمنوش گیاهی",
+            body: "%h%سم زدایی و پاکسازی کبد%h%%p%این محصول به منظور سم زدایی و پاک سازی کبد از کلیه سموم تهیه گردیده است. گیاهان این دمنوش از موثر ترین گیاهان دارویی موجود در دنیا می باشند که به جهت پاکسازی کبد از سموم و درمان کبد چرب فرموله شده است. گیاه آرتیشو علاوه بر کاهش سطوح چربی خون دارای خاصیت (hepato protective) است که از اکسیداسیون LPL  و پراکسیداسیون جلوگیری نموده و فعالیت گلوتاتیون پراکسیداز را افزایش می دهد ، از این رو نقش ارزنده ای در درمان کبد چرب دارد.%p%%h%درمان کننده کبد چرب%h%%p%کاسنی گیاه مورد علاقه دانشمند بزرگ طب بو علی سینا ، گیاه دیگر این محصول می باشد که دافع صفرا بوده و تصفیه کننده خون و شست و شو دهنده ی کبد است و طبیعتی سرد از دیدگاه طب سنتی دارد. کاسنی کاهنده ی چربی های خون است و مطالعات متعددی بر تاثیر آن بر هیستولوژی و بافت کبد و جلوگیری از تخریب آن دارد که در سال 2011 در pharmacognosy magazine  به چاپ رسیده است%p%کاسنی گیاه مورد علاقه دانشمند بزرگ طب بو علی سینا ، گیاه دیگر این محصول می باشد که دافع صفرا بوده و تصفیه کننده خون و شست و شو دهنده ی کبد است و طبیعتی سرد از دیدگاه طب سنتی دارد. کاسنی کاهنده ی چربی های خون است و مطالعات متعددی بر تاثیر آن بر هیستولوژی و بافت کبد و جلوگیری از تخریب آن دارد که در سال 2011 در pharmacognosy magazine  به چاپ رسیده است%p%%p%سایر گیاهان موجود در این دمنوش نیز تقویت کننده اثرات این محصول بوده و ترکیبی منحصر به فرد برای سلامتی این ارگان حیاتی که بیشتر از 500 عملکرد در بدن انسان دارد ، ایجاد نموده است%p%",
+            use: '',
             pics: [
                 {
-                    "id": 1,
-                    "location": "img/img-2.png",
-                    "product_id": 1
-                },
-                {
-                    "id": 2,
-                    "location": "img/img-3.jpg",
-                    "product_id": 1
-                },
-                {
-                    "id": 3,
+                    "id": 3 ,
                     "location": "img/img-4.jpg",
                     "product_id": 1
                 },
@@ -128,11 +118,11 @@ export default class Product extends React.Component {
         });
 
         let style1 = {
-            backgroundImage: `url(${this.state.product.pics[2].location})`
+            backgroundImage: `url(${this.state.product.pics[0].location})`
         }
 
         let style2 = {
-            backgroundImage: `url(${this.state.product.pics[3].location})`
+            backgroundImage: `url(${this.state.product.pics[1].location})`
         }
 
         if (this.state.error) {
@@ -175,8 +165,15 @@ export default class Product extends React.Component {
                     <div className="product__header">
                         <div className="product__gallery">
                             <img src={this.state.product.thumbnail} className="product__img product__img--main"/>
-                            <img src={this.state.product.pics[0].location} className="product__img product__img--sub-left"/>
-                            <img src={this.state.product.pics[1].location} className="product__img product__img--sub-right"/>
+                            {
+                                this.state.product.pics.length > 2 && 
+                                <img src={this.state.product.pics[2].location} className="product__img product__img--sub-left"/>
+                            }
+
+                            {
+                                this.state.product.pics.length > 3 && 
+                                <img src={this.state.product.pics[3].location} className="product__img product__img--sub-right"/>
+                            }
                         </div>
                         <div className="product__info">
                             <h1 className="product__title">{this.state.product.title}</h1>
@@ -205,11 +202,11 @@ export default class Product extends React.Component {
                             <p className="product__subdesc">{paragraphs[1]}</p>
                         </div>
 
-                        <span className="product__img-bg product__img-bg--left"></span>
                         <span className="product__body-img product__body-img--left" style={style1}></span>
-
-                        <span className="product__img-bg product__img-bg--right"></span>
                         <span className="product__body-img product__body-img--right" style={style2}></span>
+
+                        <span className="product__img-bg product__img-bg--left"></span>
+                        <span className="product__img-bg product__img-bg--right"></span>
 
                         <div className="product__desc-gp product__desc-gp--left">
                             <p className="product__subdesc">{paragraphs[2]}</p>
@@ -217,18 +214,20 @@ export default class Product extends React.Component {
                         </div>  
                     </div>
 
-                    <div className="product__uasge">
+                    {
+                        this.state.use &&
+                        <div className="product__uasge">
+                            <h2 className="product__uasge-title">نحوه استفاده</h2>
 
-                        <h2 className="product__uasge-title">نحوه استفاده</h2>
-
-                        {steps.map(cur => 
-                            <div className="product__step">
-                                <img className="product__comma" src="img/comma.png"/>
-                                <p className="product__step-text">{cur}</p>
-                            </div>
-                        )}
-                        
-                    </div>
+                            {steps.map(cur => 
+                                <div className="product__step">
+                                    <img className="product__comma" src="img/comma.png"/>
+                                    <p className="product__step-text">{cur}</p>
+                                </div>
+                            )}
+                        </div>
+                    }
+                    
                 </div>
                 <Footer />
             </div>

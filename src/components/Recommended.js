@@ -4,22 +4,33 @@ import {TimelineMax} from "gsap/TimelineMax";
 import ScrollMagic from 'scrollmagic/scrollmagic/uncompressed/ScrollMagic';
 import 'animation.gsap';
 import 'debug.addIndicators';
+import {Link} from 'react-router-dom';
 
 export default class Recommended extends React.Component {
 
+    state = {
+        val: 1
+    }
+
     floatAnimation = e => {
-        const el = document.getElementById('recommended-' + this.props.id);
-        const top = el.getBoundingClientRect().top;
-        const height = el.getBoundingClientRect().height;
-        let speed = 5;
-        if (this.props.id === 1) {
-            speed = 10;
-        } 
-        TweenMax.to(el, 1, {top: (top - height) / speed + "px", ease: Power2.easeOut});
+        this.setState(prev => ({val: prev.val + 1}));
+        if (this.state.val % 5 === 0) {
+            const el = document.getElementById('recommended-' + this.props.id);
+            const top = el.getBoundingClientRect().top;
+            const height = el.getBoundingClientRect().height;
+            let speed = 5;
+            if (this.props.id === 1) {
+                //10
+                speed = 5;
+            } 
+            TweenMax.to(el, .75, {top: (top - height) / speed + "px"});
+        }
     }
     
     initFloat = e => {
-        window.addEventListener('scroll', this.floatAnimation);
+        if (window.innerWidth > 860) {
+            window.addEventListener('scroll', this.floatAnimation);
+        }
     }
 
     initProductAnimation = e => {
@@ -30,22 +41,10 @@ export default class Recommended extends React.Component {
 
         const anim = new TimelineMax();
         if (bind.props.id === 1) {
-            // anim
-                // .from(id, 2.5, {right: "-400px", ease: Power2.easeOut})
-                // .from(id + " .recommended__logo", 3, {right: "-400px", ease: Power2.easeOut}, 0)
-                // .from(id + " .recommended__desc", 1.5, {right: "-400px", ease: Power2.easeOut}, 0)
-                // .from(id + " .recommended__buttons", 2.5, {opacity: 0, y: 25, ease: Power2.easeOut}, 1.25);
-
             anim
                 .from(id, 2.5, {right: "-400px", ease: Power2.easeOut})
                 .from(id + " .recommended__logo", 3, {right: "-400px", ease: Power2.easeOut}, 0);
         } else {
-            // anim
-                // .from(id, 2.5, {left: "-400px", ease: Power2.easeOut})
-                // .from(id + " .recommended__logo", 3, {left: "-400px", ease: Power2.easeOut}, 0)
-                // .from(id + " .recommended__desc", 1.5, {left: "-400px", ease: Power2.easeOut}, 0)
-                // .from(id + " .recommended__buttons", 2.5, {opacity: 0, y: 25, ease: Power2.easeOut}, 1.25);
-
             anim
                 .from(id, 2.5, {left: "-400px", ease: Power2.easeOut})
                 .from(id + " .recommended__logo", 3, {left: "-400px", ease: Power2.easeOut}, 0);
@@ -91,8 +90,12 @@ export default class Recommended extends React.Component {
                     <span className={"recommended__product-bg" + (this.props.direction === 'rtl' ? " recommended__product-bg--left" : " recommended__product-bg--right")}></span>
                     <h2 className="recommended__desc">{this.props.shortDesc}</h2>
                     <div className="recommended__buttons">
-                        <button className="recommended__more btn btn--outline-primary">جزئیات بیشتر</button>
-                        <button className="recommended__shop btn btn--primary">فروشگاه</button>
+                        <Link to={"/product/" + this.props.id}>
+                            <button className="recommended__more btn btn--outline-primary">جزئیات بیشتر</button>
+                        </Link>
+                        <Link to="/shop">
+                            <button className="recommended__shop btn btn--primary">فروشگاه</button>
+                        </Link>
                     </div>
                 </div>
             </div>

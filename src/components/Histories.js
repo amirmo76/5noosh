@@ -17,7 +17,9 @@ export default class Histories extends React.Component {
             date: '1396/11/05',
             status: 'در حال آماده سازی',
             refrenceCode: '21354535'
-        }
+        },
+
+        querySelector: ''
     }
 
     activePurchaceTitleMaker(titles) {
@@ -67,7 +69,7 @@ export default class Histories extends React.Component {
 
                     return temp;
                 });
-                bind.setState(() => ({ data: purchases }));
+                bind.setState(() => ({ data: purchases, querySelector: ".history__detail" }));
             }
         }).catch(function(error) {
             console.log(error);
@@ -120,16 +122,20 @@ export default class Histories extends React.Component {
                     console.log(p.trans_id);
                     console.log(detailedPurchase)
 
-                    bind.setState(prev => ({ detailedPurchase: {
-                        id: detailedPurchase.id,
-                        productTitles: detailedPurchase.productTitles,
-                        pruductCounts: detailedPurchase.pruductCounts,
-                        pruductPrices: detailedPurchase.pruductPrices,
-                        totalPrice: detailedPurchase.totalPrice,
-                        date: detailedPurchase.date,
-                        status: detailedPurchase.status,
-                        refrenceCode: detailedPurchase.refrenceCode
-                    } }), console.log(bind.state.detailedPurchase));
+                    bind.setState(prev => ({
+                        detailedPurchase: {
+                            id: detailedPurchase.id,
+                            productTitles: detailedPurchase.productTitles,
+                            pruductCounts: detailedPurchase.pruductCounts,
+                            pruductPrices: detailedPurchase.pruductPrices,
+                            totalPrice: detailedPurchase.totalPrice,
+                            date: detailedPurchase.date,
+                            status: detailedPurchase.status,
+                            refrenceCode: detailedPurchase.refrenceCode
+                        },
+
+                        querySelector: ".history__detail"
+                     }), console.log(bind.state.detailedPurchase));
                 }
             }).catch(function(error) {
                 console.log(error);
@@ -205,7 +211,7 @@ export default class Histories extends React.Component {
                     this.state.data.length === 0 &&
                     <p className="dashboard__empety">موردی یافت نشد</p>
                 }
-                <Modal querySelector={".history__detail"} content={modalJSX}/>
+                <Modal querySelector={this.state.querySelector} content={modalJSX}/>
             </div>
         );
         

@@ -46,7 +46,7 @@
     }
 
     &__container {
-        margin-top: 6rem;
+        margin-top: 4rem;
         margin-bottom: 15rem;
         width: 100%;
         background-color: $--color-black;
@@ -54,7 +54,7 @@
         position: relative;
         z-index: 2;
         min-height: 200rem;
-        padding: 10rem 5rem;
+        padding: 8.5rem 5rem;
 
         @include respond(b-12) {
             padding: 7.5rem 2rem;
@@ -402,6 +402,7 @@
         display: block;
         width: 100%;
         background-color: $--color-primary;
+        transition: all 1s;
 
         @include respond(b-10) {
             display: none;
@@ -474,6 +475,7 @@
             align-self: center;
             position: relative;
             right: -10rem;
+            z-index: 2;
 
             @include respond(small-desk) {
                 right: -7.5rem;
@@ -491,6 +493,14 @@
                 transform: translateX(50%) scale(1.1);
             }
         }
+    }
+
+    &__body-img--left:hover ~ &__img-bg--left {
+        background-color: $--color-blue-light;
+    }
+
+    &__body-img--right:hover ~ &__img-bg--right {
+        background-color: $--color-blue-light;
     }
 
     &__uasge {
@@ -581,12 +591,10 @@
     &__back {
         width: 2.5rem;
         height: 2.5rem;
-        fill: rgba($--color-white, .25);
-        transition: all .2s;
+        fill: $--color-white;
 
         &:hover {
             cursor: pointer;
-            fill: rgba($--color-white, 1);
         }
     }
 }

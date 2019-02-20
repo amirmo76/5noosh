@@ -17,7 +17,7 @@ const HomePage = props => {
             <Carousel />
             <Recommended 
             hero='img/product-hero-1.jpg' 
-            logo='img/product-1-no-bg.png' 
+            logo='img/artisho-no-bg.png' 
             id={1}
             landscape={false} 
             shortDesc='تنظیم قند خون بدن' />
@@ -25,7 +25,7 @@ const HomePage = props => {
             direction='rtl'
             landscape={true} 
             hero='img/product-hero-2.jpg' 
-            logo='img/product-1-no-bg.png' 
+            logo='img/artisho-no-bg.png' 
             id={2}
             shortDesc='سم زدایی و پاک سازی کبد' />
             <Features />

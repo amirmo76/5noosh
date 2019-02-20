@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 class Slide {
     constructor(
@@ -20,7 +21,7 @@ export default class Carousel extends React.Component {
     constructor(props) {
         super(props);
 
-        this.addSlide('هدیه سلامتی', 'با دمنوش های گیاهی پنج نوش سلامتی را از طبیعت هدیه بگیرید', '/img/pic-9.jpg');
+        this.addSlide('هدیه سلامتی', 'با دمنوش های گیاهی پنج نوش سلامتی را از طبیعت هدیه بگیرید', '/img/pic-9.jpg', 'primary', 'فروشگاه', '/shop');
         this.addSlide('دمنوش آرتیشو', 'سم زدایی و پاکسازی و احیای سلول های کبد', '/img/pic-11.jpg', 'primary', 'خرید محصول', '/product/2');
     }
 
@@ -84,7 +85,9 @@ export default class Carousel extends React.Component {
                     )
                 }
                 <p className="carousel__desc">{this.state.slides[this.state.current].desc}</p>
-                <button className={`btn carousel__btn btn--no-up-animation btn--shadow-animation btn--${this.state.slides[this.state.current].color}`}>{this.state.slides[this.state.current].btnText}</button>
+                <Link to={this.state.slides[this.state.current].btnHref} >
+                    <button className={`btn carousel__btn btn--no-up-animation btn--shadow-animation btn--${this.state.slides[this.state.current].color}`}>{this.state.slides[this.state.current].btnText}</button>
+                </Link>
                 <div className={`carousel__bg carousel__bg--${this.state.slides[this.state.current].color}`}></div>
                 <span style={style} src={this.state.slides[this.state.current].imgSrc} alt="carousel picture" className="carousel__img"></span>
                 <div className="carousel__slides">

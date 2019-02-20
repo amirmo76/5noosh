@@ -12,38 +12,38 @@ export default class HomeSales extends React.Component {
         position: 0,
 
         items: [
-            {
-                id: 5,
-                title: 'دمنوش قند خون',
-                price: 3500,
-                category: 'دسته بندی',
-                thumbnail: 'img/img-1.png',
-                shortDesc: "کنترل کلستلرول و تری گلیسیرید، تقویت سیستم ایمنی بدن",
-                off: 10
-            },
-            {
-                id: 4,
-                title: 'دمنوش آرتیشو',
-                price: 4600,
-                category: 'دسته بندی',
-                thumbnail: 'img/img-2.png',
-                shortDesc: "احیا کننده سلول های کبد، جلوگیری از تجمع چربی در کبد",
-                off: 25
-            },
-            {
-                id: 3,
-                title: 'نام محصول - 3',
-                price: 3000,
-                category: 'دسته بندی',
-                thumbnail: 'img/img-3.jpg',
-                shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
-                off: 50
-            },
+            // {
+            //     id: 5,
+            //     title: 'دمنوش قند خون',
+            //     price: 3500,
+            //     category: 'دسته بندی',
+            //     thumbnail: 'img/img-1.png',
+            //     shortDesc: "کنترل کلستلرول و تری گلیسیرید، تقویت سیستم ایمنی بدن",
+            //     off: 10
+            // },
+            // {
+            //     id: 4,
+            //     title: 'دمنوش آرتیشو',
+            //     price: 4600,
+            //     category: 'دسته بندی',
+            //     thumbnail: 'img/img-2.png',
+            //     shortDesc: "احیا کننده سلول های کبد، جلوگیری از تجمع چربی در کبد",
+            //     off: 25
+            // },
+            // {
+            //     id: 3,
+            //     title: 'نام محصول - 3',
+            //     price: 3000,
+            //     category: 'دسته بندی',
+            //     thumbnail: 'img/img-3.jpg',
+            //     shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
+            //     off: 50
+            // },
             {
                 id: 2,
                 title: 'دمنوش آرتیشو',
                 price: 4800,
-                category: 'دسته بندی',
+                category: 'دمنوش گیاهی',
                 thumbnail: 'img/product-2.jpg',
                 shortDesc: "احیا کننده سلول های کبد، جلوگیری از تجمع چربی در کبد",
                 off: 25
@@ -52,7 +52,7 @@ export default class HomeSales extends React.Component {
                 id: 1,
                 title: 'دمنوش قند خون',
                 price: 4500,
-                category: 'دسته بندی',
+                category: 'دمنوش گیاهی',
                 thumbnail: 'img/product-1.jpg',
                 shortDesc: "کنترل کلستلرول و تری گلیسیرید، تقویت سیستم ایمنی بدن",
                 off: 10
@@ -74,7 +74,7 @@ export default class HomeSales extends React.Component {
             firstRight: firstRight
         }));
         
-        let temp
+        const bind = this;
         Draggable.create("#products", {
             bound: '.home-sales__bound', 
             dragClickables: true,
@@ -88,6 +88,9 @@ export default class HomeSales extends React.Component {
                 const newRight = parseInt(newStyle.getPropertyValue('right'));
 
                 let exceeded = this.x > (w/2 + 1625 - w - (firstRight - newRight));
+                
+                console.log(this.x);
+                console.log(w/2 + 1625 - w - (firstRight - newRight));
                 let lesser = this.x < 0 - (firstRight - newRight);
                 if (lesser) {
                     TweenMax.to(this.target, 0.5, { x: 0 - (firstRight - newRight) }); 
@@ -102,7 +105,6 @@ export default class HomeSales extends React.Component {
         const moveLimits = document.querySelectorAll('.product-prev').length - 2;
         this.setState(() => ({ moveLimits }));
 
-        const bind = this;
         axios({
             method: 'get',
             url: '/api/sales/home/all'
@@ -188,7 +190,7 @@ export default class HomeSales extends React.Component {
                 <span className="home-sales__bg"></span>
                 <div id="products" className="home-sales__products">
                 {
-                    this.state.items.map(cur => <ProductPrev product={cur}/>)
+                    this.state.items.map(cur => <ProductPrev product={cur} homeSales={true}/>)
                 }
                 </div>
                 <div className="home-sales__arrows">
