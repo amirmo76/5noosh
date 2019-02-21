@@ -5,6 +5,7 @@ import Cart from './Cart';
 import { Link, NavLink } from 'react-router-dom';
 import ProductPrev from './ProductPrev';
 import axios from 'axios';
+import { Helmet } from "react-helmet";
 
 
 export default class SignupPAge extends React.Component {
@@ -23,7 +24,7 @@ export default class SignupPAge extends React.Component {
                 id: 1,
                 title: 'دوچرخه',
                 price: 22500,
-                category: '',
+                category: 'گیاهی',
                 thumbnail: 'img/img-1.png',
                 shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
             },
@@ -31,7 +32,7 @@ export default class SignupPAge extends React.Component {
                 id: 2,
                 title: 'خوراکی',
                 price: 18100,
-                category: '',
+                category: 'دمنوش',
                 thumbnail: 'img/img-2.png',
                 shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
             },
@@ -39,7 +40,7 @@ export default class SignupPAge extends React.Component {
                 id: 3,
                 title: 'بهرام',
                 price: 12000,
-                category: '',
+                category: 'دمنوش گیاهی',
                 thumbnail: 'img/img-3.jpg',
                 shortDesc: "توضیحاتی کوتاه از محصول لورم ایپسوم متنی ساختگی جهت استفاده در طراحی و صنعت چاپ",
             }
@@ -87,8 +88,10 @@ export default class SignupPAge extends React.Component {
             // } 
         ],
         lookAtResaults: false,
-        results: [],
-        categoryShow: false
+        searchResults: [],
+        categoryShow: false,
+        lookAtCategory: false,
+        categoriesResults: []
     }
 
     updateCartNumber = e => {
@@ -99,58 +102,6 @@ export default class SignupPAge extends React.Component {
             this.setState(() => ({ cartNumber: 0 }));
         }
 
-    }
-
-    componentDidMount = e => {
-        const newNode = document.querySelector('.shop__right-side').cloneNode(true);
-        document.querySelector('.shop__body').appendChild(newNode);
-        
-        const bind = this;
-        axios({
-            method: 'get',
-            url: '/api/products/top_selling/all'
-        }).then(function (response) {
-            if (response.status === 200) {
-                const temp = response.data.data;
-                const data = temp.map(cur => {
-                    const item = {
-                        id: cur.id,
-                        title: cur.name,
-                        thumbnail: cur.logo,
-                        price: cur.price,
-                        category: cur.category,
-                        shortDesc: cur.short_description
-                    }
-
-                    return item;
-                });
-                bind.setState(() => ({slideShowItems: data}));
-            }
-        });
-
-        axios({
-            method: 'get',
-            url: '/api/products'
-        }).then(function (response) {
-            if (response.status === 200) {
-                const temp = response.data.data;
-                const data = temp.map(cur => {
-                    const item = {
-                        id: cur.id,
-                        title: cur.name,
-                        thumbnail: cur.logo,
-                        price: cur.price,
-                        category: cur.category,
-                        shortDesc: cur.short_description
-                    }
-
-                    return item;
-                });
-                bind.setState(() => ({items: data}));
-            }
-        });
-        
-        this.updateCartNumber();
     }
 
     goRight = e => {
@@ -210,11 +161,18 @@ export default class SignupPAge extends React.Component {
             // search algorthm goes here
 
             let res = [];
-            this.state.items.forEach(cur => {
-                if (cur.title.includes(el.value))
-                res.push(cur);
-            });
-            this.setState(() => ({results: res}), () => {console.log(this.state.results)});
+            if (!this.state.lookAtCategory) {
+                this.state.items.forEach(cur => {
+                    if (cur.title.includes(el.value))
+                    res.push(cur);
+                });
+            } else {
+                this.state.categoriesResults.forEach(cur => {
+                    if (cur.title.includes(el.value))
+                    res.push(cur);
+                });
+            }
+            this.setState(() => ({searchResults: res}), () => {console.log(this.state.searchResults)});
             
         } else {
             this.setState(() => ({slideshow: true, lookAtResaults: false}));
@@ -261,10 +219,85 @@ export default class SignupPAge extends React.Component {
         }
     }
 
+    categoryCheck = e => {
+        const id = this.props.location.pathname.split('/')[2];
+        this.setState(() => ({lookAtCategory: false}))
+        if (id) {
+            const category = id.replace('-', ' ');
+            console.log(category);
+            this.setState(() => ({lookAtCategory: true}));
+
+            let res = [];
+            this.state.items.forEach(cur => {
+                if (cur.category.trim() === category) {
+                    res.push(cur);
+                }
+            });
+            console.log(res);
+            this.setState({categoriesResults: res});
+        }
+    }
+
+    componentDidMount = e => {
+        const newNode = document.querySelector('.shop__right-side').cloneNode(true);
+        document.querySelector('.shop__body').appendChild(newNode);
+        
+        const bind = this;
+        axios({
+            method: 'get',
+            url: '/api/products/top_selling/all'
+        }).then(function (response) {
+            if (response.status === 200) {
+                const temp = response.data.data;
+                const data = temp.map(cur => {
+                    const item = {
+                        id: cur.id,
+                        title: cur.name,
+                        thumbnail: cur.logo,
+                        price: cur.price,
+                        category: cur.category,
+                        shortDesc: cur.short_description
+                    }
+
+                    return item;
+                });
+                bind.setState(() => ({slideShowItems: data}));
+            }
+        });
+
+        axios({
+            method: 'get',
+            url: '/api/products'
+        }).then(function (response) {
+            if (response.status === 200) {
+                const temp = response.data.data;
+                const data = temp.map(cur => {
+                    const item = {
+                        id: cur.id,
+                        title: cur.name,
+                        thumbnail: cur.logo,
+                        price: cur.price,
+                        category: cur.category || 'دمنوش گیاهی',
+                        shortDesc: cur.short_description
+                    }
+
+                    return item;
+                });
+                bind.setState(() => ({items: data}), bind.categoryCheck);
+            }
+        });
+        
+        this.updateCartNumber();
+        this.categoryCheck();
+    }
 
     render() {
 
         return (
+            <>
+            <Helmet>
+                <title>پنج نوش | فروشگاه</title>
+            </Helmet>
             <div className="shop">
                 <Navigation />
                 <span className="shop__bg"></span>
@@ -278,10 +311,13 @@ export default class SignupPAge extends React.Component {
                         <div className="shop__cats-box">
                             <h2 className="heading--secondary mg-bottom-md">دسته بندی محصولات</h2>
 
-                            <div className="shop__cats-gp">
+                            <div className="shop__cats-gp" onClick={() => {location.reload()}}>
                                 <ul className="shop__cats">
                                     <li className="shop__cat">
-                                        <Link to="/" className="shop__cat-link">دمنوش گیاهی</Link>
+                                        <Link to="/shop" className="shop__cat-link">همه</Link>
+                                    </li>
+                                    <li className="shop__cat">
+                                        <Link to="/shop/دمنوش-گیاهی" className="shop__cat-link">دمنوش گیاهی</Link>
                                     </li>
                                 </ul>
                             </div>
@@ -368,19 +404,24 @@ export default class SignupPAge extends React.Component {
 
                         <div className="shop__all">
                             {this.state.lookAtResaults ? 
-                                (this.state.results.length > 0 ? <h2 className="shop__all-title heading--secondary text-center mg-bottom-sm">نتایج یافت شده</h2> : <h2 className="shop__all-title heading--secondary text-center mg-bottom-sm">نتجه ای یافت نشد</h2>)
+                                (this.state.searchResults.length > 0 ? <h2 className="shop__all-title heading--secondary text-center mg-bottom-sm">نتایج یافت شده</h2> : <h2 className="shop__all-title heading--secondary text-center mg-bottom-sm">نتجه ای یافت نشد</h2>)
                                 :
                                 <h2 className="shop__all-title heading--secondary text-center mg-bottom-sm">همه محصولات</h2>
                             }
 
-                            {this.state.lookAtResaults || this.state.items.map(cur => <ProductPrev product={cur} addToCartCallBack={this.updateCartNumber}/>)}
-                            {this.state.lookAtResaults && this.state.results.map(cur => <ProductPrev product={cur} addToCartCallBack={this.updateCartNumber}/>)}
+                            {this.state.lookAtResaults || 
+                                (   this.state.lookAtCategory ?
+                                    this.state.categoriesResults.map(cur => <ProductPrev product={cur} addToCartCallBack={this.updateCartNumber}/>) :
+                                    this.state.items.map(cur => <ProductPrev product={cur} addToCartCallBack={this.updateCartNumber}/>)
+                                )}
+                            {this.state.lookAtResaults && this.state.searchResults.map(cur => <ProductPrev product={cur} addToCartCallBack={this.updateCartNumber}/>)}
 
-                            </div>
+                        </div>
                     </div>
                 </div>
                 <Footer />
             </div>
+            </>
         );
     }
 }

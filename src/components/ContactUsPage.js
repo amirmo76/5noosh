@@ -3,6 +3,7 @@ import Navigation from './Navigation';
 import Footer from './Footer';
 import axios from 'axios';
 import ResponseManager from './ResponseManager';
+import { Helmet } from "react-helmet";
 
 export default class ContactUsPage extends React.Component {
 
@@ -103,6 +104,10 @@ export default class ContactUsPage extends React.Component {
     render(){
 
         return (
+            <>
+            <Helmet>
+                <title>پنج نوش | ارتباط با ما</title>
+            </Helmet>
             <div className="contactus">
                 <Navigation transparent shifted/>
                 <div className="contactus__bg-top"></div>
@@ -204,6 +209,7 @@ export default class ContactUsPage extends React.Component {
                 <ResponseManager responses={this.state.responses}/>
                 <Footer />
             </div>
+            </>
         );
     } 
 }

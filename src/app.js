@@ -22,7 +22,7 @@ const routes = (
             <Route path='/' component={HomePage} exact={true}/>
             <Route path='/login' component={LoginPage} exact={true} />
             <Route path='/signup' component={SignupPage} exact={true} />
-            <Route path='/shop' component={ShopPage} exact={true}/>
+            <Route path='/shop' component={ShopPage} />
             <Route path='/product' component={Product} />
             <Route path='/dashboard' component={Dashboard} exact={true} />
             <Route path='/dashboard/notifications' component={Dashboard} exact={true} />
@@ -41,7 +41,7 @@ function cssPropertyValueSupported(prop, value) {
     return d.style[prop] === value;
 }
 
-console.log(cssPropertyValueSupported('display', 'grid'));
+// console.log(cssPropertyValueSupported('display', 'grid'));
 if (cssPropertyValueSupported('display', 'grid')) {
     ReactDOM.render(routes, document.getElementById('appRoot'));
 } else {

@@ -4,6 +4,7 @@ import Footer from './Footer';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import ResponseManager from './ResponseManager';
+import { Helmet } from "react-helmet";
 
 export default class SignupPage extends React.Component {
 
@@ -169,6 +170,10 @@ export default class SignupPage extends React.Component {
         }
 
         return (
+            <>
+            <Helmet>
+                <title>پنج نوش | ثبت نام</title>
+            </Helmet>
             <div className="signup">
                 <Navigation />
                 <div className="signup__body">
@@ -229,6 +234,7 @@ export default class SignupPage extends React.Component {
                 <ResponseManager responses={this.state.responses}/>
                 <Footer />
             </div>
+            </>
         );
     } 
 }

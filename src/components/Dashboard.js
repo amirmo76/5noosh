@@ -7,6 +7,7 @@ import Notifications from './Notifications';
 import Histories from './Histories';
 import axios from 'axios';
 import ResponseManager from './ResponseManager';
+import { Helmet } from "react-helmet";
 
 export default class Dashboard extends React.Component {
 
@@ -396,6 +397,10 @@ export default class Dashboard extends React.Component {
         }
 
         return (
+            <>
+            <Helmet>
+                <title>پنج نوش | داشبورد</title>
+            </Helmet>
             <div className="dashboard">
                 <Navigation light={true} logged={true} avatar={'img/pic-5.png'} location={this.props.location} history={this.props.history}/>
                 <div className="news">
@@ -813,6 +818,7 @@ export default class Dashboard extends React.Component {
                 <ResponseManager responses={this.state.responses} />
                 <Footer />
             </div>
+            </>
         );
     } 
 }

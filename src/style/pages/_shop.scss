@@ -171,6 +171,11 @@
     &__bottom-right-logo {
         fill: rgba($--color-white, .25);
         width: 7.5rem;
+        transition: all .25s ease-in;
+    }
+
+    &__right-side:hover &__bottom-right-logo {
+        fill: rgba($--color-primary, .5);
     }
 
     &__cats-box {

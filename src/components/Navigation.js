@@ -191,9 +191,9 @@ export default class Navigation extends React.Component {
                                 <Link className="navigation__link" to="/#sales"
                                 scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'start' })}>پیشنهادات ویژه</Link>
                             </li>
-                            <li className="navigation__item">
+                            {/* <li className="navigation__item">
                                 <a className="navigation__link">بلاگ</a>
-                            </li>
+                            </li> */}
                             <li className="navigation__item">
                                 <Link className="navigation__link" to="/aboutus">درباره ما</Link>
                             </li>
@@ -264,9 +264,9 @@ export default class Navigation extends React.Component {
                                 <Link className="navigation__collapsable-link" to="/#sales"
                                 scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'start' })}>پیشنهادات ویژه</Link>
                             </li>
-                            <li className="navigation__collapsable-item">
+                            {/* <li className="navigation__collapsable-item">
                                 <a className="navigation__collapsable-link">بلاگ</a>
-                            </li>
+                            </li> */}
                             <li className="navigation__collapsable-item">
                                 <Link className="navigation__collapsable-link" to="/aboutus">درباره ما</Link>
                             </li>

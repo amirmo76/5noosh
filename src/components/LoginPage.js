@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Route, Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import ResponseManager from './ResponseManager';
+import { Helmet } from "react-helmet";
 
 export default class LoginPage extends React.Component {
 
@@ -107,6 +108,10 @@ export default class LoginPage extends React.Component {
 
     render() {
         return (
+            <>
+            <Helmet>
+                <title>پنج نوش | ورود</title>
+            </Helmet>
             <div className="login">
                 <Navigation />
                 <div className="login__body">
@@ -147,6 +152,7 @@ export default class LoginPage extends React.Component {
                 <ResponseManager responses={this.state.responses} />
                 <Footer />
             </div>
+            </>
         );
     }
 }

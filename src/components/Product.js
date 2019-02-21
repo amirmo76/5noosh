@@ -19,12 +19,12 @@ export default class Product extends React.Component {
             pics: [
                 {
                     "id": 3 ,
-                    "location": "img/img-4.jpg",
+                    "location": "img/pic-12.jpg",
                     "product_id": 1
                 },
                 {
                     "id": 4,
-                    "location": "img/img-5.jpg",
+                    "location": "img/pic-13.jpg",
                     "product_id": 1
                 }
             ]
