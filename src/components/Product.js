@@ -125,9 +125,7 @@ export default class Product extends React.Component {
         }
 
         if (this.state.error) {
-            return (
-                <p>this is a placeholder for 404 page</p>
-            );
+            return false;
         }
 
         return (

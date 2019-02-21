@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter , Route} from 'react-router-dom';
+import {HashRouter , Route, Switch} from 'react-router-dom';
 
 import HomePage from './components/HomePage';
 import LoginPage from './components/LoginPage';
@@ -12,13 +12,14 @@ import AboutusPage from './components/AboutUsPage';
 import ContactUsPage from './components/ContactUsPage';
 import Cart from './components/Cart';
 import Result from './components/Result';
+import NotFound from './components/NotFound';
 
 
 import './style/style.scss';
 
 const routes = (
     <HashRouter>
-        <div>
+        <Switch>
             <Route path='/' component={HomePage} exact={true}/>
             <Route path='/login' component={LoginPage} exact={true} />
             <Route path='/signup' component={SignupPage} exact={true} />
@@ -31,7 +32,8 @@ const routes = (
             <Route path='/contactus' component={ContactUsPage} exact={true}/>
             <Route path='/cart' component={Cart} exact={true}/>
             <Route path='/result' component={Result}/>
-        </div>
+            <Route component={NotFound}/>
+        </Switch>
     </HashRouter>
 );
 
