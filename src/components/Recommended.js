@@ -9,12 +9,12 @@ import {Link} from 'react-router-dom';
 export default class Recommended extends React.Component {
 
     state = {
-        val: 1
+        animVal: 1
     }
 
     floatAnimation = e => {
-        this.setState(prev => ({val: prev.val + 1}));
-        if (this.state.val % 5 === 0) {
+        this.setState(prev => ({animVal: prev.animVal + 1}));
+        if (this.state.animVal % 5 === 0) {
             const el = document.getElementById('recommended-' + this.props.id);
             const top = el.getBoundingClientRect().top;
             const height = el.getBoundingClientRect().height;
