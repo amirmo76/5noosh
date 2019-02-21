@@ -66,7 +66,7 @@ export default class ProductPrev extends React.Component {
                 </div>
                 <div className="product-prev__header">
                     <h3 className="product-prev__title">{this.props.product && this.props.product.title}</h3>
-                    <a className="product-prev__category">{this.props.product && this.props.product.category}</a>
+                    <a className="product-prev__category">{(this.props.product && this.props.product.category) || 'دمنوش گیاهی'}</a>
                 </div>
                 <div className="product-prev__footer">
                     <span className={"product-prev__price " + (this.props.product.off ? "product-prev__price--off" : "")}>{this.props.product.off ? this.stylizePrice(this.calculatePrice(this.props.product.price, this.props.product.off)) : this.stylizePrice(this.props.product.price)}</span>
