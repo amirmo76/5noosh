@@ -77,33 +77,33 @@ export default class Product extends React.Component {
 
     componentDidUpdate() {
         const { match: { params } } = this.props;
-        console.log(params.id);
 
         const bind = this;
-        axios({
-            method: 'get',
-            url: '/api/products/' + params.id
-        }).then(function (response) {
-            if (response.status === 200) {
-                const temp = response.data.data;
-                
-                const item = {
-                    id: temp.id,
-                    title: temp.name,
-                    shortDesc: temp.short_description,
-                    thumbnail: temp.logo,
-                    price: temp.price,
-                    category: temp.category,
-                    body: (temp.description || bind.state.product.body),
-                    use: (temp.how_to_use || bind.state.product.use),
-                    pics: temp.pictures
+        if (bind.state.item && (params.id !== bind.state.item.id)) {
+            axios({
+                method: 'get',
+                url: '/api/products/' + params.id
+            }).then(function (response) {
+                if (response.status === 200) {
+                    const temp = response.data.data;
+                    
+                    const item = {
+                        id: temp.id,
+                        title: temp.name,
+                        shortDesc: temp.short_description,
+                        thumbnail: temp.logo,
+                        price: temp.price,
+                        category: temp.category,
+                        body: (temp.description || bind.state.product.body),
+                        use: (temp.how_to_use || bind.state.product.use),
+                        pics: temp.pictures
+                    }
+                    bind.setState(() => ({product: item}));
+                } else {
+                    bind.setState(() => ({error: true}));
                 }
-                bind.setState(() => ({product: item}));
-            } else {
-                bind.setState(() => ({error: true}));
-            }
-        });
-        window.scrollTo(0,0);
+            });
+        }
     }
     
     addToCartClickHandler = e => {

@@ -118,6 +118,7 @@ export default class Navigation extends React.Component {
     componentWillUnmount() {
         window.removeEventListener('scroll', this.scrollHandler);
         window.removeEventListener("resize", this.screenChangeHandler);
+        document.getElementById('appRoot').style.paddingTop = 0 + "px";
         window.scrollTo(0,0);
     }
 
