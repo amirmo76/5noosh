@@ -3,10 +3,12 @@ import Navigation from './Navigation';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Helmet } from "react-helmet";
 
 export default class Product extends React.Component {
 
     state = {
+        title: 'پنج نوش',
         product: {
             id: 1,
             title: "دمنوش گیاهی آرتیشو",
@@ -65,7 +67,7 @@ export default class Product extends React.Component {
                     use: (temp.how_to_use || bind.state.product.use),
                     pics: temp.pictures
                 }
-                bind.setState(() => ({product: item}));
+                bind.setState(() => ({product: item, title: temp.name}));
             } else {
                 bind.setState(() => ({error: true}));
             }
@@ -98,7 +100,7 @@ export default class Product extends React.Component {
                         use: (temp.how_to_use || bind.state.product.use),
                         pics: temp.pictures
                     }
-                    bind.setState(() => ({product: item}));
+                    bind.setState(() => ({product: item, title: temp.name}));
                 } else {
                     bind.setState(() => ({error: true}));
                 }
@@ -155,6 +157,10 @@ export default class Product extends React.Component {
         }
 
         return (
+            <>
+            <Helmet>
+                <title>{this.state.title}</title>
+            </Helmet>
             <div className="product">
                 <Navigation />
                 <span className="product__bg--top"></span>
@@ -253,6 +259,7 @@ export default class Product extends React.Component {
                 </div>
                 <Footer />
             </div>
+            </>
         );
     } 
 }
