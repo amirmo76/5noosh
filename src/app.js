@@ -24,7 +24,7 @@ const routes = (
             <Route path='/login' component={LoginPage} exact={true} />
             <Route path='/signup' component={SignupPage} exact={true} />
             <Route path='/shop' component={ShopPage} />
-            <Route path='/product' component={Product} />
+            <Route path='/product/:id' component={Product} />
             <Route path='/dashboard' component={Dashboard} exact={true} />
             <Route path='/dashboard/notifications' component={Dashboard} exact={true} />
             <Route path='/dashboard/histories' component={Dashboard} exact={true} />

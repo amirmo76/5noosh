@@ -44,17 +44,12 @@ export default class Product extends React.Component {
     }
 
     componentDidMount() {
-        const id = this.props.location.pathname.split('/')[2];
-
-        if (!id){
-            this.setState(() => ({error: true}));
-            return;  
-        } 
+        const { match: { params } } = this.props;
 
         const bind = this;
         axios({
             method: 'get',
-            url: '/api/products/' + id
+            url: '/api/products/' + params.id
         }).then(function (response) {
             if (response.status === 200) {
                 const temp = response.data.data;
@@ -80,6 +75,37 @@ export default class Product extends React.Component {
         window.scrollTo(0,0);
     }
 
+    componentDidUpdate() {
+        const { match: { params } } = this.props;
+        console.log(params.id);
+
+        const bind = this;
+        axios({
+            method: 'get',
+            url: '/api/products/' + params.id
+        }).then(function (response) {
+            if (response.status === 200) {
+                const temp = response.data.data;
+                
+                const item = {
+                    id: temp.id,
+                    title: temp.name,
+                    shortDesc: temp.short_description,
+                    thumbnail: temp.logo,
+                    price: temp.price,
+                    category: temp.category,
+                    body: (temp.description || bind.state.product.body),
+                    use: (temp.how_to_use || bind.state.product.use),
+                    pics: temp.pictures
+                }
+                bind.setState(() => ({product: item}));
+            } else {
+                bind.setState(() => ({error: true}));
+            }
+        });
+        window.scrollTo(0,0);
+    }
+    
     addToCartClickHandler = e => {
         const item = {
             id: this.state.product.id,
@@ -132,7 +158,6 @@ export default class Product extends React.Component {
             <div className="product">
                 <Navigation />
                 <span className="product__bg--top"></span>
-                {/* <span className="product__bg--mid"></span> */}
                 <div className="product__container">
 
                     <div className="product__nav mg-bottom-lg">
