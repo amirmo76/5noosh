@@ -390,6 +390,7 @@
     &__subdesc {
         font-weight: 200;
         font-size: 1.6rem;
+        direction: rtl;
         
         &:not(:last-child) {
             margin-bottom: 2.5rem;
