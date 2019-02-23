@@ -20,8 +20,8 @@ export default class ContactUsPage extends React.Component {
         text: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است',
         error: '',
         success: '',
-
-        responses: []
+        responses: [],
+        shiftedNav: true
     }
 
     submitHandler = e => {
@@ -101,6 +101,25 @@ export default class ContactUsPage extends React.Component {
         this.setState(() => ({success: ''}));
     }
 
+    onResize = e => {
+        const shiftedNav = window.matchMedia("screen and (max-width: 25em)");
+        this.setState(() => ({ shiftedNav: !shiftedNav.matches }));
+    }
+
+    componentDidMount() {
+        this.onResize();
+    }
+
+    componentWillMount() {
+        //scroll event listener for navigation shift
+        window.addEventListener('resize', this.onResize);
+    }
+
+    componentWillUnmount() {
+        //scroll event listener for navigation shift
+        window.removeEventListener('resize', this.onResize);
+    }
+
     render(){
 
         return (
@@ -109,7 +128,7 @@ export default class ContactUsPage extends React.Component {
                 <title>پنج نوش | ارتباط با ما</title>
             </Helmet>
             <div className="contactus">
-                <Navigation transparent shifted/>
+                <Navigation transparent shifted={this.state.shiftedNav}/>
                 <div className="contactus__bg-top"></div>
                 <div className="contactus__body">
                     <div className="contactus__form-box">
