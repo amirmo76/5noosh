@@ -6,7 +6,8 @@ import { Link, NavLink } from 'react-router-dom';
 import ProductPrev from './ProductPrev';
 import axios from 'axios';
 import { Helmet } from "react-helmet";
-
+import {TimelineLite} from "gsap/TimelineMax";
+import { Power2 } from 'gsap/EasePack';
 
 export default class SignupPAge extends React.Component {
 
@@ -91,13 +92,38 @@ export default class SignupPAge extends React.Component {
         searchResults: [],
         categoryShow: false,
         lookAtCategory: false,
-        categoriesResults: []
+        categoriesResults: [],
+        cartAnimationOn: false
+    }
+
+    cartAddAnimation = e => {
+        if (!this.state.cartAnimationOn) {
+            this.setState(() => ({cartAnimationOn: true}));
+            const cartEl = document.querySelector('.shop__cart-icon');
+            const currentColor = window.getComputedStyle(cartEl).getPropertyValue('fill');
+
+            var tl = new TimelineLite();
+            tl.add(TweenLite.to(cartEl, 0.2, {
+                rotation: "+=30",
+                ease: Power2.easeIn
+            }));
+            tl.add(TweenLite.to(cartEl, 0.2, {
+                rotation: "-=45",
+                ease: Power2.easeIn
+            }));
+            tl.add(TweenLite.to(cartEl, 0.2, {
+                rotation: "+=15",
+                ease: Power2.easeIn,
+                delay: 0.1,
+                onComplete: () => this.setState(() => ({cartAnimationOn: false}))
+            }));
+        }
     }
 
     updateCartNumber = e => {
         if (localStorage.getItem('cart')) {
             const length = JSON.parse(localStorage.getItem('cart')).length;
-            this.setState(() => ({ cartNumber: length }));
+            this.setState(() => ({ cartNumber: length }), this.cartAddAnimation);
         } else {
             this.setState(() => ({ cartNumber: 0 }));
         }
@@ -290,6 +316,8 @@ export default class SignupPAge extends React.Component {
         this.updateCartNumber();
         this.categoryCheck();
     }
+
+    
 
     render() {
 

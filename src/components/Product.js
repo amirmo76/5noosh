@@ -4,6 +4,8 @@ import Footer from './Footer';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet } from "react-helmet";
+import {TimelineLite} from "gsap/TimelineMax";
+import { Power2 } from 'gsap/EasePack';
 
 export default class Product extends React.Component {
 
@@ -32,7 +34,8 @@ export default class Product extends React.Component {
             ]
         },
         cartNumber: 0,
-        error: false
+        error: false,
+        cartAnimationOn: false
     }
 
     updateCartNumber = e => {
@@ -107,6 +110,30 @@ export default class Product extends React.Component {
             });
         }
     }
+
+    cartAddAnimation = e => {
+        if (!this.state.cartAnimationOn) {
+            this.setState(() => ({cartAnimationOn: true}));
+            const cartEl = document.querySelector('.product__cart-icon');
+            const currentColor = window.getComputedStyle(cartEl).getPropertyValue('fill');
+
+            var tl = new TimelineLite();
+            tl.add(TweenLite.to(cartEl, 0.2, {
+                rotation: "+=30",
+                ease: Power2.easeIn
+            }));
+            tl.add(TweenLite.to(cartEl, 0.2, {
+                rotation: "-=45",
+                ease: Power2.easeIn
+            }));
+            tl.add(TweenLite.to(cartEl, 0.2, {
+                rotation: "+=15",
+                ease: Power2.easeIn,
+                delay: 0.1,
+                onComplete: () => this.setState(() => ({cartAnimationOn: false}))
+            }));
+        }
+    }
     
     addToCartClickHandler = e => {
         const item = {
@@ -122,6 +149,7 @@ export default class Product extends React.Component {
         arr.push(item);
         localStorage.setItem('cart',JSON.stringify(arr));
         this.updateCartNumber();
+        this.cartAddAnimation()
     }
 
     render(){
