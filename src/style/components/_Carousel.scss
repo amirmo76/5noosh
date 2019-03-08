@@ -1,187 +1,192 @@
 .carousel {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(12, [col-start] 1fr [col-end]);
+  grid-template-rows: minmax(min-content, 35vh) 2rem minmax(min-content, 35vh) min-content;
+  direction: rtl;
+  color: $--color-white;
+  position: relative;
 
-    display: grid;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(12,[col-start] 1fr [col-end]);
-    grid-template-rows: minmax(min-content, 35vh) 2rem minmax(min-content, 35vh) min-content;
-    direction: rtl;
-    color: $--color-white;
-    position: relative;
+  @include respond(tab-land) {
+    grid-template-rows: auto;
+    grid-gap: 2.5rem;
+  }
+
+  &__title {
+    font-size: 4rem;
+    grid-column: col-start 1 / col-end 4;
+    font-weight: 300;
+    align-self: end;
 
     @include respond(tab-land) {
-        grid-template-rows: auto;
-        grid-gap: 2.5rem;
-    }
-    
-    &__title {
-        font-size: 4rem;
-        grid-column: col-start 1/ col-end 4;
-        font-weight: 300;
-        align-self: end;
-
-        @include respond(tab-land) {
-            grid-row: 1/2;
-            position: absolute;
-            right: 5%;
-            bottom: 5.5rem;
-            grid-column: 1/ -1;
-            z-index: 5;
-        }
-
-        @include respond(b-4) {
-            right: 5%;
-        }
-
-        @include respond(b-12) {
-            font-size: 3rem;
-        }
+      grid-row: 1/2;
+      position: absolute;
+      right: 5%;
+      bottom: 5.5rem;
+      grid-column: 1/ -1;
+      z-index: 5;
     }
 
-    &__desc {
-        font-size: 1.6rem;
-        grid-column: col-start 1/ col-end 4;
-        grid-row: 2/ 3;
-
-        @include respond(tab-land) {
-            z-index: 5;
-            grid-column: 1/ -1;
-            position: absolute;
-            right: 5%;
-            bottom: 2rem;
-            grid-row: 1/2;
-        }
-
-        @include respond(b-4) {
-            right: 5%;
-        }
-
-        @include respond(b-12) {
-            font-size: 1.4rem;
-        }
+    @include respond(b-4) {
+      right: 5%;
     }
 
-    &__btn {
-        grid-column: col-start 1/ col-end 2;
-        grid-row: 3/ 4;
-        align-self: start;
-        margin-top: 3rem;
+    @include respond(b-12) {
+      font-size: 3rem;
+    }
+  }
 
-        @include respond(tab-land) {
-            display: none;
-        }
+  &__desc {
+    font-size: 1.6rem;
+    grid-column: col-start 1 / col-end 4;
+    grid-row: 2/ 3;
+
+    @include respond(tab-land) {
+      z-index: 5;
+      grid-column: 1/ -1;
+      position: absolute;
+      right: 5%;
+      bottom: 2rem;
+      grid-row: 1/2;
     }
 
-    &__bg {
-        position: absolute;
-        top: 0 - 15rem;
-        left: 0 - $--size-padding-home;
-        width: 18rem;
-        height: 77rem;
+    @include respond(b-4) {
+      right: 5%;
+    }
+
+    @include respond(b-12) {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__btn {
+    grid-column: col-start 1 / col-end 2;
+    grid-row: 3/ 4;
+    align-self: start;
+    margin-top: 3rem;
+
+    @include respond(tab-land) {
+      display: none;
+    }
+  }
+
+  &__bg {
+    position: absolute;
+    top: 0 - 15rem;
+    left: 0 - $--size-padding-home;
+    width: 18rem;
+    height: 77rem;
+    z-index: 1;
+
+    @include respond(tab-land) {
+      display: none;
+    }
+
+    &--primary {
+      background-color: $--color-primary;
+    }
+  }
+
+  &__img {
+    width: 85rem;
+    height: 45.5rem;
+    background-size: cover;
+    grid-row: 1/4;
+    grid-column: col-start 5 / col-end 13;
+    margin-top: 7.5rem;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 1.5rem 4rem rgba($--color-black, 0.25);
+    justify-self: end;
+    background-position: center;
+
+    @include respond(tiny-desk) {
+      width: 56vw;
+    }
+
+    @include respond(tab-land) {
+      width: 100%;
+      grid-column: 1/-1;
+      margin-top: 5rem;
+      grid-row: 1/2;
+
+      &::after {
+        display: block;
         z-index: 1;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100.2%;
+        background-image: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.8) 0%,
+          rgba(0, 0, 0, 0.9) 10%,
+          rgba(0, 0, 0, 0.2) 35%,
+          transparent 100%
+        );
+      }
+    }
+  }
 
-        @include respond(tab-land) {
-            display: none;
-        }
+  &__slides {
+    font-size: 1.2rem;
+    color: $--color-primary;
+    grid-row: 4/5;
+    grid-column: col-start 1 / col-end 10;
+    display: flex;
+    margin-top: 2rem;
 
-        &--primary {
-            background-color: $--color-primary;
-        }
+    @include respond(tab-land) {
+      grid-column: 1/ -1;
     }
 
-    &__img {
-        width: 85rem;
-        height: 60vh;
-        background-size: cover;
-        grid-row: 1/4;
-        grid-column: col-start 5/ col-end 13;
-        margin-top: 7.5rem;
-        position: relative;
-        z-index: 2;
-        box-shadow: 0 1.5rem 4rem rgba($--color-black, .25);
-        justify-self: end;
-        background-position: center;
+    @include respond(b-9) {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(max-content, 1fr));
+      align-items: center;
+      justify-content: stretch;
+      grid-gap: 4.5rem;
+    }
+  }
 
-        @include respond(tiny-desk) {
-            width: 56vw;
-        }
+  &__slide {
+    font-weight: 500;
+    padding-left: 10rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.2rem solid $--color-primary;
+    transition: all 0.2s ease-in;
 
-        @include respond(tab-land) {
-            width: 100%;
-            grid-column: 1/-1;
-            margin-top: 5rem;
-            grid-row: 1/2;
+    &:not(:last-child) {
+      margin-left: 15rem;
 
-            &::after {
-                display: block;
-                z-index: 1;
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100.2%;
-                background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.9) 10%,rgba(0, 0, 0, 0.2) 35%, transparent 100%);
-            }
-        }
+      @include respond(tiny-desk) {
+        margin-left: 10rem;
+      }
+
+      @include respond(tab-land) {
+        margin-left: auto;
+      }
+
+      @include respond(b-9) {
+        // justify-self: stretch;
+        margin: 0;
+      }
     }
 
-    &__slides {
-        font-size: 1.2rem;
-        color: $--color-primary;
-        grid-row: 4/5;
-        grid-column: col-start 1/ col-end 10;
-        display: flex;
-        margin-top: 2rem;
-
-        @include respond(tab-land) {
-            grid-column: 1/ -1;
-        }
-
-        @include respond(b-9) {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(max-content, 1fr));
-            align-items: center;
-            justify-content: stretch;
-            grid-gap: 4.5rem;  
-        }
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
     }
 
-    &__slide {
-        font-weight: 500;
-        padding-left: 10rem;
-        padding-bottom: 1rem;
-        border-bottom: .2rem solid $--color-primary;
-        transition: all .2s ease-in;
-
-        &:not(:last-child) {
-            margin-left: 15rem;
-
-            @include respond(tiny-desk) {
-                margin-left: 10rem;
-            }
-
-            @include respond(tab-land) {
-                margin-left: auto;
-            }
-
-            @include respond(b-9) {
-                // justify-self: stretch;
-                margin: 0;
-            }
-        }
-
-        &:hover {
-            cursor: pointer;
-            transform: scale(1.1);
-        }
-
-        @include respond(small-desk) {
-            padding-left: 10rem;
-        }
-
-        @include respond(b-9) {
-            // justify-self: stretch;
-            margin: 0;
-        }
+    @include respond(small-desk) {
+      padding-left: 10rem;
     }
+
+    @include respond(b-9) {
+      // justify-self: stretch;
+      margin: 0;
+    }
+  }
 }
