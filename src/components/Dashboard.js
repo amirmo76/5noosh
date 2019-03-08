@@ -17,7 +17,15 @@ export default class Dashboard extends React.Component {
 
     state = {
         editMode: false,
-        user: {},
+        user: {
+            email: 'amir.mohseno7697@gmail.com',
+            name: 'امیر محسنی مقدم',
+            phone: '09137149220',
+            zipCode: '12312334',
+            state: 'کرمان',
+            city: 'رفسنجان',
+            address: 'آزادی 8'
+        },
         news: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است',
         currentPassValid: false,
         currentPassTouched: false,
@@ -350,7 +358,7 @@ export default class Dashboard extends React.Component {
                 bind.setState(() => ({error: true}));
             }
         }).catch(function(error) {
-            return bind.props.history.push('/login');
+            // return bind.props.history.push('/login');
         });
     }
 
@@ -392,9 +400,9 @@ export default class Dashboard extends React.Component {
             backgroundImage: 'url(' + this.state.user.profilePic + ')'
         }
 
-        if (!localStorage.getItem('token')) {
-            return false;
-        }
+        // if (!localStorage.getItem('token')) {
+        //     return false;
+        // }
 
         return (
             <>
@@ -532,7 +540,7 @@ export default class Dashboard extends React.Component {
                             : (<input type="email" value={this.state.user.email} className="dashboard__info-input dashboard__info-input--email" onChange={this.inputOnChangeHandle}/>)
                         }
 
-                        <label className="dashboard__label dashboard__label--left">استان</label>
+                        <label className="dashboard__label dashboard__label--left dashboard__label--state">استان</label>
 
                         {
                             !this.state.editMode
@@ -548,7 +556,7 @@ export default class Dashboard extends React.Component {
                             : (<input type="phone" value={this.state.user.phone} className="dashboard__info-input dashboard__info-input--phone" onChange={this.inputOnChangeHandle}/>)
                         }
 
-                        <label className="dashboard__label dashboard__label--left">شهر</label>
+                        <label className="dashboard__label dashboard__label--left dashboard__label--city">شهر</label>
                         
                         {
                             !this.state.editMode
