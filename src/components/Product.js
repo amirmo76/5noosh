@@ -277,7 +277,7 @@ export default class Product extends React.Component {
                   src={this.state.product.thumbnail}
                   className="product__img product__img--main"
                 />
-                {this.state.product.pics.length > 2 && (
+                {/* {this.state.product.pics.length > 2 && (
                   <img
                     src={this.state.product.pics[2].location}
                     className="product__img product__img--sub-left"
@@ -289,7 +289,7 @@ export default class Product extends React.Component {
                     src={this.state.product.pics[3].location}
                     className="product__img product__img--sub-right"
                   />
-                )}
+                )} */}
               </div>
               <div className="product__info">
                 <h1 className="product__title">{this.state.product.title}</h1>
