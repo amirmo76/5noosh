@@ -1,46 +1,51 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 *,
 *::after,
 *::before {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 html {
-    box-sizing: border-box;
-    font-size: 62.5%; // 1rem = 10px
-    overflow-x: hidden;
+  box-sizing: border-box;
+  font-size: 62.5%; // 1rem = 10px
+  overflow-x: hidden;
 
-    @include respond(tab-land) {
-        font-size: 55%;
-    }
+  @include respond(tab-land) {
+    font-size: 55%;
+  }
 }
 
 body {
-    min-height: 100vh;
-    background-image: linear-gradient(to right bottom, var(--color-primary-light), var(--color-primary-dark));
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-family: 'IRANSans';
-    overflow-x: hidden;
+  min-height: 100vh;
+  background-image: linear-gradient(
+    to right bottom,
+    var(--color-primary-light),
+    var(--color-primary-dark)
+  );
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "IRANSans";
+  overflow-x: hidden;
 }
 
 #appRoot {
-
 }
 
 .clickable {
-    &:active, &:focus {
-        outline: 0;
-        border: none;
-        -moz-outline-style: none;
-    }
+  &:active,
+  &:focus {
+    outline: 0;
+    border: none;
+    -moz-outline-style: none;
+  }
 }
 
-a, a:visited {
-    text-decoration: none;
-    color: inherit;
+a,
+a:visited {
+  text-decoration: none;
+  color: inherit;
 }

@@ -109,6 +109,7 @@
       grid-column: 1/-1;
       margin-top: 5rem;
       grid-row: 1/2;
+      height: 50vw;
 
       &::after {
         display: block;
@@ -172,6 +173,7 @@
       @include respond(b-9) {
         // justify-self: stretch;
         margin: 0;
+        padding-left: 0;
       }
     }
 

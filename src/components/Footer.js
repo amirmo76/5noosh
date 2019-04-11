@@ -3,7 +3,7 @@ import { TimelineMax } from "gsap/TimelineMax";
 import ScrollMagic from "scrollmagic/scrollmagic/uncompressed/ScrollMagic";
 import "animation.gsap";
 import "debug.addIndicators";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default class Footer extends React.Component {
   initAnmation = e => {
@@ -36,15 +36,15 @@ export default class Footer extends React.Component {
 
           <ul className="footer__list">
             <li className="footer__list-item">
-              <Link className="footer__link" to="/">
+              <NavLink className="footer__link" to="/">
                 خانه
-              </Link>
+              </NavLink>
             </li>
 
             <li className="footer__list-item">
-              <Link className="footer__link" to="/shop">
+              <NavLink className="footer__link" to="/shop">
                 فروشگاه
-              </Link>
+              </NavLink>
             </li>
 
             <li className="footer__list-item">
@@ -64,15 +64,15 @@ export default class Footer extends React.Component {
             </li>
 
             <li className="footer__list-item">
-              <Link to="/aboutus" className="footer__link">
+              <NavLink to="/aboutus" className="footer__link">
                 درباره ما
-              </Link>
+              </NavLink>
             </li>
 
             <li className="footer__list-item">
-              <Link to="/contactus" className="footer__link">
+              <NavLink to="/contactus" className="footer__link">
                 ارتباط با ما
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>

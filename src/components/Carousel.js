@@ -26,7 +26,7 @@ export default class Carousel extends React.Component {
     this.addSlide(
       "هدیه ای از طبیعت",
       "با دمنوش های گیاهی پنج نوش سلامتی را از طبیعت هدیه بگیرید",
-      "/img/pic-9.jpg",
+      "/img/pic-16.jpg",
       "primary",
       "فروشگاه",
       "/shop"

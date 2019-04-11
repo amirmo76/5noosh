@@ -206,12 +206,24 @@ export default class Product extends React.Component {
       if (!cur.includes("%") && cur.length > 0) steps.push(cur);
     });
 
+    if (this.state.product.pics[0].location.substr(0, 1) === "/") {
+    } else {
+    }
+
     let style1 = {
-      backgroundImage: `url(${this.state.product.pics[0].location})`
+      backgroundImage: `url(${
+        this.state.product.pics[0].location.substr(0, 1) === "/"
+          ? this.state.product.pics[0].location
+          : "/" + this.state.product.pics[0].location
+      })`
     };
 
     let style2 = {
-      backgroundImage: `url(${this.state.product.pics[1].location})`
+      backgroundImage: `url(${
+        this.state.product.pics[1].location.substr(0, 1) === "/"
+          ? this.state.product.pics[1].location
+          : "/" + this.state.product.pics[1].location
+      })`
     };
 
     if (this.state.error) {
@@ -274,7 +286,7 @@ export default class Product extends React.Component {
             <div className="product__header">
               <div className="product__gallery">
                 <img
-                  src={this.state.product.thumbnail}
+                  src={"/" + this.state.product.thumbnail}
                   className="product__img product__img--main"
                 />
                 {/* {this.state.product.pics.length > 2 && (
